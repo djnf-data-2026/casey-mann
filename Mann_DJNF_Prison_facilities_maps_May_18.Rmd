@@ -1,0 +1,580 @@
+---
+title: "Prison facilities and maps"
+output: html_notebook
+---
+
+Project: Determine the contrast in the demographics in Arkansas prisons versus their surrounding counties using census data.
+
+Also determine the disparity in wages in the prison Census tracts versus the surrounding counties.
+
+Create maps and charts with the results.
+
+
+#rsw comment: install tidyverse instead, which has dplyr
+#see: https://tidyverse.org/
+#grey out this chunk after you load it - use a hash tag #
+#install janitor to fix the names of columns
+```{r}
+# install.packages("tidygeocoder")
+# install.packages("dplyr")
+install.packages("janitor")
+```
+
+#rsw comment: load tidyverse
+```{r}
+library(tidygeocoder)
+# library(dplyr)
+library(tidyverse)
+library(janitor)
+```
+
+#rsw comment - make sure to double check you have the facilities and addreses correctly entered. 
+#next time, put the names and addresses in a Google Sheet and import that instead. fewer chances of error
+```{r}
+facilities <- tibble(
+  name = c(
+    "Barbara Ester Unit",
+    "Benny Magness Unit",
+    "Benton Unit",
+    "Cummins Unit",
+    "Delta Regional Unit",
+    "East Arkansas Regional Unit",
+    "Grimes Unit",
+    "J. Aaron Hawkins Sr. Center",
+    "Larry B. Norris Unit",
+    "McPherson Unit",
+    "Ouachita River Correctional Unit",
+    "Pine Bluff Unit",
+    "Randall L. Williams Correctional Facility",
+    "Tucker Unit",
+    "Varner/Varner Supermax Unit",
+    "Wrightsville Unit"
+  ),
+  address = c(
+    "7500 Corrections Circle, Pine Bluff, AR 71603",
+    "10 Prison Circle, Calico Rock, AR 72519",
+    "6701 Highway 67, Benton, AR 72015",
+    "2540 Hwy 388, Gould, AR 71643",
+    "880 East Gaines, Dermott, AR 71638",
+    "326 Lee Road 603, Brickeys, AR 72320",
+    "300 Corrections Drive, Newport, AR 72112",
+    "Hwy 365, Wrightsville, AR 72183",
+    "2501 State Farm Rd, Tucker, AR 72168",
+    "302 Corrections Drive, Newport, AR 72112",
+    "100 Walco Lane, Malvern, AR 72104",
+    "890 Free Line Drive, Pine Bluff, AR 71603",
+    "7206 West 7th Avenue, Pine Bluff, AR 71603",
+    "2400 State Farm Rd, Tucker, AR 72168",
+    "320 State Highway 388, Gould, AR 71643",
+    "8400 Highway 386, Wrightsville, AR 72183"
+  )
+)
+```
+
+
+```{r}
+geocoded <- facilities %>%
+  geocode(
+    address,
+    method       = "census",
+    lat          = latitude,
+    long         = longitude,
+    full_results = TRUE
+  )
+```
+
+#feedback from Claude.ai
+#The Census geocoder struggles with rural addresses — which prisons often are. A few likely culprits:
+
+#"Hwy", "Rd", "St Farm Rd" — Census geocoder is picky about abbreviations and non-standard road names -->
+# Rural routes and highway addresses like Hwy 365 or Lee Road 603 are often not in the Census TIGER database -->
+#Small towns like Brickeys and Calico Rock may have incomplete street data -->
+#Try switching to the "osm" (OpenStreetMap) method instead — it handles rural addresses much better: -->
+```{r}
+geocoded1 <- facilities %>%
+  geocode(
+    address,
+    method       = "osm",
+    lat          = latitude,
+    long         = longitude,
+    full_results = TRUE
+  ) |> 
+  clean_names()
+```
+
+#Manually add lat and long. look up coordinates in Google Maps
+# Google: lat long 320 State Highway 388, Gould, AR 71643
+# The coordinates for 320 State Highway 388, Gould, AR 71643 (the location of the Arkansas Department of Corrections Varner Unit) are approximately 34.04242° N and 91.60889° W.
+```{r}
+geocoded2 <- geocoded1 |> 
+  mutate(
+    latitude  = if_else(name_1 == "Varner/Varner Supermax Unit", 34.04242,  latitude),
+    longitude = if_else(name_1 == "Varner/Varner Supermax Unit", -91.60889, longitude)
+  )
+
+```
+
+#Explanation of the above chunk 
+#if_else is a simple three-part structure: condition, value if TRUE, value if FALSE:
+
+#if_else(name_1 == "Varner/Varner Supermax Unit", 34.04242, latitude)
+# if this is true ^^^                            use this^  otherwise keep this^
+
+
+```{r}
+no_match <- geocoded %>% filter(is.na(latitude))
+print(no_match$name)
+```
+
+
+```{r}
+osm_retry <- no_match %>%
+  select(name, address) %>%
+  geocode(
+    address,
+    method       = "osm",
+    lat          = latitude,
+    long         = longitude,
+    full_results = TRUE
+  )
+```
+
+```{r}
+names(no_match)
+
+```
+
+
+```{r}
+nrow(no_match)
+print(no_match)
+```
+
+
+```{r}
+print(osm_retry %>% select(name...1, latitude, longitude))
+```
+
+
+```{r}
+manual <- tibble(
+  name = c(
+    "Cummins Unit",
+    "East Arkansas Regional Unit",
+    "Varner/Varner Supermax Unit"
+  ),
+  address = c(
+    "2540 Hwy 388, Gould, AR 71643",
+    "326 Lee Road 603, Brickeys, AR 72320",
+    "320 State Highway 388, Gould, AR 71643"
+  ),
+  latitude = c(34.0859182097097, 34.84966405170853, 34.04272538283531),
+  longitude = c(-91.69990012402901, -90.60006121824772, -91.60824475772544)
+)
+```
+
+
+
+```{r}
+osm_clean <- osm_retry %>%
+  filter(!is.na(latitude)) %>%
+  select(
+    name    = name...1,
+    address,
+    latitude,
+    longitude
+  )
+
+```
+
+
+```{r}
+census_clean <- geocoded %>%
+  filter(!is.na(latitude)) %>%
+  select(
+    name,
+    address,
+    latitude,
+    longitude
+  )
+```
+
+
+```{r}
+all_facilities <- bind_rows(census_clean, osm_clean, manual)
+
+print(all_facilities %>% select(name, latitude, longitude))
+```
+
+
+
+```{r}
+library(httr)
+library(jsonlite)
+
+get_census_tract <- function(lat, lon) {
+  url <- paste0(
+    "https://geocoding.geo.census.gov/geocoder/geographies/coordinates?",
+    "x=", lon,
+    "&y=", lat,
+    "&benchmark=Public_AR_Current",
+    "&vintage=Current_Current",
+    "&layers=Census%20Tracts",
+    "&format=json"
+  )
+  
+  response <- GET(url)
+  data <- fromJSON(content(response, as = "text"))
+  
+  tracts <- data$result$geographies$`Census Tracts`
+  
+  if (length(tracts) > 0) {
+    return(tracts$GEOID[1])
+  } else {
+    return(NA)
+  }
+}
+```
+
+
+```{r}
+all_facilities$census_tract <- mapply(
+  get_census_tract,
+  all_facilities$latitude,
+  all_facilities$longitude
+)
+```
+
+
+```{r}
+print(all_facilities %>% select(name, latitude, longitude, census_tract))
+```
+
+
+```{r}
+getwd()
+```
+
+#write all facilities to your github repository folder so it can be shared
+```{r}
+#write.csv(all_facilities, "C:/Users/casey/Downloads/facilities_with_tracts.csv", row.names = FALSE)
+write.csv(all_facilities, "/Users/gizmofo/Library/CloudStorage/GoogleDrive-robwells@umd.edu/My Drive/DJNF 2026/Casey Mann/facilities_with_tracts.csv", row.names = FALSE)
+```
+
+
+
+#rsw comment - you load these once and then gray them out with a comment: #
+```{r}
+
+# install.packages("sf")
+# install.packages("ggplot2")
+```
+
+```{r}
+library(tidycensus)
+library(sf)
+library(ggplot2)
+library(dplyr)
+```
+
+
+
+```{r}
+readRenviron("~/.Renviron")
+```
+
+#rsw comment - document your work. what is this loading? B01001_001 is the total population estimate 
+```{r}
+ar_tracts <- get_acs(
+  geography = "tract",
+  variables = "B01001_001",
+  state     = "AR",
+  year      = 2022,
+  geometry  = TRUE
+)
+```
+
+#rsw comment: you need to have all_facilities created here. it is not and the code fails.
+#it was probably created in a separate notebook. that's not good enough - it needs to be created here
+```{r}
+facilities_sf <- all_facilities %>%
+  st_as_sf(
+    coords = c("longitude", "latitude"),
+    crs    = 4326
+  )
+```
+
+
+#Fix!
+```{r}
+
+all_facilities <- read_csv("/Users/gizmofo/Library/CloudStorage/GoogleDrive-robwells@umd.edu/My Drive/DJNF 2026/Casey Mann/facilities_with_tracts.csv")
+
+facilities_sf <- all_facilities %>%
+  st_as_sf(
+    coords = c("longitude", "latitude"),
+    crs    = 4326
+  )
+
+```
+
+
+```{r}
+facilities_sf <- st_transform(facilities_sf, crs = st_crs(ar_tracts))
+```
+
+
+```{r}
+ggplot() +
+  geom_sf(data = ar_tracts, fill = "gray95", color = "gray70", linewidth = 0.2) +
+  geom_sf(data = facilities_sf, color = "red", size = 2.5, shape = 16) +
+  geom_text(
+    data  = all_facilities,
+    aes(x = longitude, y = latitude, label = name),
+    size  = 2.5,
+    vjust = -1
+  ) +
+  labs(
+    title    = "Arkansas State Prison Facilities by Census Tract",
+    subtitle = "Each polygon represents one census tract",
+    caption  = "Sources: AR DOC, U.S. Census Bureau"
+  ) +
+  theme_void()
+```
+
+
+
+```{r}
+install.packages("ggrepel", repos = "https://cloud.r-project.org")
+```
+
+
+```{r}
+library(ggrepel)
+```
+
+
+
+```{r}
+ggplot() +
+  geom_sf(data = ar_tracts, fill = "gray95", color = "gray70", linewidth = 0.2) +
+  geom_sf(data = facilities_sf, color = "red", size = 2.5, shape = 16) +
+  geom_label_repel(
+    data        = all_facilities,
+    aes(x = longitude, y = latitude, label = name),
+    size        = 2.5,
+    max.overlaps = 20
+  ) +
+  labs(
+    title    = "Arkansas State Prison Facilities by Census Tract",
+    subtitle = "Each polygon represents one census tract",
+    caption  = "Sources: AR DOC, U.S. Census Bureau"
+  ) +
+  theme_void()
+```
+
+
+
+```{r}
+install.packages("leaflet")
+install.packages("readxl")
+```
+
+
+```{r}
+library(leaflet)
+library(readxl)
+```
+
+#rsw comment: I can't import this spreadsheet - it's on your hard drive. load to github or dropbox and set the file path from the cloud
+```{r}
+facility_info <- read_excel("AR_DOC_Facilities.xlsx")
+```
+
+
+```{r}
+all_facilities <- all_facilities %>%
+  left_join(
+    facility_info %>% select(`Facility Name`, Capacity),
+    by = c("name" = "Facility Name")
+  )
+```
+
+
+```{r}
+leaflet(all_facilities) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng    = ~longitude,
+    lat    = ~latitude,
+    radius = 6,
+    color  = "red",
+    popup  = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+```
+
+
+```{r}
+library(tidycensus)
+library(sf)
+library(ggplot2)
+library(dplyr)
+library(leaflet)
+library(readxl)
+library(ggrepel)
+```
+
+
+```{r}
+ar_tracts <- get_acs(
+  geography = "tract",
+  variables = "B01001_001",
+  state     = "AR",
+  year      = 2022,
+  geometry  = TRUE
+)
+```
+
+```{r}
+leaflet() %>%
+  addProviderTiles("CartoDB.PositronNoLabels") %>%
+  addPolygons(
+    data        = ar_tracts,
+    fillColor   = "white",
+    fillOpacity = 0.5,
+    color       = "gray50",
+    weight      = 0.5
+  ) %>%
+  addCircleMarkers(
+    data   = all_facilities,
+    lng    = ~longitude,
+    lat    = ~latitude,
+    radius = 6,
+    color  = "red",
+    popup  = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+```
+
+```{r}
+ar_tracts <- st_transform(ar_tracts, crs = 4326)
+```
+
+
+```{r}
+leaflet() %>%
+  fitBounds(-94.6, 33.0, -89.6, 36.5) %>%
+  addPolygons(
+    data        = ar_tracts,
+    fillColor   = "white",
+    fillOpacity = 1,
+    color       = "gray40",
+    weight      = 1
+  ) %>%
+  addCircleMarkers(
+    data   = all_facilities,
+    lng    = ~longitude,
+    lat    = ~latitude,
+    radius = 6,
+    color  = "red",
+    fillColor = "red",
+    fillOpacity = 1,
+    popup  = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+```
+
+
+```{r}
+leaflet() %>%
+  fitBounds(-94.6, 33.0, -89.6, 36.5) %>%
+  addPolygons(
+    data        = ar_tracts,
+    fillColor   = "white",
+    fillOpacity = 1,
+    color       = "gray40",
+    weight      = 1
+  ) %>%
+  addCircleMarkers(
+    data   = all_facilities,
+    lng    = ~longitude,
+    lat    = ~latitude,
+    radius = 6,
+    color  = "red",
+    fillColor = "red",
+    fillOpacity = 1,
+    popup  = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+```
+
+```{r}
+my_map <- leaflet() %>%
+  fitBounds(-94.6, 33.0, -89.6, 36.5) %>%
+  addPolygons(
+    data        = ar_tracts,
+    fillColor   = "white",
+    fillOpacity = 1,
+    color       = "gray20",
+    weight      = 1.5
+  ) %>%
+  addCircleMarkers(
+    data        = all_facilities,
+    lng         = ~longitude,
+    lat         = ~latitude,
+    radius      = 6,
+    color       = "red",
+    fillColor   = "red",
+    fillOpacity = 1,
+    popup       = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+
+my_map
+```
+
+
+```{r}
+my_map <- leaflet() %>%
+  fitBounds(-94.6, 33.0, -89.6, 36.5) %>%
+  addPolygons(
+    data        = ar_tracts,
+    fillColor   = "white",
+    fillOpacity = 1,
+    color       = "black",
+    weight      = 2
+  ) %>%
+  addCircleMarkers(
+    data        = all_facilities,
+    lng         = ~longitude,
+    lat         = ~latitude,
+    radius      = 6,
+    color       = "red",
+    fillColor   = "red",
+    fillOpacity = 1,
+    popup       = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+
+my_map
+```
+
