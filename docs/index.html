@@ -2,18 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Rob Wells">
-<meta name="dcterms.date" content="2026-05-25">
+<meta name="dcterms.date" content="2026-06-01">
 
 <title>Hosting a GitHub Page</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -66,14 +63,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="Hosting_GitHub_Page_DJNF_2026_files/libs/clipboard/clipboard.min.js"></script>
 <script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/quarto.js" type="module"></script>
 <script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/popper.min.js"></script>
 <script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/anchor.min.js"></script>
 <link href="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="Hosting_GitHub_Page_DJNF_2026_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Hosting_GitHub_Page_DJNF_2026_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Hosting_GitHub_Page_DJNF_2026_files/libs/bootstrap/bootstrap-8ffd5f67044e5306d9846f29df41dda5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="Hosting_GitHub_Page_DJNF_2026_files/libs/bootstrap/bootstrap-a74871fe4945b66d259aafc266475145.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -103,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 25, 2026</p>
+      <p class="date">June 1, 2026</p>
     </div>
   </div>
   
@@ -118,8 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="hosting-a-github-page---r-cheat-sheet" class="level1">
 <h1>Hosting a GitHub Page - R Cheat Sheet</h1>
 <p>This exercise will allow you to create a basic web page which will be required for the Investigate Your Community final project option.</p>
-<p>For this exercise, you will create a page with your notes on R commands. You will then host it on your GitHub page.</p>
-<p>You will write your code in chunks but not execute the data. Use {r eval=FALSE, include=TRUE} in the header so the page will render without running the actual code.</p>
+<p>For this exercise, you will create a page with your one paragraph story idea. You will then host it on your GitHub page.</p>
 <section id="styled-text" class="level2">
 <h2 class="anchored" data-anchor-id="styled-text">Styled Text</h2>
 <p>At the core, QMD files are text files, and they allow you to use a very lightweight “markup” language to style text, similar to html, but much less fussy.</p>
@@ -151,9 +148,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="create-your-website" class="level2">
 <h2 class="anchored" data-anchor-id="create-your-website">Create your website</h2>
-<p>In place of these instructions, you will paste your project draft code into this document.</p>
+<p>In place of these instructions, you will paste your project one paragraph story idea into this document and any code you’ve developed so far.</p>
+<p>You will need to load libraries and data because rendering a page requires a full R session to execute on the code.</p>
 <p>First, create H1 headers</p>
-<p>For example:</p>
+<p><strong>For example:</strong></p>
 </section>
 </section>
 <section id="income-and-vacancies-of-baltimore-neighborhoods-2020" class="level1">
@@ -161,25 +159,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="looking-at-wealth-inequality-in-charm-city" class="level2">
 <h2 class="anchored" data-anchor-id="looking-at-wealth-inequality-in-charm-city">Looking at wealth inequality in Charm City</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>income_vacancy <span class="sc">%&gt;%</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> community)) <span class="sc">+</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>income_2020), <span class="at">color =</span> <span class="st">"#64D197"</span>, <span class="at">stroke=</span><span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>vacant_2020<span class="sc">*</span><span class="dv">1000</span>), <span class="at">stroke=</span><span class="dv">5</span>, <span class="at">color =</span> <span class="st">"#FB8AE3"</span>) <span class="sc">+</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"2020 Income (Green)"</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">62000</span>), <span class="at">labels=</span>scales<span class="sc">::</span><span class="fu">dollar_format</span>(),</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.<span class="sc">/</span><span class="dv">60000</span>, <span class="at">name=</span><span class="st">"2020 Percent Vacancies (Red)"</span>, <span class="at">labels =</span> scales<span class="sc">::</span>percent))<span class="sc">+</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_y_continuous(labels = scales::percent) +</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Income and Vacancies of Baltimore Neighborhoods 2020"</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Community"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"source: BNIA Data - By: Parker Leipzig and Rob Wells"</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You will write your code in chunks but not execute the data. Use {r eval=FALSE, include=TRUE} in the header so the page will render without running the actual code.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>income_vacancy <span class="sc">%&gt;%</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> community)) <span class="sc">+</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>income_2020), <span class="at">color =</span> <span class="st">"#64D197"</span>, <span class="at">stroke=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>vacant_2020<span class="sc">*</span><span class="dv">1000</span>), <span class="at">stroke=</span><span class="dv">5</span>, <span class="at">color =</span> <span class="st">"#FB8AE3"</span>) <span class="sc">+</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"2020 Income (Green)"</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">62000</span>), <span class="at">labels=</span>scales<span class="sc">::</span><span class="fu">dollar_format</span>(),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.<span class="sc">/</span><span class="dv">60000</span>, <span class="at">name=</span><span class="st">"2020 Percent Vacancies (Red)"</span>, <span class="at">labels =</span> scales<span class="sc">::</span>percent))<span class="sc">+</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_y_continuous(labels = scales::percent) +</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Income and Vacancies of Baltimore Neighborhoods 2020"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Community"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"source: BNIA Data - By: Parker Leipzig and Rob Wells"</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="set-up-for-hosting" class="level2">
 <h2 class="anchored" data-anchor-id="set-up-for-hosting">Set up for hosting</h2>
 <ul>
-<li>Create a new folder in your repository called “docs”</li>
+<li>Create a new folder in your repository called “docs” (if one isn’t there already)</li>
 <li>Rename this document as “index.qmd”</li>
 <li>Move “index.qmd” into the “docs” folder</li>
 </ul>
@@ -189,8 +188,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Make sure this document is named “index.qmd” and is in the “docs” folder</li>
 <li>Click Render button. It will create an html version of this page, called “index.html”</li>
-<li>Use GitHub Desktop to push your files to your your github account.</li>
-<li>Access the URL from your Github account.</li>
+<li>Use GitHub Desktop to push your files to your your github repository on the web.</li>
+<li>Access the URL from your Github repository.</li>
 </ul>
 </section>
 <section id="host-html-on-github" class="level2">
@@ -220,11 +219,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Part 2: Embedding Images</h1>
 <ul>
 <li><p>create a folder in your repository’s main branch, call it images</p></li>
-<li><p>find any .jpg or .png file and insert it into that folder.</p></li>
+<li><p>find any .jpeg, .jpg or .png file and insert it into that folder.</p></li>
 <li><p>In a QMD file, display the image as follows:</p></li>
 </ul>
-<p>#<img src="images/your_link_here.png" class="img-fluid"></p>
-<p>#<img src="images/xl-refresher-grid_SHEETS.png" class="img-fluid"></p>
+<p>#<img src="images/your_link_here.png" class="img-fluid" alt="CAPTION FOR YOUR PHOTO"></p>
+<p>#<img src="images/xl-refresher-grid_SHEETS.png" class="img-fluid" alt="CHATTER FOR YOUR chart"></p>
 <p>A more advanced technique controlling the width and height</p>
 <p>#<img src="images/xl-refresher-SHEETS_screen.png" class="img-fluid" style="width:100.0%" alt="Read the Screen"></p>
 <section id="embedding-code" class="level3">
@@ -251,7 +250,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </iframe>
 </section>
 </div>
-<p>Now replace these two videos with something you selected. The embed code is in the video share feature</p>
+<p><strong>Now replace these two videos with something you selected.</strong></p>
+<p>The embed code is in the video share feature</p>
+</section>
+<section id="instructions-to-embed-a-gif" class="level2">
+<h2 class="anchored" data-anchor-id="instructions-to-embed-a-gif">Instructions to embed a gif</h2>
 <p>This is a very basic starter but it will get you to the finish line on Saturday. Good luck!</p>
 <p>–30–</p>
 </section>
