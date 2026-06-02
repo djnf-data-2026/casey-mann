@@ -1,0 +1,275 @@
+---
+title: "Arkansas prisons and their host counties"
+author: "Casey Mann"
+date: "5-29-2026"
+format:
+  html:
+    theme: cosmo
+---
+
+# Arkansas prisons and their host counties
+
+This story will examine how reported census demographics differ from everyday life in prison counties by visualizing the racial makeup when prison populations are counted versus when they are not. It will also explore the financial impact of hosting a prison by comparing prison county median incomes to the median incomes of surrounding counties.
+
+## Why now?
+
+To much debate from residents and lawmakers alike, Arkansas Governor Sarah Huckabee Sanders announced plans for the construction of a 3,000 bed prison in rural Franklin County in October 2024. Two years later, construction is stalled, but it is unclear what effect the facility could have on it's host county.
+
+## Target Audience
+
+This project aims to serve both rural Arkansans and policy makers by outlining the impact that hosting a prison can have on a community.
+
+## Potential Interviews
+
+1.  Business owners in Franklin County. Do they feel like the facility could push industry or customers away?
+2.  Franklin County residents. How do they feel about the potential build? Does the presence of the proposed facility change how they feel about their home? What about their plans for the future? Will anyone want to move if construction is resumed or completed?
+3.  Residents of Malvern, Arkansas, home to the most recent prison build in the state. Despite occurring more than 20 years ago, some residents may still recall how the facility changed the area. Potential for solid anecdotal details.
+4.  Lawmakers on both sides of the argument for the facility's construction.
+    - FOR: Republican Sen. Jonathan Dismang of Searcy, who filed an appropriations bill during the 2025 session that would have provided \$750 million in spending authority for the prison project. [google](https://arkansasadvocate.com/2026/04/03/arkansas-explained-what-is-the-franklin-county-prison-project/)
+    - AGAINST: Republican Sen. Bryan King of Green Forest, who has been an outspoken critic of plans to construct the Franklin County facility. [google](https://arkansasadvocate.com/2025/04/11/arkansas-lawmakers-consider-other-funding-methods-as-they-abandon-sixth-prison-appropriation-vote/)
+
+## Potential Impact
+
+This story has the potential to impact both Franklin County residents and Arkansas policy. Residents who may feel like they are in the dark about what is happening in their own community could get access to data-backed context that informs decisions about whether they support the build. The story also serves to provide insight into how Franklin could be affected long-term if policymakers follow through on the build.
+
+Arkansas policymakers could get an empirical look at how the Franklin County facility will change the lives of those who live in the area, potentially affecting how they vote on the issue in a moment when the future of the project appears to be up in the air.
+
+## Current code and findings
+
+This code was used to explore the median income levels throughout the state of Arkansas by county. I will compare the median income of counties with prisons to ones without prisons. The goal of this investigation is to explore the motivations for a town hosting a prison.
+
+Hypothesis: Counties with prisons should have higher median incomes
+
+After initially gathering the median income of all Arkansas counties, I cleaned up the table and ranked the counties by median income level.
+
+```{r eval=FALSE, include=TRUE}
+
+ar_income_ranked <- ar_income %>%
+  mutate(county = str_remove(NAME, ", Arkansas")) %>%
+  select(GEOID, county, median_income = estimate, margin_of_error = moe) %>%
+  arrange(desc(median_income)) %>%
+  mutate(rank = row_number()) %>%
+  select(rank, GEOID, county, median_income, margin_of_error)
+
+print(ar_income_ranked, n = 75)
+)
+```
+
+I then worked to identify which counties are home to one or more correctional facilities and add this information to my table of ranked county incomes.
+
+```{r eval=FALSE, include=TRUE}
+
+prisons <- read_csv("facilities_with_tracts.csv")
+```
+
+The facilities csv is listed in census tracts, but we can get county info from that. A census tract include county indentifiers in the number. The first 5 characters identify the state and county. For example a code like 05069002103 breaks down as 05 (Arkansas), 069 (Jefferson County), and 002103.
+
+```{r eval=FALSE, include=TRUE}
+
+prisons_counties <- prisons %>%
+  mutate(GEOID = str_sub(census_tract, 1, 5)) %>%  
+  distinct(GEOID) %>%
+  mutate(has_prison = "Yes")
+```
+
+```{r eval=FALSE, include=TRUE}
+
+ar_income_ranked <- ar_income_ranked %>%
+  left_join(prisons_counties, by = "GEOID") %>%
+  mutate(has_prison = replace_na(has_prison, "No"))
+```
+
+```{r eval=FALSE, include=TRUE}
+
+prison_counts <- prisons %>%
+  mutate(GEOID = str_sub(census_tract, 1, 5)) %>%
+  group_by(GEOID) %>%
+  summarise(num_prisons = n())
+
+ar_income_ranked %>%
+  inner_join(prison_counts, by = "GEOID") %>%
+  arrange(rank) %>%
+  select(rank, county, median_income, num_prisons)
+```
+
+A tibble:9 × 4
+
++---------+-------------------+---------------+-------------+---+
+| rank    | county            | median_income | num_prisons |   |
+|         |                   |               |             |   |
+| \<int\> | \<chr\>           | \<dbl\>       | \<int\>     |   |
++========:+:==================+==============:+============:+===+
+| 2       | Saline County     | 76534         | 1           |   |
++---------+-------------------+---------------+-------------+---+
+| 9       | Pulaski County    | 60385         | 2           |   |
++---------+-------------------+---------------+-------------+---+
+| 28      | Hot Spring County | 52644         | 1           |   |
++---------+-------------------+---------------+-------------+---+
+| 31      | Lincoln County    | 51667         | 2           |   |
++---------+-------------------+---------------+-------------+---+
+| 44      | Jefferson County  | 48552         | 5           |   |
++---------+-------------------+---------------+-------------+---+
+| 47      | Izard County      | 47728         | 1           |   |
++---------+-------------------+---------------+-------------+---+
+| 66      | Jackson County    | 41215         | 2           |   |
++---------+-------------------+---------------+-------------+---+
+| 68      | Chicot County     | 39683         | 1           |   |
++---------+-------------------+---------------+-------------+---+
+| 74      | Lee County        | 36860         | 1           |   |
++---------+-------------------+---------------+-------------+---+
+
+The ranking of the counties with prisons might indicate that there is no economic benefit or disadvantage that comes with hosting a facility.
+
+## Previous coverage
+
+Coverage of the Franklin County prison has been largely dominated by details of the cost of the construction itself, but I cannot seem to find much detail on any potential long-term impacts of the build. Much of the coverage contains dissenting opinions from Franklin County residents, who often express concern that the facility could lower quality of life and property values. The potential build gained national attention when Franklin County Sheriff Johnny Crocker began to criticize the plans, saying several Arkansas counties requested the build, and Franklin was not one of them. He also said the United States Immigration and Customers Enforcement was considering using the proposed prison site as a detention facility.
+
+## Visuals
+
+The project will contain both interactive maps and income tables.
+
+The interactive maps will allow users to click on facility locations, which will show: - prison addresses - racial makeup of prison The maps will also allow users to click on individual counties, which will show: - reported census racial demographics - racial demographics with prison population not included - median income of county
+
+I would also like to create an income table with counties ranked by median income. Prison counties would be indicated by a highlight in a different color.
+
+## Next steps
+
+If median income findings turn out to be insignificant, I am thinking about pivoting to an exploration of property values in counties with prisons verses without. This could serve to show whether Franklin County residents who are concerned about property values have empirical evidence to support their concerns.
+
+If I remain focused on median incomes, I will work to gather the demographics of prison populations and join the data with the reported census demographics.
+
+We can also add special code inside of code blocks -- the gray sections where we write code -- that control how they render in our html document. These output options let us do things like:
+
+- Show or hide the code when we render our html document (echo: true or false)
+- Prevent the code from actually running when we render our html document (eval: true or false)
+- Hide warnings from outputing when we render our html document (warning: true or false)
+
+There's a [full guide here](https://quarto.org/docs/computations/execution-options.html#output-options).
+
+The code below, for example, will output the text inside the print statement when rendered to html, but the actual code -- the print() function -- will be hidden.
+
+## Create your website
+
+In place of these instructions, you will paste your project one paragraph story idea into this document and any code you've developed so far.
+
+You will need to load libraries and data because rendering a page requires a full R session to execute on the code.
+
+First, create H1 headers
+
+**For example:**
+
+# Income and Vacancies of Baltimore Neighborhoods 2020
+
+## Looking at wealth inequality in Charm City
+
+```{r eval=FALSE, include=TRUE}
+
+# You will write your code in chunks but not execute the data. Use {r eval=FALSE, include=TRUE} in the header so the page will render without running the actual code.
+income_vacancy %>% 
+  ggplot(aes(x = community)) +
+  geom_point(aes(y=income_2020), color = "#64D197", stroke=5) +
+  geom_point(aes(y=vacant_2020*1000), stroke=5, color = "#FB8AE3") +
+  scale_y_continuous(
+    name = "2020 Income (Green)", limits=c(0, 62000), labels=scales::dollar_format(),
+    sec.axis = sec_axis(~./60000, name="2020 Percent Vacancies (Red)", labels = scales::percent))+
+  #scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Income and Vacancies of Baltimore Neighborhoods 2020",
+    x = "Community",
+    caption = "source: BNIA Data - By: Parker Leipzig and Rob Wells"
+  )
+```
+
+## Set up for hosting
+
+- Create a new folder in your repository called "docs" (if one isn't there already)
+- Rename this document as "index.qmd"
+- Move "index.qmd" into the "docs" folder
+
+## Render this document as an html page
+
+- Make sure this document is named "index.qmd" and is in the "docs" folder
+- Click Render button. It will create an html version of this page, called "index.html"
+- Use GitHub Desktop to push your files to your your github repository on the web.
+- Access the URL from your Github repository.
+
+## Host html on GitHub
+
+- Go to your github repository on the web, such as https://github.com/djnf-data-2026/casey-mann
+- Click on Settings on the top right.
+- Scroll down to the Pages section of Settings.
+- Change the Branch to /docs and click save.
+
+#### To see your file hosted:
+
+- Back to your GitHub repo on the web: such as https://github.com/djnf-data-2026/casey-mann
+- Click on Settings, then Pages
+- Under GitHub Pages, you should see "Your site is live at https://djnf-data-2026.github.io/casey-mann/"
+- Click that URL
+- If it works, email it to robwells\@umd.edu
+
+## REVEL IN YOUR NERD POWERS
+
+# Part 2: Embedding Images
+
+- create a folder in your repository's main branch, call it images
+
+- find any .jpeg, .jpg or .png file and insert it into that folder.
+
+- In a QMD file, display the image as follows:
+
+\#![CAPTION FOR YOUR PHOTO](images/your_link_here.png)
+
+\#![CHATTER FOR YOUR chart](images/xl-refresher-grid_SHEETS.png)
+
+A more advanced technique controlling the width and height
+
+\#![Read the Screen](images/xl-refresher-SHEETS_screen.png){width="100%"}
+
+### Embedding code
+
+From a **Datawrapper Map**
+
+<iframe title="Small Business Reporting, Spring 2024" aria-label="Map" id="datawrapper-chart-z4bny" src="https://datawrapper.dwcdn.net/z4bny/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500" data-external="1">
+
+</iframe>
+
+```{=html}
+<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
+</script>
+```
+
+## Embedding video
+
+### Deep Nerd Video
+
+::: {#first_steps}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TNP_unReOpw?si=CQC3cG49TShkoJOG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+</iframe>
+:::
+
+::: {#second_steps}
+### A great lecture on structural racism in journalism
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DIDHbEZYFSc?si=a-KNzlQgoGjXD6VV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+</iframe>
+:::
+
+**Now replace these two videos with something you selected.**
+
+The embed code is in the video share feature
+
+## Instructions to embed a gif
+
+```{r text_to_columns.gif, out.width="100%", echo=FALSE}
+### Embed a GIF
+#First, download a GIF (extension will be .gif) and load it into "images" folder
+#if (knitr::is_html_output()) knitr::include_graphics("images/text_to_columns.gif")  
+
+```
+
+This is a very basic starter but it will get you to the finish line on Saturday. Good luck!
+
+--30--

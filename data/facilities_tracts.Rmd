@@ -1,0 +1,210 @@
+---
+title: "Prison locations"
+output: html_notebook
+---
+
+
+```{r}
+install.packages("tidygeocoder")
+install.packages("dplyr")
+```
+
+
+```{r}
+library(tidygeocoder)
+library(dplyr)
+```
+
+
+```{r}
+facilities <- tibble(
+  name = c(
+    "Barbara Ester Unit",
+    "Benny Magness Unit",
+    "Benton Unit",
+    "Cummins Unit",
+    "Delta Regional Unit",
+    "East Arkansas Regional Unit",
+    "Grimes Unit",
+    "J. Aaron Hawkins Sr. Center",
+    "Larry B. Norris Unit",
+    "McPherson Unit",
+    "Ouachita River Correctional Unit",
+    "Pine Bluff Unit",
+    "Randall L. Williams Correctional Facility",
+    "Tucker Unit",
+    "Varner/Varner Supermax Unit",
+    "Wrightsville Unit"
+  ),
+  address = c(
+    "7500 Corrections Circle, Pine Bluff, AR 71603",
+    "10 Prison Circle, Calico Rock, AR 72519",
+    "6701 Highway 67, Benton, AR 72015",
+    "2540 Hwy 388, Gould, AR 71643",
+    "880 East Gaines, Dermott, AR 71638",
+    "326 Lee Road 603, Brickeys, AR 72320",
+    "300 Corrections Drive, Newport, AR 72112",
+    "Hwy 365, Wrightsville, AR 72183",
+    "2501 State Farm Rd, Tucker, AR 72168",
+    "302 Corrections Drive, Newport, AR 72112",
+    "100 Walco Lane, Malvern, AR 72104",
+    "890 Free Line Drive, Pine Bluff, AR 71603",
+    "7206 West 7th Avenue, Pine Bluff, AR 71603",
+    "2400 State Farm Rd, Tucker, AR 72168",
+    "320 State Highway 388, Gould, AR 71643",
+    "8400 Highway 386, Wrightsville, AR 72183"
+  )
+)
+```
+
+
+```{r}
+geocoded <- facilities %>%
+  geocode(
+    address,
+    method       = "census",
+    lat          = latitude,
+    long         = longitude,
+    full_results = TRUE
+  )
+```
+
+
+```{r}
+no_match <- geocoded %>% filter(is.na(latitude))
+print(no_match$name)
+```
+
+
+```{r}
+osm_retry <- no_match %>%
+  select(name, address) %>%
+  geocode(
+    address,
+    method       = "osm",
+    lat          = latitude,
+    long         = longitude,
+    full_results = TRUE
+  )
+```
+
+```{r}
+names(no_match)
+
+```
+
+
+```{r}
+nrow(no_match)
+print(no_match)
+```
+
+
+```{r}
+print(osm_retry %>% select(name...1, latitude, longitude))
+```
+
+
+```{r}
+manual <- tibble(
+  name = c(
+    "Cummins Unit",
+    "East Arkansas Regional Unit",
+    "Varner/Varner Supermax Unit"
+  ),
+  address = c(
+    "2540 Hwy 388, Gould, AR 71643",
+    "326 Lee Road 603, Brickeys, AR 72320",
+    "320 State Highway 388, Gould, AR 71643"
+  ),
+  latitude = c(34.0859182097097, 34.84966405170853, 34.04272538283531),
+  longitude = c(-91.69990012402901, -90.60006121824772, -91.60824475772544)
+)
+```
+
+
+
+```{r}
+osm_clean <- osm_retry %>%
+  filter(!is.na(latitude)) %>%
+  select(
+    name    = name...1,
+    address,
+    latitude,
+    longitude
+  )
+
+```
+
+
+```{r}
+census_clean <- geocoded %>%
+  filter(!is.na(latitude)) %>%
+  select(
+    name,
+    address,
+    latitude,
+    longitude
+  )
+```
+
+
+```{r}
+all_facilities <- bind_rows(census_clean, osm_clean, manual)
+
+print(all_facilities %>% select(name, latitude, longitude))
+```
+
+
+
+```{r}
+library(httr)
+library(jsonlite)
+
+get_census_tract <- function(lat, lon) {
+  url <- paste0(
+    "https://geocoding.geo.census.gov/geocoder/geographies/coordinates?",
+    "x=", lon,
+    "&y=", lat,
+    "&benchmark=Public_AR_Current",
+    "&vintage=Current_Current",
+    "&layers=Census%20Tracts",
+    "&format=json"
+  )
+  
+  response <- GET(url)
+  data <- fromJSON(content(response, as = "text"))
+  
+  tracts <- data$result$geographies$`Census Tracts`
+  
+  if (length(tracts) > 0) {
+    return(tracts$GEOID[1])
+  } else {
+    return(NA)
+  }
+}
+```
+
+
+```{r}
+all_facilities$census_tract <- mapply(
+  get_census_tract,
+  all_facilities$latitude,
+  all_facilities$longitude
+)
+```
+
+
+```{r}
+print(all_facilities %>% select(name, latitude, longitude, census_tract))
+```
+
+
+```{r}
+getwd()
+```
+
+```{r}
+write.csv(all_facilities, "C:/Users/casey/Downloads/facilities_with_tracts.csv", row.names = FALSE)
+```
+

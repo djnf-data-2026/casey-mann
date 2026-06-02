@@ -1,0 +1,18 @@
+---
+title: "DJNF Story Idea"
+author: "Casey Mann"
+date: "2026-06-01"
+output: html_document
+---
+
+When the Census Bureau records demographics in a prison town, inmates are included in the survey, even though most people in any given prison are not permanent residents of the communities they temporarily reside in, nor are they originally from those communities. This method of survey collection results in a misrepresentation of everyday life in prison towns, showing a higher percentage of Black and Hispanic populations than is observed in actuality. The presence of a correctional facility in a town also shapes the economy for those who are not incarcerated. Industry in these tracts is likely largely dominated by correctional facility-related employment, while other economic diversity remains limited. With this in mind, I plan to examine whether the wages of those in prison census tracts differ significantly from those in surrounding tracts. These findings could serve as an indicator of whether the presence of a prison and the subsequent limiting of a tract’s economy has a significant effect on the financial well-being of tract residents in comparison to those in neighboring tracts.
+
+Income in census tracts with prisons vs not
+
+prison county median income, compare with median income of state, prison should be higher,  (INCLUDE IN TONIGHTS MEMO)
+
+why would a rural county want a prison, economic benefit (THIS IS THE STORY, FRANKLIN COUNTY PROPOSAL ISSUE)
+
+
+
+

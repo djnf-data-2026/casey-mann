@@ -5,77 +5,54 @@ output: html_notebook
 
 Project: Determine the contrast in the demographics in Arkansas prisons versus their surrounding counties using census data.
 
-Also determine the disparity in wages in the prison Census tracts versus the surrounding counties.
+Also explore the income in census tracts/counties with prisons vs without
+
+prison county median income, compare with median income of state, prison should be higher, (INCLUDE IN TONIGHTS MEMO)
+
+why would a rural county want a prison, economic benefit (THIS IS THE STORY, FRANKLIN COUNTY PROPOSAL ISSUE) !!!
 
 Create maps and charts with the results.
 
-Yes it works !
-
-
-#rsw comment: install tidyverse instead, which has dplyr
-#see: https://tidyverse.org/
-#grey out this chunk after you load it - use a hash tag #
-#install janitor to fix the names of columns
 ```{r}
 # install.packages("tidygeocoder")
-# install.packages("dplyr")
-install.packages("janitor")
+# install.packages ("tidyverse")
+# install.packages("janitor")
+# install.packages("readxl")
 ```
 
-#rsw comment: load tidyverse
 ```{r}
 library(tidygeocoder)
-# library(dplyr)
 library(tidyverse)
 library(janitor)
-```
-
-#rsw comment - make sure to double check you have the facilities and addreses correctly entered. 
-#next time, put the names and addresses in a Google Sheet and import that instead. fewer chances of error
-```{r}
-facilities <- tibble(
-  name = c(
-    "Barbara Ester Unit",
-    "Benny Magness Unit",
-    "Benton Unit",
-    "Cummins Unit",
-    "Delta Regional Unit",
-    "East Arkansas Regional Unit",
-    "Grimes Unit",
-    "J. Aaron Hawkins Sr. Center",
-    "Larry B. Norris Unit",
-    "McPherson Unit",
-    "Ouachita River Correctional Unit",
-    "Pine Bluff Unit",
-    "Randall L. Williams Correctional Facility",
-    "Tucker Unit",
-    "Varner/Varner Supermax Unit",
-    "Wrightsville Unit"
-  ),
-  address = c(
-    "7500 Corrections Circle, Pine Bluff, AR 71603",
-    "10 Prison Circle, Calico Rock, AR 72519",
-    "6701 Highway 67, Benton, AR 72015",
-    "2540 Hwy 388, Gould, AR 71643",
-    "880 East Gaines, Dermott, AR 71638",
-    "326 Lee Road 603, Brickeys, AR 72320",
-    "300 Corrections Drive, Newport, AR 72112",
-    "Hwy 365, Wrightsville, AR 72183",
-    "2501 State Farm Rd, Tucker, AR 72168",
-    "302 Corrections Drive, Newport, AR 72112",
-    "100 Walco Lane, Malvern, AR 72104",
-    "890 Free Line Drive, Pine Bluff, AR 71603",
-    "7206 West 7th Avenue, Pine Bluff, AR 71603",
-    "2400 State Farm Rd, Tucker, AR 72168",
-    "320 State Highway 388, Gould, AR 71643",
-    "8400 Highway 386, Wrightsville, AR 72183"
-  )
-)
+library(readxl)
 ```
 
 
 ```{r}
-geocoded <- facilities %>%
+ar_facilities <- read_excel("data/AR_DOC_Facilities.xlsx")
+```
+
+```{r}
+ar_facilities <- ar_facilities %>%
+  filter(!is.na(`Facility Name`))
+```
+
+```{r}
+ar_facilities <- ar_facilities %>%
+  rename(
+    name = `Facility Name`,
+    address = `Mailing Address`
+  ) %>%
+  arrange(name)
+
+View(ar_facilities)
+```
+
+
+DONT RUN THIS. JUST KEEPING HERE FOR NOW. THE XLSX FILE SHOULD REPLACE IT. 
+
+```{r}
+geocoded <- ar_facilities %>%
   geocode(
     address,
     method       = "census",
@@ -388,7 +365,6 @@ library(leaflet)
 library(readxl)
 ```
 
-#rsw comment: I can't import this spreadsheet - it's on your hard drive. load to github or dropbox and set the file path from the cloud
 ```{r}
 facility_info <- read_excel("AR_DOC_Facilities.xlsx")
 ```

@@ -1,0 +1,302 @@
+---
+title: "Prison maps"
+output: html_notebook
+---
+
+```{r}
+install.packages("sf")
+install.packages("ggplot2")
+```
+
+```{r}
+library(tidycensus)
+library(sf)
+library(ggplot2)
+library(dplyr)
+```
+
+
+
+```{r}
+readRenviron("~/.Renviron")
+```
+
+
+```{r}
+ar_tracts <- get_acs(
+  geography = "tract",
+  variables = "B01001_001",
+  state     = "AR",
+  year      = 2022,
+  geometry  = TRUE
+)
+```
+
+```{r}
+facilities_sf <- all_facilities %>%
+  st_as_sf(
+    coords = c("longitude", "latitude"),
+    crs    = 4326
+  )
+```
+
+
+```{r}
+facilities_sf <- st_transform(facilities_sf, crs = st_crs(ar_tracts))
+```
+
+
+```{r}
+ggplot() +
+  geom_sf(data = ar_tracts, fill = "gray95", color = "gray70", linewidth = 0.2) +
+  geom_sf(data = facilities_sf, color = "red", size = 2.5, shape = 16) +
+  geom_text(
+    data  = all_facilities,
+    aes(x = longitude, y = latitude, label = name),
+    size  = 2.5,
+    vjust = -1
+  ) +
+  labs(
+    title    = "Arkansas State Prison Facilities by Census Tract",
+    subtitle = "Each polygon represents one census tract",
+    caption  = "Sources: AR DOC, U.S. Census Bureau"
+  ) +
+  theme_void()
+```
+
+
+
+```{r}
+install.packages("ggrepel", repos = "https://cloud.r-project.org")
+```
+
+
+```{r}
+library(ggrepel)
+```
+
+
+
+```{r}
+ggplot() +
+  geom_sf(data = ar_tracts, fill = "gray95", color = "gray70", linewidth = 0.2) +
+  geom_sf(data = facilities_sf, color = "red", size = 2.5, shape = 16) +
+  geom_label_repel(
+    data        = all_facilities,
+    aes(x = longitude, y = latitude, label = name),
+    size        = 2.5,
+    max.overlaps = 20
+  ) +
+  labs(
+    title    = "Arkansas State Prison Facilities by Census Tract",
+    subtitle = "Each polygon represents one census tract",
+    caption  = "Sources: AR DOC, U.S. Census Bureau"
+  ) +
+  theme_void()
+```
+
+
+
+```{r}
+install.packages("leaflet")
+install.packages("readxl")
+```
+
+
+```{r}
+library(leaflet)
+library(readxl)
+```
+
+
+```{r}
+facility_info <- read_excel("AR_DOC_Facilities.xlsx")
+```
+
+
+```{r}
+all_facilities <- all_facilities %>%
+  left_join(
+    facility_info %>% select(`Facility Name`, Capacity),
+    by = c("name" = "Facility Name")
+  )
+```
+
+
+```{r}
+leaflet(all_facilities) %>%
+  addTiles() %>%
+  addCircleMarkers(
+    lng    = ~longitude,
+    lat    = ~latitude,
+    radius = 6,
+    color  = "red",
+    popup  = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+```
+
+
+```{r}
+library(tidycensus)
+library(sf)
+library(ggplot2)
+library(dplyr)
+library(leaflet)
+library(readxl)
+library(ggrepel)
+```
+
+
+```{r}
+ar_tracts <- get_acs(
+  geography = "tract",
+  variables = "B01001_001",
+  state     = "AR",
+  year      = 2022,
+  geometry  = TRUE
+)
+```
+
+```{r}
+leaflet() %>%
+  addProviderTiles("CartoDB.PositronNoLabels") %>%
+  addPolygons(
+    data        = ar_tracts,
+    fillColor   = "white",
+    fillOpacity = 0.5,
+    color       = "gray50",
+    weight      = 0.5
+  ) %>%
+  addCircleMarkers(
+    data   = all_facilities,
+    lng    = ~longitude,
+    lat    = ~latitude,
+    radius = 6,
+    color  = "red",
+    popup  = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+```
+
+```{r}
+ar_tracts <- st_transform(ar_tracts, crs = 4326)
+```
+
+
+```{r}
+leaflet() %>%
+  fitBounds(-94.6, 33.0, -89.6, 36.5) %>%
+  addPolygons(
+    data        = ar_tracts,
+    fillColor   = "white",
+    fillOpacity = 1,
+    color       = "gray40",
+    weight      = 1
+  ) %>%
+  addCircleMarkers(
+    data   = all_facilities,
+    lng    = ~longitude,
+    lat    = ~latitude,
+    radius = 6,
+    color  = "red",
+    fillColor = "red",
+    fillOpacity = 1,
+    popup  = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+```
+
+
+```{r}
+leaflet() %>%
+  fitBounds(-94.6, 33.0, -89.6, 36.5) %>%
+  addPolygons(
+    data        = ar_tracts,
+    fillColor   = "white",
+    fillOpacity = 1,
+    color       = "gray40",
+    weight      = 1
+  ) %>%
+  addCircleMarkers(
+    data   = all_facilities,
+    lng    = ~longitude,
+    lat    = ~latitude,
+    radius = 6,
+    color  = "red",
+    fillColor = "red",
+    fillOpacity = 1,
+    popup  = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+```
+
+```{r}
+my_map <- leaflet() %>%
+  fitBounds(-94.6, 33.0, -89.6, 36.5) %>%
+  addPolygons(
+    data        = ar_tracts,
+    fillColor   = "white",
+    fillOpacity = 1,
+    color       = "gray20",
+    weight      = 1.5
+  ) %>%
+  addCircleMarkers(
+    data        = all_facilities,
+    lng         = ~longitude,
+    lat         = ~latitude,
+    radius      = 6,
+    color       = "red",
+    fillColor   = "red",
+    fillOpacity = 1,
+    popup       = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+
+my_map
+```
+
+
+```{r}
+my_map <- leaflet() %>%
+  fitBounds(-94.6, 33.0, -89.6, 36.5) %>%
+  addPolygons(
+    data        = ar_tracts,
+    fillColor   = "white",
+    fillOpacity = 1,
+    color       = "black",
+    weight      = 2
+  ) %>%
+  addCircleMarkers(
+    data        = all_facilities,
+    lng         = ~longitude,
+    lat         = ~latitude,
+    radius      = 6,
+    color       = "red",
+    fillColor   = "red",
+    fillOpacity = 1,
+    popup       = ~paste0(
+      "<b>", name, "</b><br>",
+      address, "<br>",
+      "Capacity: ", Capacity
+    )
+  )
+
+my_map
+```
+
