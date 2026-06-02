@@ -2,15 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Rob Wells">
-<meta name="dcterms.date" content="2026-06-01">
+<meta name="author" content="Casey Mann">
+<meta name="dcterms.date" content="2026-05-29">
 
-<title>Hosting a GitHub Page</title>
+<title>Arkansas prisons and their host counties</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -60,18 +63,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="Hosting_GitHub_Page_DJNF_2026_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/popper.min.js"></script>
-<script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/anchor.min.js"></script>
-<link href="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Hosting_GitHub_Page_DJNF_2026_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="Hosting_GitHub_Page_DJNF_2026_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="Hosting_GitHub_Page_DJNF_2026_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Hosting_GitHub_Page_DJNF_2026_files/libs/bootstrap/bootstrap-a74871fe4945b66d259aafc266475145.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="Index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Index_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Index_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Index_files/libs/quarto-html/popper.min.js"></script>
+<script src="Index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Index_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Index_files/libs/bootstrap/bootstrap-67270d1595a62d14f123c043d4fb2f18.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -84,7 +86,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Hosting a GitHub Page</h1>
+<h1 class="title">Arkansas prisons and their host counties</h1>
 </div>
 
 
@@ -94,14 +96,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Rob Wells </p>
+             <p>Casey Mann </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 1, 2026</p>
+      <p class="date">May 29, 2026</p>
     </div>
   </div>
   
@@ -113,30 +115,182 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="hosting-a-github-page---r-cheat-sheet" class="level1">
-<h1>Hosting a GitHub Page - R Cheat Sheet</h1>
-<p>This exercise will allow you to create a basic web page which will be required for the Investigate Your Community final project option.</p>
-<p>For this exercise, you will create a page with your one paragraph story idea. You will then host it on your GitHub page.</p>
-<section id="styled-text" class="level2">
-<h2 class="anchored" data-anchor-id="styled-text">Styled Text</h2>
-<p>At the core, QMD files are text files, and they allow you to use a very lightweight “markup” language to style text, similar to html, but much less fussy.</p>
-<p>Outside of the codeblocks (the gray sections where we write code), we can style any text using standard markdown styling.</p>
-<p>This is a nice guide to styling text with markdown: <a href="https://quarto.org/docs/authoring/markdown-basics.html">Markdown guide</a></p>
-<p>We can create headings similar to html’s h1 to h6 with hashtags.</p>
-<section id="this-is-an-h5" class="level5">
-<h5 class="anchored" data-anchor-id="this-is-an-h5">This is an h5</h5>
-<p>We can create links, like this: <a href="https://google.com">google</a></p>
-<p>We can <strong>bold</strong> or <em>italic</em> text.</p>
-<p>We can create bulleted lists.</p>
+<section id="arkansas-prisons-and-their-host-counties" class="level1">
+<h1>Arkansas prisons and their host counties</h1>
+<p>This story will examine how reported census demographics differ from everyday life in prison counties by visualizing the racial makeup when prison populations are counted versus when they are not. It will also explore the financial impact of hosting a prison by comparing prison county median incomes to the median incomes of surrounding counties.</p>
+<section id="why-now" class="level2">
+<h2 class="anchored" data-anchor-id="why-now">Why now?</h2>
+<p>To much debate from residents and lawmakers alike, Arkansas Governor Sarah Huckabee Sanders announced plans for the construction of a 3,000 bed prison in rural Franklin County in October 2024. Two years later, construction is stalled, but it is unclear what effect the facility could have on it’s host county.</p>
+</section>
+<section id="target-audience" class="level2">
+<h2 class="anchored" data-anchor-id="target-audience">Target Audience</h2>
+<p>This project aims to serve both rural Arkansans and policy makers by outlining the impact that hosting a prison can have on a community and therefore assisting in decision making.</p>
+</section>
+<section id="potential-interviews" class="level2">
+<h2 class="anchored" data-anchor-id="potential-interviews">Potential Interviews</h2>
+<ol type="1">
+<li>Business owners in Franklin County. Do they feel like the facility could push industry or customers away?</li>
+<li>Franklin County residents. How do they feel about the potential build? Does the presence of the proposed facility change how they feel about their home? What about their plans for the future? Will anyone want to move if construction is resumed or completed?</li>
+<li>Residents of Malvern, Arkansas, home to the most recent prison build in the state. Despite occurring more than 20 years ago, some residents may still recall how the facility changed the area. Potential for solid anecdotal details.</li>
+<li>Lawmakers on both sides of the argument for the facility’s construction.
 <ul>
-<li>bullet one</li>
-<li>bullet two</li>
-<li>bullet three</li>
-</ul>
+<li>FOR: Republican Sen.&nbsp;Jonathan Dismang of Searcy, who filed an appropriations bill during the 2025 session that would have provided $750 million in spending authority for the prison project. <a href="https://arkansasadvocate.com/2026/04/03/arkansas-explained-what-is-the-franklin-county-prison-project/">google</a></li>
+<li>AGAINST: Republican Sen.&nbsp;Bryan King of Green Forest, who has been an outspoken critic of plans to construct the Franklin County facility. <a href="https://arkansasadvocate.com/2025/04/11/arkansas-lawmakers-consider-other-funding-methods-as-they-abandon-sixth-prison-appropriation-vote/">google</a></li>
+</ul></li>
+</ol>
 </section>
+<section id="potential-impact" class="level2">
+<h2 class="anchored" data-anchor-id="potential-impact">Potential Impact</h2>
+<p>This story has the potential to impact both Franklin County residents and Arkansas policy. Residents who may feel like they are in the dark about what is happening in their own community could get access to data-backed context that informs decisions about whether they support the build. The story also serves to provide insight into how Franklin could be affected long-term if policymakers follow through on the build.</p>
+<p>Arkansas policymakers could get an empirical look at how the Franklin County facility will change the lives of those who live in the area, potentially affecting how they vote on the issue in a moment when the future of the project appears to be up in the air.</p>
 </section>
-<section id="code-blocks" class="level2">
-<h2 class="anchored" data-anchor-id="code-blocks">Code blocks</h2>
+<section id="current-code-and-findings" class="level2">
+<h2 class="anchored" data-anchor-id="current-code-and-findings">Current code and findings</h2>
+<p>This code was used to explore the median income levels throughout the state of Arkansas by county. I will compare the median income of counties with prisons to ones without prisons. The goal of this investigation is to explore the motivations for a town hosting a prison.</p>
+<p>Hypothesis: Counties with prisons should have higher median incomes</p>
+<p>After initially gathering the median income of all Arkansas counties, I cleaned up the table and ranked the counties by median income level.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GEOID, county, <span class="at">median_income =</span> estimate, <span class="at">margin_of_error =</span> moe) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(median_income)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, GEOID, county, median_income, margin_of_error)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ar_income_ranked, <span class="at">n =</span> <span class="dv">75</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="er">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>I then worked to identify which counties are home to one or more correctional facilities and add this information to my table of ranked county incomes.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>prisons <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"facilities_with_tracts.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The facilities csv is listed in census tracts, but we can get county info from that. A census tract include county indentifiers in the number. The first 5 characters identify the state and county. For example a code like 05069002103 breaks down as 05 (Arkansas), 069 (Jefferson County), and 002103.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>prisons_counties <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span>  </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(GEOID) <span class="sc">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="st">"Yes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income_ranked <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(prisons_counties, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="fu">replace_na</span>(has_prison, <span class="st">"No"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prison_counts <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GEOID) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_prisons =</span> <span class="fu">n</span>())</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="sc">%&gt;%</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, county, median_income, num_prisons)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>A tibble:9 × 4</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 27%">
+<col style="width: 22%">
+<col style="width: 19%">
+<col style="width: 5%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><p>rank</p>
+<p>&lt;int&gt;</p></th>
+<th style="text-align: left;"><p>county</p>
+<p>&lt;chr&gt;</p></th>
+<th style="text-align: right;"><p>median_income</p>
+<p>&lt;dbl&gt;</p></th>
+<th style="text-align: right;"><p>num_prisons</p>
+<p>&lt;int&gt;</p></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Saline County</td>
+<td style="text-align: right;">76534</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">Pulaski County</td>
+<td style="text-align: right;">60385</td>
+<td style="text-align: right;">2</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">28</td>
+<td style="text-align: left;">Hot Spring County</td>
+<td style="text-align: right;">52644</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">31</td>
+<td style="text-align: left;">Lincoln County</td>
+<td style="text-align: right;">51667</td>
+<td style="text-align: right;">2</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">44</td>
+<td style="text-align: left;">Jefferson County</td>
+<td style="text-align: right;">48552</td>
+<td style="text-align: right;">5</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">47</td>
+<td style="text-align: left;">Izard County</td>
+<td style="text-align: right;">47728</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">66</td>
+<td style="text-align: left;">Jackson County</td>
+<td style="text-align: right;">41215</td>
+<td style="text-align: right;">2</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">68</td>
+<td style="text-align: left;">Chicot County</td>
+<td style="text-align: right;">39683</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">74</td>
+<td style="text-align: left;">Lee County</td>
+<td style="text-align: right;">36860</td>
+<td style="text-align: right;">1</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The ranking of the counties with prisons might indicate that there is no economic benefit or disadvantage that comes with hosting a facility.</p>
+</section>
+<section id="previous-coverage" class="level2">
+<h2 class="anchored" data-anchor-id="previous-coverage">Previous coverage</h2>
+<p>Coverage of the Franklin County prison has been largely dominated by details of the cost of the construction itself, but I cannot seem to find much detail on any potential long-term impacts of the build. Much of the coverage contains dissenting opinions from Franklin County residents, who often express concern that the facility could lower quality of life and property values. The potential build gained national attention when Franklin County Sheriff Johnny Crocker began to criticize the plans, saying several Arkansas counties requested the build, and Franklin was not one of them. He also said the United States Immigration and Customers Enforcement was considering using the proposed prison site as a detention facility.</p>
+</section>
+<section id="visuals" class="level2">
+<h2 class="anchored" data-anchor-id="visuals">Visuals</h2>
+<p>The project will contain both interactive maps and income tables.</p>
+<p>The interactive maps will allow users to click on facility locations, which will show: - prison addresses - racial makeup of prison The maps will also allow users to click on individual counties, which will show: - reported census racial demographics - racial demographics with prison population not included - median income of county</p>
+<p>I would also like to create an income table with counties ranked by median income. Prison counties would be indicated by a highlight in a different color.</p>
+</section>
+<section id="next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
+<p>If median income findings turn out to be insignificant, I am thinking about pivoting to an exploration of property values in counties with prisons verses without. This could serve to show whether Franklin County residents who are concerned about property values have empirical evidence to support their concerns.</p>
+<p>If I remain focused on median incomes, I will work to gather the demographics of prison populations and join the data with the reported census demographics.</p>
 <p>We can also add special code inside of code blocks – the gray sections where we write code – that control how they render in our html document. These output options let us do things like:</p>
 <ul>
 <li>Show or hide the code when we render our html document (echo: true or false)</li>
@@ -159,20 +313,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="looking-at-wealth-inequality-in-charm-city" class="level2">
 <h2 class="anchored" data-anchor-id="looking-at-wealth-inequality-in-charm-city">Looking at wealth inequality in Charm City</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You will write your code in chunks but not execute the data. Use {r eval=FALSE, include=TRUE} in the header so the page will render without running the actual code.</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>income_vacancy <span class="sc">%&gt;%</span> </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> community)) <span class="sc">+</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>income_2020), <span class="at">color =</span> <span class="st">"#64D197"</span>, <span class="at">stroke=</span><span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>vacant_2020<span class="sc">*</span><span class="dv">1000</span>), <span class="at">stroke=</span><span class="dv">5</span>, <span class="at">color =</span> <span class="st">"#FB8AE3"</span>) <span class="sc">+</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"2020 Income (Green)"</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">62000</span>), <span class="at">labels=</span>scales<span class="sc">::</span><span class="fu">dollar_format</span>(),</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.<span class="sc">/</span><span class="dv">60000</span>, <span class="at">name=</span><span class="st">"2020 Percent Vacancies (Red)"</span>, <span class="at">labels =</span> scales<span class="sc">::</span>percent))<span class="sc">+</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_y_continuous(labels = scales::percent) +</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Income and Vacancies of Baltimore Neighborhoods 2020"</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Community"</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"source: BNIA Data - By: Parker Leipzig and Rob Wells"</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You will write your code in chunks but not execute the data. Use {r eval=FALSE, include=TRUE} in the header so the page will render without running the actual code.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>income_vacancy <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> community)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>income_2020), <span class="at">color =</span> <span class="st">"#64D197"</span>, <span class="at">stroke=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>vacant_2020<span class="sc">*</span><span class="dv">1000</span>), <span class="at">stroke=</span><span class="dv">5</span>, <span class="at">color =</span> <span class="st">"#FB8AE3"</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"2020 Income (Green)"</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">62000</span>), <span class="at">labels=</span>scales<span class="sc">::</span><span class="fu">dollar_format</span>(),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.<span class="sc">/</span><span class="dv">60000</span>, <span class="at">name=</span><span class="st">"2020 Percent Vacancies (Red)"</span>, <span class="at">labels =</span> scales<span class="sc">::</span>percent))<span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_y_continuous(labels = scales::percent) +</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Income and Vacancies of Baltimore Neighborhoods 2020"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Community"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"source: BNIA Data - By: Parker Leipzig and Rob Wells"</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="set-up-for-hosting" class="level2">
