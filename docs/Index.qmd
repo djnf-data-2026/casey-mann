@@ -7,6 +7,19 @@ format:
     theme: cosmo
 ---
 
+**RSW Comments**
+Casey - This is a thoughtful and well-constructed memo that frames the contours of your project quite well. Great to see it rendered as a web page with some data analysis. You are right on track. 
+
+And you have a lot yet to do!
+
+Good to see a clear hypothesis articulated: Hypothesis: Counties with prisons should have higher median incomes
+
+I didn't see a clear answer to that question. So make sure that is spelled out. What is the median income statewide? Per capita median income?
+
+What is the median income of the prison county? Median income of the census tract with the prison?
+
+
+
 # Arkansas prisons and their host counties
 
 This story will examine how reported census demographics differ from everyday life in prison counties by visualizing the racial makeup when prison populations are counted versus when they are not. It will also explore the financial impact of hosting a prison by comparing prison county median incomes to the median incomes of surrounding counties.
@@ -41,6 +54,9 @@ This code was used to explore the median income levels throughout the state of A
 Hypothesis: Counties with prisons should have higher median incomes
 
 After initially gathering the median income of all Arkansas counties, I cleaned up the table and ranked the counties by median income level.
+
+**rsw comment: you need to load tidyverse and all of your libraries. and then load the data. this is a working R document **
+
 
 ```{r eval=FALSE, include=TRUE}
 
@@ -137,6 +153,10 @@ I would also like to create an income table with counties ranked by median incom
 If median income findings turn out to be insignificant, I am thinking about pivoting to an exploration of property values in counties with prisons verses without. This could serve to show whether Franklin County residents who are concerned about property values have empirical evidence to support their concerns.
 
 If I remain focused on median incomes, I will work to gather the demographics of prison populations and join the data with the reported census demographics.
+
+
+
+**rsw comment: cut this tutorial material below **
 
 We can also add special code inside of code blocks -- the gray sections where we write code -- that control how they render in our html document. These output options let us do things like:
 
