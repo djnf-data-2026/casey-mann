@@ -55,10 +55,55 @@ Hypothesis: Counties with prisons should have higher median incomes
 
 After initially gathering the median income of all Arkansas counties, I cleaned up the table and ranked the counties by median income level.
 
+```{r echo=FALSE, include=FALSE, eval=TRUE}
+#install.packages("tidycensus")
+#install.packages("tidyverse")
+
+library(tidycensus)
+library(tidyverse)
+```
+
+B19013_001 is Median household income 
+year = 2023 is because it is the most recent 5-year American Community Survey that is available
+```{r, include=TRUE}
+ar_income <- get_acs(
+  geography = "county",
+  variables = "B19013_001",  
+  state     = "AR",
+  year      = 2023,          
+  survey    = "acs5"
+)
+
+ar_income
+```
+
+Removing 'Arkansas' suffix from county names column
+Renaming columns 
+Sorting highest to lowest
+Add a ranking column
+```{r echo=FALSE}
+ar_income_ranked <- ar_income %>%
+  mutate(county = str_remove(NAME, ", Arkansas")) %>%
+  select(GEOID, county, median_income = estimate, margin_of_error = moe) %>%
+  arrange(desc(median_income)) %>%
+  mutate(rank = row_number()) %>%
+  select(rank, GEOID, county, median_income, margin_of_error)
+
+print(ar_income_ranked, n = 75)
+```
+
+Now that we've gotten the median incomes for all counties, we will single out the counties with prisons
+```{r, include=TRUE}
+prisons <- read_csv("../data/facilities_with_tracts.csv")
+
+prisons
+```
 **rsw comment: you need to load tidyverse and all of your libraries. and then load the data. this is a working R document **
 
+```{r, include=TRUE}
 
-```{r eval=FALSE, include=TRUE}
+
+
 
 ar_income_ranked <- ar_income %>%
   mutate(county = str_remove(NAME, ", Arkansas")) %>%
@@ -68,19 +113,14 @@ ar_income_ranked <- ar_income %>%
   select(rank, GEOID, county, median_income, margin_of_error)
 
 print(ar_income_ranked, n = 75)
-)
+
 ```
 
 I then worked to identify which counties are home to one or more correctional facilities and add this information to my table of ranked county incomes.
 
-```{r eval=FALSE, include=TRUE}
-
-prisons <- read_csv("facilities_with_tracts.csv")
-```
-
 The facilities csv is listed in census tracts, but we can get county info from that. A census tract include county indentifiers in the number. The first 5 characters identify the state and county. For example a code like 05069002103 breaks down as 05 (Arkansas), 069 (Jefferson County), and 002103.
 
-```{r eval=FALSE, include=TRUE}
+```{r include=TRUE}
 
 prisons_counties <- prisons %>%
   mutate(GEOID = str_sub(census_tract, 1, 5)) %>%  
@@ -88,14 +128,14 @@ prisons_counties <- prisons %>%
   mutate(has_prison = "Yes")
 ```
 
-```{r eval=FALSE, include=TRUE}
+```{r include=TRUE}
 
 ar_income_ranked <- ar_income_ranked %>%
   left_join(prisons_counties, by = "GEOID") %>%
   mutate(has_prison = replace_na(has_prison, "No"))
 ```
 
-```{r eval=FALSE, include=TRUE}
+```{r include=TRUE}
 
 prison_counts <- prisons %>%
   mutate(GEOID = str_sub(census_tract, 1, 5)) %>%
@@ -108,31 +148,8 @@ ar_income_ranked %>%
   select(rank, county, median_income, num_prisons)
 ```
 
-A tibble:9 × 4
 
-+---------+-------------------+---------------+-------------+---+
-| rank    | county            | median_income | num_prisons |   |
-|         |                   |               |             |   |
-| \<int\> | \<chr\>           | \<dbl\>       | \<int\>     |   |
-+========:+:==================+==============:+============:+===+
-| 2       | Saline County     | 76534         | 1           |   |
-+---------+-------------------+---------------+-------------+---+
-| 9       | Pulaski County    | 60385         | 2           |   |
-+---------+-------------------+---------------+-------------+---+
-| 28      | Hot Spring County | 52644         | 1           |   |
-+---------+-------------------+---------------+-------------+---+
-| 31      | Lincoln County    | 51667         | 2           |   |
-+---------+-------------------+---------------+-------------+---+
-| 44      | Jefferson County  | 48552         | 5           |   |
-+---------+-------------------+---------------+-------------+---+
-| 47      | Izard County      | 47728         | 1           |   |
-+---------+-------------------+---------------+-------------+---+
-| 66      | Jackson County    | 41215         | 2           |   |
-+---------+-------------------+---------------+-------------+---+
-| 68      | Chicot County     | 39683         | 1           |   |
-+---------+-------------------+---------------+-------------+---+
-| 74      | Lee County        | 36860         | 1           |   |
-+---------+-------------------+---------------+-------------+---+
+
 
 The ranking of the counties with prisons might indicate that there is no economic benefit or disadvantage that comes with hosting a facility.
 
@@ -153,11 +170,15 @@ I would also like to create an income table with counties ranked by median incom
 If median income findings turn out to be insignificant, I am thinking about pivoting to an exploration of property values in counties with prisons verses without. This could serve to show whether Franklin County residents who are concerned about property values have empirical evidence to support their concerns.
 
 If I remain focused on median incomes, I will work to gather the demographics of prison populations and join the data with the reported census demographics.
+<<<<<<< HEAD
+---------------------------------------------------------------------------------
+=======
 
 
 
 **rsw comment: cut this tutorial material below **
 
+>>>>>>> 31d824a0d7ea2d4b715ff3b81f785fbaf7bcd763
 We can also add special code inside of code blocks -- the gray sections where we write code -- that control how they render in our html document. These output options let us do things like:
 
 - Show or hide the code when we render our html document (echo: true or false)
