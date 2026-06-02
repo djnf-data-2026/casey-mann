@@ -65,7 +65,7 @@ library(tidyverse)
 
 B19013_001 is Median household income 
 year = 2023 is because it is the most recent 5-year American Community Survey that is available
-```{r, include=TRUE}
+```{r include=TRUE}
 ar_income <- get_acs(
   geography = "county",
   variables = "B19013_001",  
@@ -93,14 +93,14 @@ print(ar_income_ranked, n = 75)
 ```
 
 Now that we've gotten the median incomes for all counties, we will single out the counties with prisons
-```{r, include=TRUE}
+```{r include=TRUE}
 prisons <- read_csv("../data/facilities_with_tracts.csv")
 
 prisons
 ```
 **rsw comment: you need to load tidyverse and all of your libraries. and then load the data. this is a working R document **
 
-```{r, include=TRUE}
+```{r include=TRUE}
 
 
 
@@ -149,9 +149,69 @@ ar_income_ranked %>%
 ```
 
 
-
-
 The ranking of the counties with prisons might indicate that there is no economic benefit or disadvantage that comes with hosting a facility.
+
+Now, I am working to explore the median income in the state of Arkansas.We will use the year 2023, because that is what we used for county medians. 
+
+
+```{r include=TRUE}
+ar_state <- get_acs(
+  geography = "state",
+  variables = "B19013_001", 
+  state = "AR",
+  year = 2023  
+)
+```
+
+Now, I will add columns to my ranking of prison counties to show a comparison to the state average of 58773 and the difference
+```{r include=TRUE}
+state_median <- ar_state$estimate
+
+prison_counties <- ar_income_ranked %>%
+  inner_join(prison_counts, by = "GEOID") %>%
+  arrange(rank) %>%
+  select(rank, county, median_income, num_prisons) %>%
+  mutate(
+    state_median = state_median,
+    diff_from_state = median_income - state_median
+  )
+
+print(prison_counties)
+```
+
+This disproves my earlier theory that prison counties would have a higher median income. 
+
+Now, I am working to compare per capita income in prison counties to per capita income in the state of Arkansas. B19301_001 is the variable for per capita income.
+
+```{r include=TRUE}
+ar_state_percapita <- get_acs(
+  geography = "state",
+  variables = "B19301_001",
+  state = "AR",
+  year = 2023,
+  survey = "acs5"
+)
+```
+
+```{r include=TRUE}
+state_percapita <- ar_state_percapita$estimate
+ 
+#ar_percapita |> write_csv("../ar_percapita.csv")
+ ar_percapita <- read_csv("../ar_percapita.csv")
+prison_percapita <- ar_percapita %>%
+  inner_join(prison_counts, by = "GEOID") %>%
+  mutate(county = str_remove(NAME, ", Arkansas")) %>%
+  select(county, per_capita_income = estimate, num_prisons) %>%
+  arrange(desc(per_capita_income)) %>%
+  mutate(
+    state_per_capita = state_percapita,
+    diff_from_state = per_capita_income - state_percapita
+  )
+
+print(prison_percapita)
+```
+
+The per capita income of prison counties and the median income of prison counties are both lower than their state counterparts, disproving my earlier theory. 
 
 ## Previous coverage
 
