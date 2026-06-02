@@ -1,0 +1,156 @@
+---
+title: "spending exploration"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+```
+
+```{r}
+federal_spending <- read_csv("data/federal spending by county 2020-2024.csv")
+```
+```{r}
+head(federal_spending)
+```
+
+```{r}
+colnames(federal_spending)
+```
+```{r}
+glimpse(federal_spending)
+```
+
+```{r}
+arkansas_spending <- federal_spending %>%
+  filter(state_nm == "ARKANSAS")
+
+View(arkansas_spending)
+```
+
+
+
+
+```{r}
+arkansas_spending %>%
+  distinct(cty_name) %>%
+  arrange(cty_name)
+```
+
+
+
+total spending by county across all years
+```{r}
+arkansas_spending_total <- arkansas_spending %>%
+  group_by(cty_name) %>%
+  summarise(
+    total_contracts = sum(contracts, na.rm = TRUE),
+    total_grants = sum(grants, na.rm = TRUE),
+    total_direct_payments = sum(direct_payments, na.rm = TRUE),
+    total_spending = sum(spending_total, na.rm = TRUE)
+  ) %>%
+  arrange(desc(total_spending))
+
+View(arkansas_spending_total)
+```
+
+
+remove na row
+```{r}
+arkansas_spending_total <- arkansas_spending_total %>%
+  filter(!is.na(cty_name))
+```
+
+
+
+```{r}
+facilities_with_tracts <- read_csv("data/facilities_with_tracts.csv")
+```
+
+```{r}
+glimpse(facilities_with_tracts)
+```
+
+```{r}
+view(facilities_with_tracts)
+```
+
+
+adding county names to facilities with tracts
+```{r}
+facilities_with_tracts <- facilities_with_tracts %>%
+  mutate(
+    county_fips = substr(census_tract, 1, 5),
+    county_name = case_when(
+      county_fips == "05069" ~ "JEFFERSON",
+      county_fips == "05125" ~ "SALINE",
+      county_fips == "05017" ~ "CHICOT",
+      county_fips == "05067" ~ "INDEPENDENCE",
+      county_fips == "05059" ~ "HOT SPRING",
+      county_fips == "05119" ~ "PULASKI",
+      county_fips == "05065" ~ "IZARD",
+      county_fips == "05079" ~ "LINCOLN",
+      county_fips == "05077" ~ "LEE",
+      TRUE ~ "UNKNOWN"
+    )
+  )
+```
+
+
+
+```{r}
+facilities_with_tracts %>%
+  distinct(county_fips, county_name) %>%
+  arrange(county_fips)
+```
+
+
+```{r}
+# Get distinct prison counties
+prison_counties <- facilities_with_tracts %>%
+  distinct(county_name) %>%
+  pull(county_name)
+
+# Add a flag to your spending table
+arkansas_spending_total <- arkansas_spending_total %>%
+  mutate(has_prison = ifelse(cty_name %in% prison_counties, "Yes", "No"))
+
+View(arkansas_spending_total)
+```
+
+
+
+```{r}
+arkansas_spending_total %>%
+  filter(has_prison == "Yes") %>%
+  arrange(desc(total_spending))
+```
+
+ compare average spending between prison and non-prison counties
+```{r}
+arkansas_spending_total %>%
+  group_by(has_prison) %>%
+  summarise(
+    count = n(),
+    avg_total_spending = mean(total_spending, na.rm = TRUE),
+    median_total_spending = median(total_spending, na.rm = TRUE),
+    avg_contracts = mean(total_contracts, na.rm = TRUE),
+    avg_grants = mean(total_grants, na.rm = TRUE),
+    avg_direct_payments = mean(total_direct_payments, na.rm = TRUE)
+  )
+```
+non-prison counties: 1.08 Billion 
+prison counties: 3.64 Billion 
+
+
+Is little rock in Pulaski county skewing the results too much just cause it's such a huge county. 
+```{r}
+arkansas_spending_total %>%
+  filter(has_prison == "Yes", cty_name != "PULASKI") %>%
+  summarise(
+    avg_without_pulaski = mean(total_spending, na.rm = TRUE),
+    median_without_pulaski = median(total_spending, na.rm = TRUE)
+  )
+```
+This could mean that prison counties aren't receiving a significantly greater amount of federal funding just for having a prison. Pulaski is just huge and just so happens to have a prison. 
