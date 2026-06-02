@@ -115,6 +115,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><strong>RSW Comments</strong> Casey - This is a thoughtful and well-constructed memo that frames the contours of your project quite well. Great to see it rendered as a web page with some data analysis. You are right on track.</p>
+<p>And you have a lot yet to do!</p>
+<p>Good to see a clear hypothesis articulated: Hypothesis: Counties with prisons should have higher median incomes</p>
+<p>I didn’t see a clear answer to that question. So make sure that is spelled out. What is the median income statewide? Per capita median income?</p>
+<p>What is the median income of the prison county? Median income of the census tract with the prison?</p>
 <section id="arkansas-prisons-and-their-host-counties" class="level1">
 <h1>Arkansas prisons and their host counties</h1>
 <p>This story will examine how reported census demographics differ from everyday life in prison counties by visualizing the racial makeup when prison populations are counted versus when they are not. It will also explore the financial impact of hosting a prison by comparing prison county median incomes to the median incomes of surrounding counties.</p>
@@ -149,132 +154,284 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This code was used to explore the median income levels throughout the state of Arkansas by county. I will compare the median income of counties with prisons to ones without prisons. The goal of this investigation is to explore the motivations for a town hosting a prison.</p>
 <p>Hypothesis: Counties with prisons should have higher median incomes</p>
 <p>After initially gathering the median income of all Arkansas counties, I cleaned up the table and ranked the counties by median income level.</p>
+<p>B19013_001 is Median household income year = 2023 is because it is the most recent 5-year American Community Survey that is available</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income <span class="sc">%&gt;%</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GEOID, county, <span class="at">median_income =</span> estimate, <span class="at">margin_of_error =</span> moe) <span class="sc">%&gt;%</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(median_income)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, GEOID, county, median_income, margin_of_error)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ar_income_ranked, <span class="at">n =</span> <span class="dv">75</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="er">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ar_income <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"county"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">"B19013_001"</span>,  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state     =</span> <span class="st">"AR"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year      =</span> <span class="dv">2023</span>,          </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">survey    =</span> <span class="st">"acs5"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Getting data from the 2019-2023 5-year ACS</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ar_income</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 75 × 5
+   GEOID NAME                      variable   estimate   moe
+   &lt;chr&gt; &lt;chr&gt;                     &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+ 1 05001 Arkansas County, Arkansas B19013_001    60831  3616
+ 2 05003 Ashley County, Arkansas   B19013_001    44481  4230
+ 3 05005 Baxter County, Arkansas   B19013_001    48427  2668
+ 4 05007 Benton County, Arkansas   B19013_001    89879  2078
+ 5 05009 Boone County, Arkansas    B19013_001    54195  2906
+ 6 05011 Bradley County, Arkansas  B19013_001    39565  7789
+ 7 05013 Calhoun County, Arkansas  B19013_001    63654  5566
+ 8 05015 Carroll County, Arkansas  B19013_001    55187  6324
+ 9 05017 Chicot County, Arkansas   B19013_001    39683  5162
+10 05019 Clark County, Arkansas    B19013_001    50985  4659
+# ℹ 65 more rows</code></pre>
+</div>
+</div>
+<p>Removing ‘Arkansas’ suffix from county names column Renaming columns Sorting highest to lowest Add a ranking column</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 75 × 5
+    rank GEOID county              median_income margin_of_error
+   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                       &lt;dbl&gt;           &lt;dbl&gt;
+ 1     1 05007 Benton County               89879            2078
+ 2     2 05125 Saline County               76534            3116
+ 3     3 05053 Grant County                72512            5055
+ 4     4 05085 Lonoke County               71449            2948
+ 5     5 05143 Washington County           66426            2116
+ 6     6 05045 Faulkner County             65071            2574
+ 7     7 05013 Calhoun County              63654            5566
+ 8     8 05001 Arkansas County             60831            3616
+ 9     9 05119 Pulaski County              60385            1648
+10    10 05033 Crawford County             60362            2501
+11    11 05105 Perry County                60078            9429
+12    12 05149 Yell County                 58870            9002
+13    13 05031 Craighead County            57615            2605
+14    14 05055 Greene County               56793            2743
+15    15 05131 Sebastian County            56450            2401
+16    16 05063 Independence County         56009            4703
+17    17 05023 Cleburne County             55979            2768
+18    18 05051 Garland County              55409            2233
+19    19 05015 Carroll County              55187            6324
+20    20 05115 Pope County                 54606            2921
+21    21 05035 Crittenden County           54271            3330
+22    22 05083 Logan County                54237            2751
+23    23 05009 Boone County                54195            2906
+24    24 05087 Madison County              53888            5680
+25    25 05145 White County                53435            4396
+26    26 05093 Mississippi County          53428            4079
+27    27 05121 Randolph County             52838            6075
+28    28 05059 Hot Spring County           52644            3937
+29    29 05081 Little River County         52241            6971
+30    30 05047 Franklin County             51919            4896
+31    31 05079 Lincoln County              51667            4710
+32    32 05133 Sevier County               51641            5749
+33    33 05029 Conway County               51212            4598
+34    34 05117 Prairie County              51094            6812
+35    35 05109 Pike County                 51000            4117
+36    36 05019 Clark County                50985            4659
+37    37 05025 Cleveland County            50509            6540
+38    38 05139 Union County                50221            4191
+39    39 05091 Miller County               49983            2774
+40    40 05147 Woodruff County             49982            4375
+41    41 05103 Ouachita County             49838            3674
+42    42 05113 Polk County                 49252            5637
+43    43 05097 Montgomery County           49015            4723
+44    44 05069 Jefferson County            48552            2575
+45    45 05021 Clay County                 48500            4959
+46    46 05005 Baxter County               48427            2668
+47    47 05065 Izard County                47728            5107
+48    48 05057 Hempstead County            47654            5095
+49    49 05101 Newton County               47395            8554
+50    50 05027 Columbia County             47363            5136
+51    51 05141 Van Buren County            47266            6322
+52    52 05111 Poinsett County             47188            5747
+53    53 05037 Cross County                47012            5730
+54    54 05089 Marion County               46953            2813
+55    55 05127 Scott County                45955            5309
+56    56 05071 Johnson County              44808            4077
+57    57 05039 Dallas County               44694            7860
+58    58 05061 Howard County               44492            8319
+59    59 05003 Ashley County               44481            4230
+60    60 05075 Lawrence County             44164            4056
+61    61 05095 Monroe County               43955            6166
+62    62 05135 Sharp County                42950            4376
+63    63 05129 Searcy County               41978            4927
+64    64 05123 St. Francis County          41784            4056
+65    65 05099 Nevada County               41761            5513
+66    66 05067 Jackson County              41215            4056
+67    67 05043 Drew County                 41071            6065
+68    68 05017 Chicot County               39683            5162
+69    69 05011 Bradley County              39565            7789
+70    70 05049 Fulton County               38941            3640
+71    71 05107 Phillips County             38874            3809
+72    72 05137 Stone County                38531            7368
+73    73 05073 Lafayette County            37237            5842
+74    74 05077 Lee County                  36860            5143
+75    75 05041 Desha County                36064            3671</code></pre>
+</div>
+</div>
+<p>Now that we’ve gotten the median incomes for all counties, we will single out the counties with prisons</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>prisons <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/facilities_with_tracts.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 16 Columns: 5
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): name, address, census_tract
+dbl (2): latitude, longitude
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prisons</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 5
+   name                                  address latitude longitude census_tract
+   &lt;chr&gt;                                 &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       
+ 1 Barbara Ester Unit                    7500 C…     34.2     -92.1 05069002103 
+ 2 Benton Unit                           6701 H…     34.5     -92.7 05125010514 
+ 3 Delta Regional Unit                   880 Ea…     33.5     -91.4 05017080200 
+ 4 Grimes Unit                           300 Co…     35.6     -91.2 05067480402 
+ 5 McPherson Unit                        302 Co…     35.6     -91.2 05067480402 
+ 6 Ouachita River Correctional Unit      100 Wa…     34.3     -92.8 05059020500 
+ 7 Pine Bluff Unit                       890 Fr…     34.2     -92.1 05069002103 
+ 8 Randall L. Williams Correctional Fac… 7206 W…     34.2     -92.1 05069002103 
+ 9 Wrightsville Unit                     8400 H…     34.6     -92.2 05119004005 
+10 Benny Magness Unit                    10 Pri…     36.2     -92.2 05065960300 
+11 J. Aaron Hawkins Sr. Center           Hwy 36…     34.6     -92.2 05119004005 
+12 Larry B. Norris Unit                  2501 S…     34.4     -91.9 05069002300 
+13 Tucker Unit                           2400 S…     34.4     -91.9 05069002300 
+14 Cummins Unit                          2540 H…     34.1     -91.7 05079960600 
+15 East Arkansas Regional Unit           326 Le…     34.8     -90.6 05077470100 
+16 Varner/Varner Supermax Unit           320 St…     34.0     -91.6 05079960600 </code></pre>
+</div>
+</div>
+<p><strong>rsw comment: you need to load tidyverse and all of your libraries. and then load the data. this is a working R document </strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GEOID, county, <span class="at">median_income =</span> estimate, <span class="at">margin_of_error =</span> moe) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(median_income)) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, GEOID, county, median_income, margin_of_error)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ar_income_ranked, <span class="at">n =</span> <span class="dv">75</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 75 × 5
+    rank GEOID county              median_income margin_of_error
+   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                       &lt;dbl&gt;           &lt;dbl&gt;
+ 1     1 05007 Benton County               89879            2078
+ 2     2 05125 Saline County               76534            3116
+ 3     3 05053 Grant County                72512            5055
+ 4     4 05085 Lonoke County               71449            2948
+ 5     5 05143 Washington County           66426            2116
+ 6     6 05045 Faulkner County             65071            2574
+ 7     7 05013 Calhoun County              63654            5566
+ 8     8 05001 Arkansas County             60831            3616
+ 9     9 05119 Pulaski County              60385            1648
+10    10 05033 Crawford County             60362            2501
+11    11 05105 Perry County                60078            9429
+12    12 05149 Yell County                 58870            9002
+13    13 05031 Craighead County            57615            2605
+14    14 05055 Greene County               56793            2743
+15    15 05131 Sebastian County            56450            2401
+16    16 05063 Independence County         56009            4703
+17    17 05023 Cleburne County             55979            2768
+18    18 05051 Garland County              55409            2233
+19    19 05015 Carroll County              55187            6324
+20    20 05115 Pope County                 54606            2921
+21    21 05035 Crittenden County           54271            3330
+22    22 05083 Logan County                54237            2751
+23    23 05009 Boone County                54195            2906
+24    24 05087 Madison County              53888            5680
+25    25 05145 White County                53435            4396
+26    26 05093 Mississippi County          53428            4079
+27    27 05121 Randolph County             52838            6075
+28    28 05059 Hot Spring County           52644            3937
+29    29 05081 Little River County         52241            6971
+30    30 05047 Franklin County             51919            4896
+31    31 05079 Lincoln County              51667            4710
+32    32 05133 Sevier County               51641            5749
+33    33 05029 Conway County               51212            4598
+34    34 05117 Prairie County              51094            6812
+35    35 05109 Pike County                 51000            4117
+36    36 05019 Clark County                50985            4659
+37    37 05025 Cleveland County            50509            6540
+38    38 05139 Union County                50221            4191
+39    39 05091 Miller County               49983            2774
+40    40 05147 Woodruff County             49982            4375
+41    41 05103 Ouachita County             49838            3674
+42    42 05113 Polk County                 49252            5637
+43    43 05097 Montgomery County           49015            4723
+44    44 05069 Jefferson County            48552            2575
+45    45 05021 Clay County                 48500            4959
+46    46 05005 Baxter County               48427            2668
+47    47 05065 Izard County                47728            5107
+48    48 05057 Hempstead County            47654            5095
+49    49 05101 Newton County               47395            8554
+50    50 05027 Columbia County             47363            5136
+51    51 05141 Van Buren County            47266            6322
+52    52 05111 Poinsett County             47188            5747
+53    53 05037 Cross County                47012            5730
+54    54 05089 Marion County               46953            2813
+55    55 05127 Scott County                45955            5309
+56    56 05071 Johnson County              44808            4077
+57    57 05039 Dallas County               44694            7860
+58    58 05061 Howard County               44492            8319
+59    59 05003 Ashley County               44481            4230
+60    60 05075 Lawrence County             44164            4056
+61    61 05095 Monroe County               43955            6166
+62    62 05135 Sharp County                42950            4376
+63    63 05129 Searcy County               41978            4927
+64    64 05123 St. Francis County          41784            4056
+65    65 05099 Nevada County               41761            5513
+66    66 05067 Jackson County              41215            4056
+67    67 05043 Drew County                 41071            6065
+68    68 05017 Chicot County               39683            5162
+69    69 05011 Bradley County              39565            7789
+70    70 05049 Fulton County               38941            3640
+71    71 05107 Phillips County             38874            3809
+72    72 05137 Stone County                38531            7368
+73    73 05073 Lafayette County            37237            5842
+74    74 05077 Lee County                  36860            5143
+75    75 05041 Desha County                36064            3671</code></pre>
+</div>
 </div>
 <p>I then worked to identify which counties are home to one or more correctional facilities and add this information to my table of ranked county incomes.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>prisons <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"facilities_with_tracts.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 <p>The facilities csv is listed in census tracts, but we can get county info from that. A census tract include county indentifiers in the number. The first 5 characters identify the state and county. For example a code like 05069002103 breaks down as 05 (Arkansas), 069 (Jefferson County), and 002103.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>prisons_counties <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span>  </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(GEOID) <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="st">"Yes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>prisons_counties <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span>  </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(GEOID) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="st">"Yes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income_ranked <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(prisons_counties, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="fu">replace_na</span>(has_prison, <span class="st">"No"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income_ranked <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(prisons_counties, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="fu">replace_na</span>(has_prison, <span class="st">"No"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prison_counts <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GEOID) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_prisons =</span> <span class="fu">n</span>())</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="sc">%&gt;%</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">%&gt;%</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, county, median_income, num_prisons)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>prison_counts <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GEOID) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_prisons =</span> <span class="fu">n</span>())</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">%&gt;%</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, county, median_income, num_prisons)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 9 × 4
+   rank county            median_income num_prisons
+  &lt;int&gt; &lt;chr&gt;                     &lt;dbl&gt;       &lt;int&gt;
+1     2 Saline County             76534           1
+2     9 Pulaski County            60385           2
+3    28 Hot Spring County         52644           1
+4    31 Lincoln County            51667           2
+5    44 Jefferson County          48552           5
+6    47 Izard County              47728           1
+7    66 Jackson County            41215           2
+8    68 Chicot County             39683           1
+9    74 Lee County                36860           1</code></pre>
 </div>
-<p>A tibble:9 × 4</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 13%">
-<col style="width: 27%">
-<col style="width: 22%">
-<col style="width: 19%">
-<col style="width: 5%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: right;"><p>rank</p>
-<p>&lt;int&gt;</p></th>
-<th style="text-align: left;"><p>county</p>
-<p>&lt;chr&gt;</p></th>
-<th style="text-align: right;"><p>median_income</p>
-<p>&lt;dbl&gt;</p></th>
-<th style="text-align: right;"><p>num_prisons</p>
-<p>&lt;int&gt;</p></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">2</td>
-<td style="text-align: left;">Saline County</td>
-<td style="text-align: right;">76534</td>
-<td style="text-align: right;">1</td>
-<td></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">9</td>
-<td style="text-align: left;">Pulaski County</td>
-<td style="text-align: right;">60385</td>
-<td style="text-align: right;">2</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">28</td>
-<td style="text-align: left;">Hot Spring County</td>
-<td style="text-align: right;">52644</td>
-<td style="text-align: right;">1</td>
-<td></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">31</td>
-<td style="text-align: left;">Lincoln County</td>
-<td style="text-align: right;">51667</td>
-<td style="text-align: right;">2</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">44</td>
-<td style="text-align: left;">Jefferson County</td>
-<td style="text-align: right;">48552</td>
-<td style="text-align: right;">5</td>
-<td></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">47</td>
-<td style="text-align: left;">Izard County</td>
-<td style="text-align: right;">47728</td>
-<td style="text-align: right;">1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">66</td>
-<td style="text-align: left;">Jackson County</td>
-<td style="text-align: right;">41215</td>
-<td style="text-align: right;">2</td>
-<td></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">68</td>
-<td style="text-align: left;">Chicot County</td>
-<td style="text-align: right;">39683</td>
-<td style="text-align: right;">1</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">74</td>
-<td style="text-align: left;">Lee County</td>
-<td style="text-align: right;">36860</td>
-<td style="text-align: right;">1</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+</div>
 <p>The ranking of the counties with prisons might indicate that there is no economic benefit or disadvantage that comes with hosting a facility.</p>
 </section>
 <section id="previous-coverage" class="level2">
@@ -291,7 +448,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
 <p>If median income findings turn out to be insignificant, I am thinking about pivoting to an exploration of property values in counties with prisons verses without. This could serve to show whether Franklin County residents who are concerned about property values have empirical evidence to support their concerns.</p>
 <p>If I remain focused on median incomes, I will work to gather the demographics of prison populations and join the data with the reported census demographics.</p>
-<p>We can also add special code inside of code blocks – the gray sections where we write code – that control how they render in our html document. These output options let us do things like:</p>
+<hr>
+<p><strong>rsw comment: cut this tutorial material below </strong></p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>31d824a0d7ea2d4b715ff3b81f785fbaf7bcd763 We can also add special code inside of code blocks – the gray sections where we write code – that control how they render in our html document. These output options let us do things like:</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
 <ul>
 <li>Show or hide the code when we render our html document (echo: true or false)</li>
 <li>Prevent the code from actually running when we render our html document (eval: true or false)</li>
@@ -313,20 +486,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="looking-at-wealth-inequality-in-charm-city" class="level2">
 <h2 class="anchored" data-anchor-id="looking-at-wealth-inequality-in-charm-city">Looking at wealth inequality in Charm City</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You will write your code in chunks but not execute the data. Use {r eval=FALSE, include=TRUE} in the header so the page will render without running the actual code.</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>income_vacancy <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> community)) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>income_2020), <span class="at">color =</span> <span class="st">"#64D197"</span>, <span class="at">stroke=</span><span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>vacant_2020<span class="sc">*</span><span class="dv">1000</span>), <span class="at">stroke=</span><span class="dv">5</span>, <span class="at">color =</span> <span class="st">"#FB8AE3"</span>) <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"2020 Income (Green)"</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">62000</span>), <span class="at">labels=</span>scales<span class="sc">::</span><span class="fu">dollar_format</span>(),</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.<span class="sc">/</span><span class="dv">60000</span>, <span class="at">name=</span><span class="st">"2020 Percent Vacancies (Red)"</span>, <span class="at">labels =</span> scales<span class="sc">::</span>percent))<span class="sc">+</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_y_continuous(labels = scales::percent) +</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Income and Vacancies of Baltimore Neighborhoods 2020"</span>,</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Community"</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"source: BNIA Data - By: Parker Leipzig and Rob Wells"</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You will write your code in chunks but not execute the data. Use {r eval=FALSE, include=TRUE} in the header so the page will render without running the actual code.</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>income_vacancy <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> community)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>income_2020), <span class="at">color =</span> <span class="st">"#64D197"</span>, <span class="at">stroke=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y=</span>vacant_2020<span class="sc">*</span><span class="dv">1000</span>), <span class="at">stroke=</span><span class="dv">5</span>, <span class="at">color =</span> <span class="st">"#FB8AE3"</span>) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"2020 Income (Green)"</span>, <span class="at">limits=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">62000</span>), <span class="at">labels=</span>scales<span class="sc">::</span><span class="fu">dollar_format</span>(),</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">sec.axis =</span> <span class="fu">sec_axis</span>(<span class="sc">~</span>.<span class="sc">/</span><span class="dv">60000</span>, <span class="at">name=</span><span class="st">"2020 Percent Vacancies (Red)"</span>, <span class="at">labels =</span> scales<span class="sc">::</span>percent))<span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="co">#scale_y_continuous(labels = scales::percent) +</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Income and Vacancies of Baltimore Neighborhoods 2020"</span>,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Community"</span>,</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"source: BNIA Data - By: Parker Leipzig and Rob Wells"</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="set-up-for-hosting" class="level2">

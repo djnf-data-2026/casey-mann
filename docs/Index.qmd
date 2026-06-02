@@ -170,9 +170,8 @@ I would also like to create an income table with counties ranked by median incom
 If median income findings turn out to be insignificant, I am thinking about pivoting to an exploration of property values in counties with prisons verses without. This could serve to show whether Franklin County residents who are concerned about property values have empirical evidence to support their concerns.
 
 If I remain focused on median incomes, I will work to gather the demographics of prison populations and join the data with the reported census demographics.
-<<<<<<< HEAD
----------------------------------------------------------------------------------
-=======
+
+--------------------------------------------------------------------------
 
 
 
