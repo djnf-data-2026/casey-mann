@@ -1,0 +1,10 @@
+prison_county,prison_pop,match_county,match_pop,pop_diff,prison_income,match_income,prison_minus_match_income,prison_rank,match_rank
+Lee County,8272,Nevada County,8125,147,36860,41761,-4901,74,65
+Chicot County,9508,Scott County,9833,325,39683,45955,-6272,68,55
+Lincoln County,12906,Stone County,12668,238,51667,38531,13136,31,72
+Izard County,14189,Clay County,14172,17,47728,48500,-772,47,45
+Jackson County,16741,Drew County,17011,270,41215,41071,144,66,67
+Hot Spring County,33214,Union County,37413,4199,52644,50221,2423,28,38
+Jefferson County,63497,Pope County,64709,1212,48552,54606,-6054,44,20
+Saline County,129667,Faulkner County,130104,437,76534,65071,11463,2,6
+Pulaski County,401297,Benton County,311656,89641,60385,89879,-29494,9,1

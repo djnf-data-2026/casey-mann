@@ -7,18 +7,6 @@ format:
     theme: cosmo
 ---
 
-**RSW Comments**
-Casey - This is a thoughtful and well-constructed memo that frames the contours of your project quite well. Great to see it rendered as a web page with some data analysis. You are right on track. 
-
-And you have a lot yet to do!
-
-Good to see a clear hypothesis articulated: Hypothesis: Counties with prisons should have higher median incomes
-
-I didn't see a clear answer to that question. So make sure that is spelled out. What is the median income statewide? Per capita median income?
-
-What is the median income of the prison county? Median income of the census tract with the prison?
-
-
 
 # Arkansas prisons and their host counties
 
@@ -61,6 +49,7 @@ After initially gathering the median income of all Arkansas counties, I cleaned 
 
 library(tidycensus)
 library(tidyverse)
+library(readxl)
 ```
 
 B19013_001 is Median household income 
@@ -98,12 +87,8 @@ prisons <- read_csv("../data/facilities_with_tracts.csv")
 
 prisons
 ```
-**rsw comment: you need to load tidyverse and all of your libraries. and then load the data. this is a working R document **
 
 ```{r include=TRUE}
-
-
-
 
 ar_income_ranked <- ar_income %>%
   mutate(county = str_remove(NAME, ", Arkansas")) %>%
@@ -151,7 +136,7 @@ ar_income_ranked %>%
 
 The ranking of the counties with prisons might indicate that there is no economic benefit or disadvantage that comes with hosting a facility.
 
-Now, I am working to explore the median income in the state of Arkansas.We will use the year 2023, because that is what we used for county medians. 
+Now, I am working to explore the median income in the state of Arkansas. We will use the year 2023, because that is what we used for county medians. 
 
 
 ```{r include=TRUE}
@@ -163,7 +148,7 @@ ar_state <- get_acs(
 )
 ```
 
-Now, I will add columns to my ranking of prison counties to show a comparison to the state average of 58773 and the difference
+Now, I will add columns to my ranking of prison counties to show a comparison to the state average of 58773 and the difference.
 ```{r include=TRUE}
 state_median <- ar_state$estimate
 
@@ -211,8 +196,145 @@ prison_percapita <- ar_percapita %>%
 print(prison_percapita)
 ```
 
-The per capita income of prison counties and the median income of prison counties are both lower than their state counterparts, disproving my earlier theory. 
 
+<iframe title="Prison Counties Fall Short of Arkansas' Per Capita Income" aria-label="Stacked Bars" id="datawrapper-chart-ksFNz" src="https://datawrapper.dwcdn.net/ksFNz/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="" data-external="1"></iframe><script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
+
+The per capita income of prison counties and the median income of prison counties are both lower than their statewide counterparts. This may serve as an argument against the idea that building a prison in a rural, impoverished county improves the economy of the region and the lives of those who live there. 
+
+However, it is a possibility that these prison counties may fall below state averages because prison builds are intentionally placed in rural, impoverished communities. To accurately assess the economy of these prison counties, we must compare their median income to counties of similar size. __________________________________________________________________________
+
+
+```{r echo=FALSE, include=FALSE, eval=TRUE}
+county_pop_raw <- read_xlsx("../data/County pop.xlsx", skip = 3)
+```
+
+After importing U.S. census county population data, columns are renamed, organized, and the year  is singled out. We use  as the reference year because the most recent median income information we used from the American Communities Survey was also from 2023 . 
+```{r include=TRUE}
+county_pop_2023 <- county_pop_raw %>%
+  rename(county_raw = 1, pop_2023 = `2023`) %>%
+  select(county_raw, pop_2023) %>%
+  filter(!is.na(pop_2023)) %>%
+  mutate(
+    county = str_remove(county_raw, "^\\.") %>%
+             str_remove(", Arkansas")
+  ) %>%
+  filter(county != "Arkansas") %>%
+  select(county, pop_2023)
+
+head(county_pop_2023)
+```
+
+```{r echo=FALSE, include=FALSE, eval=TRUE}
+prison_county_names <- ar_income_ranked %>%
+  filter(has_prison == "Yes") %>%
+  mutate(county_clean = str_remove(county, " County")) %>%
+  select(GEOID, county_clean)
+
+county_pop_tagged <- county_pop_2023 %>%
+  mutate(county_clean = str_remove(county, " County")) %>%
+  mutate(is_prison_county = county_clean %in% prison_county_names$county_clean)
+
+```
+
+After tagging which counties have prisons and which do not, we find the closest population matches between the two.
+```{r include=TRUE}
+prison_pops <- county_pop_tagged %>%
+  filter(is_prison_county == TRUE) %>%
+  select(prison_county = county, prison_pop = pop_2023)
+
+nonprison_pops <- county_pop_tagged %>%
+  filter(is_prison_county == FALSE) %>%
+  select(match_county = county, match_pop = pop_2023)
+
+population_matches <- prison_pops %>%
+  cross_join(nonprison_pops) %>%
+  mutate(pop_diff = abs(prison_pop - match_pop)) %>%
+  group_by(prison_county) %>%
+  slice_min(pop_diff, n = 1, with_ties = FALSE) %>%
+  ungroup() %>%
+  arrange(prison_pop)
+
+print(population_matches)
+```
+
+Pulaski County serves as a bit of an outlier. It is the largest county in Arkansas and Benton County is the second largest, despite falling more than 89,000 residents short, so it really is not possible to conduct a true population comparison within the state using Pulaski.
+
+
+Moving on, we now join the matched counties back to the income data to compare median incomes side by side: 
+```{r include=TRUE}
+population_matches_income <- population_matches %>%
+  left_join(ar_income_ranked %>% select(county, median_income), 
+            by = c("prison_county" = "county")) %>%
+  rename(prison_income = median_income) %>%
+  left_join(ar_income_ranked %>% select(county, median_income), 
+            by = c("match_county" = "county")) %>%
+  rename(match_income = median_income) %>%
+  mutate(income_diff = prison_income - match_income)
+
+print(population_matches_income)
+```
+
+Now, median income rankings are added back to the final table to demonstrate where each prison county and its match sit in the statewide median income rankings.
+```{r include=TRUE}
+population_matches_final <- population_matches_income %>%
+  left_join(ar_income_ranked %>% select(county, rank), 
+            by = c("prison_county" = "county")) %>%
+  rename(prison_rank = rank) %>%
+  left_join(ar_income_ranked %>% select(county, rank), 
+            by = c("match_county" = "county")) %>%
+  rename(match_rank = rank)
+
+print(population_matches_final)
+```
+
+
+The results are pretty mixed. Out of 9 prison counties, 5 earn less than their population match and 4 earn more. There's no clear pattern suggesting prisons reliably boost or hurt local incomes.
+
+
+```{r echo=FALSE, include=FALSE, eval=TRUE}
+population_matches_final <- population_matches_final %>%
+  rename(prison_minus_match_income = income_diff)
+
+print(population_matches_final)
+```
+
+
+```{r echo=FALSE, include=FALSE, eval=TRUE}
+write_csv(population_matches_final, "../data/population_matches_final.csv")
+```
+
+
+Throughout the construction of this project, I came to realize that another factor to consider when discussing the impact of a new prison build in a rural county is the amount of additional federal funding the facility could provide. When the U.S. Census is conducted, inmates are counted as resident of the prison county they reside in, despite the fact that they are often not from the area. These inmates, who  are often from majority black and brown communities, boost the population metrics of the majority white, rural counties they are held in. These prison counties are then, in turn, eligible for more federal funding. As a result of the population increase from inmates, free people in these counties may benefit off the incarceration of others. This is known as prison gerrymandering. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------
 ## Previous coverage
 
 Coverage of the Franklin County prison has been largely dominated by details of the cost of the construction itself, but I cannot seem to find much detail on any potential long-term impacts of the build. Much of the coverage contains dissenting opinions from Franklin County residents, who often express concern that the facility could lower quality of life and property values. The potential build gained national attention when Franklin County Sheriff Johnny Crocker began to criticize the plans, saying several Arkansas counties requested the build, and Franklin was not one of them. He also said the United States Immigration and Customers Enforcement was considering using the proposed prison site as a detention facility.
@@ -230,146 +352,3 @@ I would also like to create an income table with counties ranked by median incom
 If median income findings turn out to be insignificant, I am thinking about pivoting to an exploration of property values in counties with prisons verses without. This could serve to show whether Franklin County residents who are concerned about property values have empirical evidence to support their concerns.
 
 If I remain focused on median incomes, I will work to gather the demographics of prison populations and join the data with the reported census demographics.
-
---------------------------------------------------------------------------
-
-
-
-**rsw comment: cut this tutorial material below **
-
->>>>>>> 31d824a0d7ea2d4b715ff3b81f785fbaf7bcd763
-We can also add special code inside of code blocks -- the gray sections where we write code -- that control how they render in our html document. These output options let us do things like:
-
-- Show or hide the code when we render our html document (echo: true or false)
-- Prevent the code from actually running when we render our html document (eval: true or false)
-- Hide warnings from outputing when we render our html document (warning: true or false)
-
-There's a [full guide here](https://quarto.org/docs/computations/execution-options.html#output-options).
-
-The code below, for example, will output the text inside the print statement when rendered to html, but the actual code -- the print() function -- will be hidden.
-
-## Create your website
-
-In place of these instructions, you will paste your project one paragraph story idea into this document and any code you've developed so far.
-
-You will need to load libraries and data because rendering a page requires a full R session to execute on the code.
-
-First, create H1 headers
-
-**For example:**
-
-# Income and Vacancies of Baltimore Neighborhoods 2020
-
-## Looking at wealth inequality in Charm City
-
-```{r eval=FALSE, include=TRUE}
-
-# You will write your code in chunks but not execute the data. Use {r eval=FALSE, include=TRUE} in the header so the page will render without running the actual code.
-income_vacancy %>% 
-  ggplot(aes(x = community)) +
-  geom_point(aes(y=income_2020), color = "#64D197", stroke=5) +
-  geom_point(aes(y=vacant_2020*1000), stroke=5, color = "#FB8AE3") +
-  scale_y_continuous(
-    name = "2020 Income (Green)", limits=c(0, 62000), labels=scales::dollar_format(),
-    sec.axis = sec_axis(~./60000, name="2020 Percent Vacancies (Red)", labels = scales::percent))+
-  #scale_y_continuous(labels = scales::percent) +
-  labs(
-    title = "Income and Vacancies of Baltimore Neighborhoods 2020",
-    x = "Community",
-    caption = "source: BNIA Data - By: Parker Leipzig and Rob Wells"
-  )
-```
-
-## Set up for hosting
-
-- Create a new folder in your repository called "docs" (if one isn't there already)
-- Rename this document as "index.qmd"
-- Move "index.qmd" into the "docs" folder
-
-## Render this document as an html page
-
-- Make sure this document is named "index.qmd" and is in the "docs" folder
-- Click Render button. It will create an html version of this page, called "index.html"
-- Use GitHub Desktop to push your files to your your github repository on the web.
-- Access the URL from your Github repository.
-
-## Host html on GitHub
-
-- Go to your github repository on the web, such as https://github.com/djnf-data-2026/casey-mann
-- Click on Settings on the top right.
-- Scroll down to the Pages section of Settings.
-- Change the Branch to /docs and click save.
-
-#### To see your file hosted:
-
-- Back to your GitHub repo on the web: such as https://github.com/djnf-data-2026/casey-mann
-- Click on Settings, then Pages
-- Under GitHub Pages, you should see "Your site is live at https://djnf-data-2026.github.io/casey-mann/"
-- Click that URL
-- If it works, email it to robwells\@umd.edu
-
-## REVEL IN YOUR NERD POWERS
-
-# Part 2: Embedding Images
-
-- create a folder in your repository's main branch, call it images
-
-- find any .jpeg, .jpg or .png file and insert it into that folder.
-
-- In a QMD file, display the image as follows:
-
-\#![CAPTION FOR YOUR PHOTO](images/your_link_here.png)
-
-\#![CHATTER FOR YOUR chart](images/xl-refresher-grid_SHEETS.png)
-
-A more advanced technique controlling the width and height
-
-\#![Read the Screen](images/xl-refresher-SHEETS_screen.png){width="100%"}
-
-### Embedding code
-
-From a **Datawrapper Map**
-
-<iframe title="Small Business Reporting, Spring 2024" aria-label="Map" id="datawrapper-chart-z4bny" src="https://datawrapper.dwcdn.net/z4bny/5/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="500" data-external="1">
-
-</iframe>
-
-```{=html}
-<script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(a){if(void 0!==a.data["datawrapper-height"]){var e=document.querySelectorAll("iframe");for(var t in a.data["datawrapper-height"])for(var r=0;r<e.length;r++)if(e[r].contentWindow===a.source){var i=a.data["datawrapper-height"][t]+"px";e[r].style.height=i}}}))}();
-</script>
-```
-
-## Embedding video
-
-### Deep Nerd Video
-
-::: {#first_steps}
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TNP_unReOpw?si=CQC3cG49TShkoJOG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-
-</iframe>
-:::
-
-::: {#second_steps}
-### A great lecture on structural racism in journalism
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/DIDHbEZYFSc?si=a-KNzlQgoGjXD6VV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-
-</iframe>
-:::
-
-**Now replace these two videos with something you selected.**
-
-The embed code is in the video share feature
-
-## Instructions to embed a gif
-
-```{r text_to_columns.gif, out.width="100%", echo=FALSE}
-### Embed a GIF
-#First, download a GIF (extension will be .gif) and load it into "images" folder
-#if (knitr::is_html_output()) knitr::include_graphics("images/text_to_columns.gif")  
-
-```
-
-This is a very basic starter but it will get you to the finish line on Saturday. Good luck!
-
---30--
