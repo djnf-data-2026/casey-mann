@@ -9,7 +9,7 @@
 <meta name="author" content="Casey Mann">
 <meta name="dcterms.date" content="2026-05-29">
 
-<title>Arkansas prisons and their host counties</title>
+<title>Examining the incentives behind Arkansas’s rural prison builds</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -86,7 +86,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Arkansas prisons and their host counties</h1>
+<h1 class="title">Examining the incentives behind Arkansas’s rural prison builds</h1>
 </div>
 
 
@@ -117,10 +117,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="arkansas-prisons-and-their-host-counties" class="level1">
 <h1>Arkansas prisons and their host counties</h1>
-<p>This story will examine how reported census demographics differ from everyday life in prison counties by visualizing the racial makeup when prison populations are counted versus when they are not. It will also explore the financial impact of hosting a prison by comparing prison county median incomes to the median incomes of surrounding counties.</p>
+<p>This investigation examines whether Arkansas counties that host state prisons experience measurable economic benefits compared to similar-sized counties without prisons, using Census income and population data to test the assumption that prison construction improves local economies. The broader goal is to examine financial incentives that arise as a result of how the U.S. counts prison populations.</p>
+<iframe title="Arkansas's state prison facilities by location and capacity" aria-label="Symbol map" id="datawrapper-chart-BADjd" src="https://datawrapper.dwcdn.net/BADjd/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="" data-external="1">
+</iframe>
+<script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
 <section id="why-now" class="level2">
 <h2 class="anchored" data-anchor-id="why-now">Why now?</h2>
 <p>To much debate from residents and lawmakers alike, Arkansas Governor Sarah Huckabee Sanders announced plans for the construction of a 3,000 bed prison in rural Franklin County in October 2024. Two years later, construction is stalled, but it is unclear what effect the facility could have on it’s host county.</p>
+<p>When plans for the facility were released by the Arkansas Department of Corrections in 2024, the project was framed as an economic opportunity for Franklin County. The build’s information sheet includes a “Community Benefits” section that details several financial incentives for residents, including:</p>
+<ul>
+<li>Investing hundreds of millions of dollars in construction creates thousands of jobs.</li>
+<li>Permanent, recession-proof employment for up too 800 individuals with annual salaries greater than $46,00.</li>
+<li>Increased tax base to be invested in better public services, schools, and parks.</li>
+</ul>
+<p><a href="https://doc.arkansas.gov/franklin-county-project/franklin-county-project-information-sheet/">google</a></p>
+<p>These incentives may sound promising for those in historically economically disadvantaged and under-funded counties. However, they raise a question about whether these benefits are truly actualized in counties that host state prisons.</p>
+<p>This investigation uses Census income data from the nine Arkansas counties that currently house state facilities to examine whether these rural counties truly see long-term benefits as a result of hosting a facility.</p>
+</section>
+<section id="previous-coverage" class="level2">
+<h2 class="anchored" data-anchor-id="previous-coverage">Previous coverage</h2>
+<p>Coverage of the Franklin County prison has been largely dominated by details of the cost of the construction itself, but I cannot seem to find much detail on any potential long-term impacts of the build. Much of the coverage contains dissenting opinions from Franklin County residents, who often express concern that the facility could lower quality of life and property values. The potential build gained national attention when Franklin County Sheriff Johnny Crocker began to criticize the plans, saying several Arkansas counties requested the build, and Franklin was not one of them. He also said the United States Immigration and Customers Enforcement was considering using the proposed prison site as a detention facility.</p>
 </section>
 <section id="target-audience" class="level2">
 <h2 class="anchored" data-anchor-id="target-audience">Target Audience</h2>
@@ -137,19 +153,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>FOR: Republican Sen.&nbsp;Jonathan Dismang of Searcy, who filed an appropriations bill during the 2025 session that would have provided $750 million in spending authority for the prison project. <a href="https://arkansasadvocate.com/2026/04/03/arkansas-explained-what-is-the-franklin-county-prison-project/">google</a></li>
 <li>AGAINST: Republican Sen.&nbsp;Bryan King of Green Forest, who has been an outspoken critic of plans to construct the Franklin County facility. <a href="https://arkansasadvocate.com/2025/04/11/arkansas-lawmakers-consider-other-funding-methods-as-they-abandon-sixth-prison-appropriation-vote/">google</a></li>
 </ul></li>
+<li>Franklin County Sheriff Johnny Crocker, who has expressed frustration with the build.</li>
 </ol>
 </section>
 <section id="potential-impact" class="level2">
 <h2 class="anchored" data-anchor-id="potential-impact">Potential Impact</h2>
-<p>This story has the potential to impact both Franklin County residents and Arkansas policy. Residents who may feel like they are in the dark about what is happening in their own community could get access to data-backed context that informs decisions about whether they support the build. The story also serves to provide insight into how Franklin could be affected long-term if policymakers follow through on the build.</p>
+<p>This story has the potential to impact both Franklin County residents and Arkansas policy. Residents who may feel like they are in the dark about what is happening in their own community could get access to data-backed context that informs decisions about whether they support the build. The story also serves to provide insight into how Franklin could be affected long-term if policymakers follow through with the build. This project could also provide insight into who benefits from continued incarceration, potentially influencing opinions about continued facility expansion efforts.</p>
 <p>Arkansas policymakers could get an empirical look at how the Franklin County facility will change the lives of those who live in the area, potentially affecting how they vote on the issue in a moment when the future of the project appears to be up in the air.</p>
 </section>
 <section id="current-code-and-findings" class="level2">
 <h2 class="anchored" data-anchor-id="current-code-and-findings">Current code and findings</h2>
-<p>This code was used to explore the median income levels throughout the state of Arkansas by county. I will compare the median income of counties with prisons to ones without prisons. The goal of this investigation is to explore the motivations for a town hosting a prison.</p>
-<p>Hypothesis: Counties with prisons should have higher median incomes</p>
+<p>This code was used to explore the median income levels throughout the state of Arkansas by county. I compared the median income of counties with prisons to ones without prisons.</p>
+<p>Hypothesis: Counties with prisons should have higher median incomes than counties of similar size without prisons.</p>
 <p>After initially gathering the median income of all Arkansas counties, I cleaned up the table and ranked the counties by median income level.</p>
-<p>B19013_001 is Median household income year = 2023 is because it is the most recent 5-year American Community Survey that is available</p>
+<ul>
+<li>B19013_001 is Median household income</li>
+<li>year = 2023 is because it is the most recent 5-year American Community Survey that is available</li>
+</ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ar_income <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"county"</span>,</span>
@@ -179,7 +199,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 65 more rows</code></pre>
 </div>
 </div>
-<p>Removing ‘Arkansas’ suffix from county names column Renaming columns Sorting highest to lowest Add a ranking column</p>
+<ul>
+<li>Removing ‘Arkansas’ suffix from county names column</li>
+<li>Renaming columns Sorting highest to lowest Add a ranking column</li>
+</ul>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 75 × 5
@@ -262,9 +285,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 75    75 05041 Desha County                36064            3671</code></pre>
 </div>
 </div>
-<p>Now that we’ve gotten the median incomes for all counties, we will single out the counties with prisons</p>
+<p>Now that we’ve gotten the median incomes for all counties, we will single out the counties with prisons.</p>
+<p>Next, the counties that are home to one or more correctional facilities are identified and added to table of ranked county incomes.</p>
+<p>The facilities csv is listed in census tracts, but we can get county info from that. A census tract includes county identifiers in the number. The first 5 characters identify the state and county. For example, a code like 05069002103 breaks down as 05 (Arkansas), 069 (Jefferson County), and 002103.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>prisons <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../data/facilities_with_tracts.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 16 Columns: 5
 ── Column specification ────────────────────────────────────────────────────────
@@ -275,7 +299,6 @@ dbl (2): latitude, longitude
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>prisons</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 16 × 5
    name                                  address latitude longitude census_tract
@@ -299,14 +322,14 @@ dbl (2): latitude, longitude
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GEOID, county, <span class="at">median_income =</span> estimate, <span class="at">margin_of_error =</span> moe) <span class="sc">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(median_income)) <span class="sc">%&gt;%</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, GEOID, county, median_income, margin_of_error)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ar_income_ranked, <span class="at">n =</span> <span class="dv">75</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GEOID, county, <span class="at">median_income =</span> estimate, <span class="at">margin_of_error =</span> moe) <span class="sc">%&gt;%</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(median_income)) <span class="sc">%&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, GEOID, county, median_income, margin_of_error)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ar_income_ranked, <span class="at">n =</span> <span class="dv">75</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 75 × 5
     rank GEOID county              median_income margin_of_error
@@ -388,29 +411,27 @@ dbl (2): latitude, longitude
 75    75 05041 Desha County                36064            3671</code></pre>
 </div>
 </div>
-<p>I then worked to identify which counties are home to one or more correctional facilities and add this information to my table of ranked county incomes.</p>
-<p>The facilities csv is listed in census tracts, but we can get county info from that. A census tract include county indentifiers in the number. The first 5 characters identify the state and county. For example a code like 05069002103 breaks down as 05 (Arkansas), 069 (Jefferson County), and 002103.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>prisons_counties <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span>  </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(GEOID) <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="st">"Yes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>prisons_counties <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span>  </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(GEOID) <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="st">"Yes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income_ranked <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(prisons_counties, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="fu">replace_na</span>(has_prison, <span class="st">"No"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income_ranked <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(prisons_counties, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="fu">replace_na</span>(has_prison, <span class="st">"No"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>prison_counts <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GEOID) <span class="sc">%&gt;%</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_prisons =</span> <span class="fu">n</span>())</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="sc">%&gt;%</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">%&gt;%</span></span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, county, median_income, num_prisons)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>prison_counts <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GEOID) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_prisons =</span> <span class="fu">n</span>())</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="sc">%&gt;%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">%&gt;%</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, county, median_income, num_prisons)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 4
    rank county            median_income num_prisons
@@ -426,33 +447,32 @@ dbl (2): latitude, longitude
 9    74 Lee County                36860           1</code></pre>
 </div>
 </div>
-<p>The ranking of the counties with prisons might indicate that there is no economic benefit or disadvantage that comes with hosting a facility.</p>
-<p>Now, I am working to explore the median income in the state of Arkansas. We will use the year 2023, because that is what we used for county medians.</p>
+<p>The seemingly random ranking of the counties with prisons might indicate that there is no inherent economic benefit or disadvantage that comes with hosting a facility. In order to explore this further, the prison county median incomes will be contrasted with the state-wide median income.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ar_state <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"state"</span>,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">"B19013_001"</span>, </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state =</span> <span class="st">"AR"</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2023</span>  </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ar_state <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"state"</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">"B19013_001"</span>, </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state =</span> <span class="st">"AR"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2023</span>  </span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Getting data from the 2019-2023 5-year ACS</code></pre>
 </div>
 </div>
-<p>Now, I will add columns to my ranking of prison counties to show a comparison to the state average of 58773 and the difference.</p>
+<p>This block adds columns to the prison counties ranking to compare the state average of 58773 and the calculate difference between the metrics.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>state_median <span class="ot">&lt;-</span> ar_state<span class="sc">$</span>estimate</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>prison_counties <span class="ot">&lt;-</span> ar_income_ranked <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">%&gt;%</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, county, median_income, num_prisons) <span class="sc">%&gt;%</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">state_median =</span> state_median,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff_from_state =</span> median_income <span class="sc">-</span> state_median</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(prison_counties)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>state_median <span class="ot">&lt;-</span> ar_state<span class="sc">$</span>estimate</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>prison_counties <span class="ot">&lt;-</span> ar_income_ranked <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, county, median_income, num_prisons) <span class="sc">%&gt;%</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">state_median =</span> state_median,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff_from_state =</span> median_income <span class="sc">-</span> state_median</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(prison_counties)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 6
    rank county            median_income num_prisons state_median diff_from_state
@@ -468,25 +488,28 @@ dbl (2): latitude, longitude
 9    74 Lee County                36860           1        58773          -21913</code></pre>
 </div>
 </div>
-<p>This disproves my earlier theory that prison counties would have a higher median income.</p>
-<p>Now, I am working to compare per capita income in prison counties to per capita income in the state of Arkansas. B19301_001 is the variable for per capita income.</p>
+<iframe title="Most Arkansas prison counties earn well below the state median income" aria-label="Stacked Bars" id="datawrapper-chart-Wdzim" src="https://datawrapper.dwcdn.net/Wdzim/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="" data-external="1">
+</iframe>
+<script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
+<p>This disproves the earlier hypothesis that prison counties would have a higher median income.</p>
+<p>Now, income per capita in prison counties will be compared to Arkansas-wide income per capita. B19301_001 is the variable for income per capita.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ar_state_percapita <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"state"</span>,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">"B19301_001"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state =</span> <span class="st">"AR"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2023</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">survey =</span> <span class="st">"acs5"</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ar_state_percapita <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"state"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">"B19301_001"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state =</span> <span class="st">"AR"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2023</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">survey =</span> <span class="st">"acs5"</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Getting data from the 2019-2023 5-year ACS</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>state_percapita <span class="ot">&lt;-</span> ar_state_percapita<span class="sc">$</span>estimate</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ar_percapita |&gt; write_csv("../ar_percapita.csv")</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a> ar_percapita <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../ar_percapita.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>state_percapita <span class="ot">&lt;-</span> ar_state_percapita<span class="sc">$</span>estimate</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ar_percapita |&gt; write_csv("../ar_percapita.csv")</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a> ar_percapita <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../ar_percapita.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 75 Columns: 5
 ── Column specification ────────────────────────────────────────────────────────
@@ -497,17 +520,17 @@ dbl (2): estimate, moe
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>prison_percapita <span class="ot">&lt;-</span> ar_percapita <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, <span class="at">per_capita_income =</span> estimate, num_prisons) <span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(per_capita_income)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">state_per_capita =</span> state_percapita,</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff_from_state =</span> per_capita_income <span class="sc">-</span> state_percapita</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(prison_percapita)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>prison_percapita <span class="ot">&lt;-</span> ar_percapita <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, <span class="at">per_capita_income =</span> estimate, num_prisons) <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(per_capita_income)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">state_per_capita =</span> state_percapita,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff_from_state =</span> per_capita_income <span class="sc">-</span> state_percapita</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(prison_percapita)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 5
   county          per_capita_income num_prisons state_per_capita diff_from_state
@@ -527,21 +550,21 @@ dbl (2): estimate, moe
 </iframe>
 <script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
 <p>The per capita income of prison counties and the median income of prison counties are both lower than their statewide counterparts. This may serve as an argument against the idea that building a prison in a rural, impoverished county improves the economy of the region and the lives of those who live there.</p>
-<p>However, it is a possibility that these prison counties may fall below state averages because prison builds are intentionally placed in rural, impoverished communities. To accurately assess the economy of these prison counties, we must compare their median income to counties of similar size. __________________________________________________________________________</p>
-<p>After importing U.S. census county population data, columns are renamed, organized, and the year is singled out. We use as the reference year because the most recent median income information we used from the American Communities Survey was also from 2023 .</p>
+<p>However, it is a possibility that these prison counties may fall below state averages because prison builds are intentionally placed in already rural, impoverished communities. To accurately assess the economy of these prison counties, we must compare their median income to counties of similar size.</p>
+<p>After importing U.S. census county population data, columns are renamed, organized and the year is singled out. We use 2023 as the reference year because the most recent median income information we used from the American Communities Survey was also from 2023 .</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>county_pop_2023 <span class="ot">&lt;-</span> county_pop_raw <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">county_raw =</span> <span class="dv">1</span>, <span class="at">pop_2023 =</span> <span class="st">`</span><span class="at">2023</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county_raw, pop_2023) <span class="sc">%&gt;%</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_2023)) <span class="sc">%&gt;%</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">county =</span> <span class="fu">str_remove</span>(county_raw, <span class="st">"^</span><span class="sc">\\</span><span class="st">."</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">str_remove</span>(<span class="st">", Arkansas"</span>)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">!=</span> <span class="st">"Arkansas"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, pop_2023)</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(county_pop_2023)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>county_pop_2023 <span class="ot">&lt;-</span> county_pop_raw <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">county_raw =</span> <span class="dv">1</span>, <span class="at">pop_2023 =</span> <span class="st">`</span><span class="at">2023</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county_raw, pop_2023) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_2023)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">county =</span> <span class="fu">str_remove</span>(county_raw, <span class="st">"^</span><span class="sc">\\</span><span class="st">."</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">str_remove</span>(<span class="st">", Arkansas"</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">!=</span> <span class="st">"Arkansas"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, pop_2023)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(county_pop_2023)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
   county          pop_2023
@@ -556,23 +579,23 @@ dbl (2): estimate, moe
 </div>
 <p>After tagging which counties have prisons and which do not, we find the closest population matches between the two.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>prison_pops <span class="ot">&lt;-</span> county_pop_tagged <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_prison_county <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">prison_county =</span> county, <span class="at">prison_pop =</span> pop_2023)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>nonprison_pops <span class="ot">&lt;-</span> county_pop_tagged <span class="sc">%&gt;%</span></span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_prison_county <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">match_county =</span> county, <span class="at">match_pop =</span> pop_2023)</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>population_matches <span class="ot">&lt;-</span> prison_pops <span class="sc">%&gt;%</span></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cross_join</span>(nonprison_pops) <span class="sc">%&gt;%</span></span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pop_diff =</span> <span class="fu">abs</span>(prison_pop <span class="sc">-</span> match_pop)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(prison_county) <span class="sc">%&gt;%</span></span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(pop_diff, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(prison_pop)</span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>prison_pops <span class="ot">&lt;-</span> county_pop_tagged <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_prison_county <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">prison_county =</span> county, <span class="at">prison_pop =</span> pop_2023)</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>nonprison_pops <span class="ot">&lt;-</span> county_pop_tagged <span class="sc">%&gt;%</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_prison_county <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">match_county =</span> county, <span class="at">match_pop =</span> pop_2023)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>population_matches <span class="ot">&lt;-</span> prison_pops <span class="sc">%&gt;%</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cross_join</span>(nonprison_pops) <span class="sc">%&gt;%</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pop_diff =</span> <span class="fu">abs</span>(prison_pop <span class="sc">-</span> match_pop)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(prison_county) <span class="sc">%&gt;%</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(pop_diff, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(prison_pop)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 5
   prison_county     prison_pop match_county    match_pop pop_diff
@@ -591,16 +614,16 @@ dbl (2): estimate, moe
 <p>Pulaski County serves as a bit of an outlier. It is the largest county in Arkansas and Benton County is the second largest, despite falling more than 89,000 residents short, so it really is not possible to conduct a true population comparison within the state using Pulaski.</p>
 <p>Moving on, we now join the matched counties back to the income data to compare median incomes side by side:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>population_matches_income <span class="ot">&lt;-</span> population_matches <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, median_income), </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"prison_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prison_income =</span> median_income) <span class="sc">%&gt;%</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, median_income), </span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"match_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">match_income =</span> median_income) <span class="sc">%&gt;%</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income_diff =</span> prison_income <span class="sc">-</span> match_income)</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches_income)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>population_matches_income <span class="ot">&lt;-</span> population_matches <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, median_income), </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"prison_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prison_income =</span> median_income) <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, median_income), </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"match_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">match_income =</span> median_income) <span class="sc">%&gt;%</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income_diff =</span> prison_income <span class="sc">-</span> match_income)</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches_income)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 8
   prison_county     prison_pop match_county    match_pop pop_diff prison_income
@@ -619,15 +642,15 @@ dbl (2): estimate, moe
 </div>
 <p>Now, median income rankings are added back to the final table to demonstrate where each prison county and its match sit in the statewide median income rankings.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>population_matches_final <span class="ot">&lt;-</span> population_matches_income <span class="sc">%&gt;%</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, rank), </span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"prison_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prison_rank =</span> rank) <span class="sc">%&gt;%</span></span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, rank), </span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"match_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">match_rank =</span> rank)</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches_final)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>population_matches_final <span class="ot">&lt;-</span> population_matches_income <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, rank), </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"prison_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prison_rank =</span> rank) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, rank), </span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"match_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">match_rank =</span> rank)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches_final)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 10
   prison_county     prison_pop match_county    match_pop pop_diff prison_income
@@ -645,24 +668,23 @@ dbl (2): estimate, moe
 #   match_rank &lt;int&gt;</code></pre>
 </div>
 </div>
-<p>The results are pretty mixed. Out of 9 prison counties, 5 earn less than their population match and 4 earn more. There’s no clear pattern suggesting prisons reliably boost or hurt local incomes.</p>
-<p>Throughout the construction of this project, I came to realize that another factor to consider when discussing the impact of a new prison build in a rural county is the amount of additional federal funding the facility could provide. When the U.S. Census is conducted, inmates are counted as resident of the prison county they reside in, despite the fact that they are often not from the area. These inmates, who are often from majority black and brown communities, boost the population metrics of the majority white, rural counties they are held in. These prison counties are then, in turn, eligible for more federal funding. As a result of the population increase from inmates, free people in these counties may benefit off the incarceration of others. This is known as prison gerrymandering.</p>
-<hr>
-</section>
-<section id="previous-coverage" class="level2">
-<h2 class="anchored" data-anchor-id="previous-coverage">Previous coverage</h2>
-<p>Coverage of the Franklin County prison has been largely dominated by details of the cost of the construction itself, but I cannot seem to find much detail on any potential long-term impacts of the build. Much of the coverage contains dissenting opinions from Franklin County residents, who often express concern that the facility could lower quality of life and property values. The potential build gained national attention when Franklin County Sheriff Johnny Crocker began to criticize the plans, saying several Arkansas counties requested the build, and Franklin was not one of them. He also said the United States Immigration and Customers Enforcement was considering using the proposed prison site as a detention facility.</p>
-</section>
-<section id="visuals" class="level2">
-<h2 class="anchored" data-anchor-id="visuals">Visuals</h2>
-<p>The project will contain both interactive maps and income tables.</p>
-<p>The interactive maps will allow users to click on facility locations, which will show: - prison addresses - racial makeup of prison The maps will also allow users to click on individual counties, which will show: - reported census racial demographics - racial demographics with prison population not included - median income of county</p>
-<p>I would also like to create an income table with counties ranked by median income. Prison counties would be indicated by a highlight in a different color.</p>
+<p>The results are pretty mixed. Out of 9 prison counties, 5 earn less than their population match and 4 earn more. There’s no clear pattern suggesting prisons significantly boost or hurt local incomes.</p>
+<p>Throughout the construction of this project, I came to realize that another factor to consider when discussing the impact of a new prison build in a rural county is the amount of additional federal funding the facility could provide. When the U.S. Census is conducted, inmates are counted as residents of the prison county they reside in, despite the fact that they are often not from the area and did not choose to be there. These inmates, who are often from majority Black and Latino, urban communities, boost the population metrics of the majority white, rural counties they are held in. These prison counties are then, in turn, eligible for more federal funding. As a result of the population increase from inmates, free people in these counties may benefit off the incarceration of others. This is known as prison gerrymandering.</p>
 </section>
 <section id="next-steps" class="level2">
 <h2 class="anchored" data-anchor-id="next-steps">Next steps</h2>
-<p>If median income findings turn out to be insignificant, I am thinking about pivoting to an exploration of property values in counties with prisons verses without. This could serve to show whether Franklin County residents who are concerned about property values have empirical evidence to support their concerns.</p>
-<p>If I remain focused on median incomes, I will work to gather the demographics of prison populations and join the data with the reported census demographics.</p>
+<p>To advance this project, I would shift focus to investigating how the Census Bureau’s method of counting inmate populations translates into financial advantages for prison counties and corresponding losses for the communities incarcerated people actually come from.</p>
+<p>As established earlier, the U.S. Census counts incarcerated individuals as residents of their prison locations. According to Inmate Aid, this inflated population boosts access to both state and federal funds, including grants for schools, emergency services and infrastructure. As these incarcerated individuals are held in rural areas, urban communities — disproportionately Black and Latino — lose out on the same dollars. <a href="https://www.inmateaid.com/blog/prison-towns-when-the-economy-depends-on-incarceration#census">google</a></p>
+<p>If possible, I would like to determine how much federal spending typically increases in a county before and after a state prison is built by looking back at records from the Ouachita River Correctional Unit build. This Hot Spring County facility was constructed in 2003 and is the most recently completed facility in the state. Ouachita River has an inmate capacity of 1,782, just over half of the proposed Franklin County facility, but it could serve as an indicator of how incarceration benefits those who are not behind bars in prison counties.</p>
+<p>I believe this project could be part of a larger story about the economic incentive those in power have to perpetuate cycles of incarceration that disproportionately affect Black and Latino communities.</p>
+<hr>
+<p>Business Journalism Lecture</p>
+<ul>
+<li>COMPANY: SIMMONS FIRST NATIONAL CORP</li>
+<li>NUMBER OF EMPLOYEES: 2,917 full time associates</li>
+<li>NAME OF CEO: James M. Brogdon</li>
+<li>TYPE OF BUSINESS: financial holding company</li>
+</ul>
 </section>
 </section>
 

@@ -1,0 +1,10 @@
+"rank","county","median_income","num_prisons","state_median","diff_from_state"
+2,"Saline County",76534,1,58773,17761
+9,"Pulaski County",60385,2,58773,1612
+28,"Hot Spring County",52644,1,58773,-6129
+31,"Lincoln County",51667,2,58773,-7106
+44,"Jefferson County",48552,5,58773,-10221
+47,"Izard County",47728,1,58773,-11045
+66,"Jackson County",41215,2,58773,-17558
+68,"Chicot County",39683,1,58773,-19090
+74,"Lee County",36860,1,58773,-21913
