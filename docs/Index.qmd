@@ -204,9 +204,8 @@ prison_counties <- ar_income_ranked %>%
 
 ```
 
-<iframe title="Most Arkansas prison counties earn well below the state median income" aria-label="Stacked Bars" id="datawrapper-chart-Wdzim" src="https://datawrapper.dwcdn.net/Wdzim/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height data-external="1">
+![A horizontal grouped bar chart comparing median household income in nine Arkansas counties that host state prisons to the statewide median of $58,773. ](https://raw.githubusercontent.com/djnf-data-2026/casey-mann/main/docs/images/median_chart.png)
 
-</iframe>
 
 ```{=html}
 <script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
@@ -364,6 +363,72 @@ write_csv(population_matches_final, "../data/population_matches_final.csv")
 ```
 
 Throughout the construction of this project, I came to realize that another factor to consider when discussing the impact of a new prison build in a rural county is the amount of additional federal funding the facility could provide. When the U.S. Census is conducted, inmates are counted as residents of the prison county they reside in, despite the fact that they are often not from the area and did not choose to be there. These inmates, who are often from majority Black and Latino, urban communities, boost the population metrics of the majority white, rural counties they are held in. These prison counties are then, in turn, eligible for more federal funding. As a result of the population increase from inmates, free people in these counties may benefit off the incarceration of others. This is known as prison gerrymandering.
+
+-------------------------------------------------------------------------------
+TRACT COMPARISON 
+
+Pull median household income for all AR tracts
+```{r}
+ar_tracts <- get_acs(
+  geography = "tract",
+  variables = "B19013_001",  # Median household income
+  state = "AR",
+  year = 2022,
+  geometry = FALSE
+)
+```
+
+```{r}
+facilities <- read_csv("../data/facilities_with_tracts.csv")
+```
+
+```{r}
+prison_geoids <- facilities %>%
+  pull(census_tract) %>%
+  unique() %>%
+  as.character()
+```
+```{r}
+# Pull median household income for all AR tracts
+ar_tracts <- get_acs(
+  geography = "tract",
+  variables = "B19013_001",
+  state = "AR",
+  year = 2022,
+  geometry = FALSE
+)
+```
+
+```{r}
+# Flag prison tracts and compare
+ar_tracts_flagged <- ar_tracts %>%
+  mutate(
+    is_prison_tract = GEOID %in% prison_geoids,
+    tract_type = if_else(is_prison_tract, "Prison tract", "Non-prison tract")
+  )
+```
+
+
+```{r}
+# Summary table
+ar_tracts_flagged %>%
+  group_by(tract_type) %>%
+  summarise(
+    n_tracts = n(),
+    median_income = median(estimate, na.rm = TRUE),
+    mean_income   = mean(estimate, na.rm = TRUE),
+    n_suppressed  = sum(is.na(estimate))
+  )
+```
+
+```{r}
+# See which prison GEOIDs actually matched a tract in the ACS data
+ar_tracts_flagged %>%
+  filter(is_prison_tract) %>%
+  select(GEOID, NAME, estimate)
+
+```
+
 
 ## Next steps
 
