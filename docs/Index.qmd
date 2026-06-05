@@ -15,6 +15,10 @@ code-summary: "Code"
 
 # Arkansas prisons and their host counties
 
+
+![Alt text](https://1drv.ms/i/c/e153a88cb7cf9ed0/IQAvr8VNeVm_SY2UFCpnKOLxAcl3R81eICPEbu1I_aRg1w8?e=AVDDhr)
+
+
 This investigation examines whether Arkansas counties that host state prisons experience measurable economic benefits compared to similar-sized counties without prisons, using Census income and population data to test the assumption that prison construction improves local economies. The broader goal is to examine financial incentives that arise as a result of how the U.S. counts prison populations.
 
 <iframe title="Arkansas&#39;s state prison facilities by location and capacity" aria-label="Symbol map" id="datawrapper-chart-BADjd" src="https://datawrapper.dwcdn.net/BADjd/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height data-external="1">
