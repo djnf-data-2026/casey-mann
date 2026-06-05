@@ -1,19 +1,29 @@
 ---
 title: "Examining the incentives behind Arkansas's rural prison builds"
-author: "Casey Mann"
-date: "5-29-2026"
+date: "6-6-2026"
 format:
   html:
+    toc: true
+    toc-depth: 2
     theme: cosmo
+author: 
+  - name: Casey Mann
+    email: caseymann2006@gmail.com
+code-fold: true
+code-summary: "Code"
 ---
 
 # Arkansas prisons and their host counties
 
-This investigation examines whether Arkansas counties that host state prisons experience measurable economic benefits compared to similar-sized counties without prisons, using Census income and population data to test the assumption that prison construction improves local economies. The broader goal is to examine financial incentives that arise as a result of how the U.S. counts prison populations. 
+This investigation examines whether Arkansas counties that host state prisons experience measurable economic benefits compared to similar-sized counties without prisons, using Census income and population data to test the assumption that prison construction improves local economies. The broader goal is to examine financial incentives that arise as a result of how the U.S. counts prison populations.
 
+<iframe title="Arkansas&#39;s state prison facilities by location and capacity" aria-label="Symbol map" id="datawrapper-chart-BADjd" src="https://datawrapper.dwcdn.net/BADjd/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height data-external="1">
 
-<iframe title="Arkansas's state prison facilities by location and capacity" aria-label="Symbol map" id="datawrapper-chart-BADjd" src="https://datawrapper.dwcdn.net/BADjd/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="" data-external="1"></iframe><script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script> 
+</iframe>
 
+```{=html}
+<script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
+```
 
 ## Why now?
 
@@ -22,14 +32,14 @@ To much debate from residents and lawmakers alike, Arkansas Governor Sarah Hucka
 When plans for the facility were released by the Arkansas Department of Corrections in 2024, the project was framed as an economic opportunity for Franklin County. The build's information sheet includes a "Community Benefits" section that details several financial incentives for residents, including:
 
 - Investing hundreds of millions of dollars in construction creates thousands of jobs.
-- Permanent, recession-proof employment for up too 800 individuals with annual salaries greater than $46,00.
+- Permanent, recession-proof employment for up too 800 individuals with annual salaries greater than \$46,00.
 - Increased tax base to be invested in better public services, schools, and parks.
 
-[google](https://doc.arkansas.gov/franklin-county-project/franklin-county-project-information-sheet/)
+[Franklin County information from the Department of Corrections](https://doc.arkansas.gov/franklin-county-project/franklin-county-project-information-sheet/)
 
-These incentives may sound promising for those in historically economically disadvantaged and under-funded counties. However, they raise a question about whether these benefits are truly actualized in counties that host state prisons. 
+These incentives may sound promising for those in historically economically disadvantaged and under-funded counties. However, they raise a question about whether these benefits are truly actualized in counties that host state prisons.
 
-This investigation uses Census income data from the nine Arkansas counties that currently house state facilities to examine whether these rural counties truly see long-term benefits as a result of hosting a facility. 
+This investigation explores the nine Arkansas counties that currently house state facilities to examine whether these rural counties truly see long-term benefits as a result of hosting a facility.
 
 ## Previous coverage
 
@@ -45,19 +55,19 @@ This project aims to serve both rural Arkansans and policy makers by outlining t
 2.  Franklin County residents. How do they feel about the potential build? Does the presence of the proposed facility change how they feel about their home? What about their plans for the future? Will anyone want to move if construction is resumed or completed?
 3.  Residents of Malvern, Arkansas, home to the most recent prison build in the state. Despite occurring more than 20 years ago, some residents may still recall how the facility changed the area. Potential for solid anecdotal details.
 4.  Lawmakers on both sides of the argument for the facility's construction.
-    - FOR: Republican Sen. Jonathan Dismang of Searcy, who filed an appropriations bill during the 2025 session that would have provided $750 million in spending authority for the prison project. [google](https://arkansasadvocate.com/2026/04/03/arkansas-explained-what-is-the-franklin-county-prison-project/)
-    - AGAINST: Republican Sen. Bryan King of Green Forest, who has been an outspoken critic of plans to construct the Franklin County facility. [google](https://arkansasadvocate.com/2025/04/11/arkansas-lawmakers-consider-other-funding-methods-as-they-abandon-sixth-prison-appropriation-vote/)
+    - FOR: Republican Sen. Jonathan Dismang of Searcy, who filed an appropriations bill during the 2025 session that would have provided \$750 million in spending authority for the prison project. [See background](https://arkansasadvocate.com/2026/04/03/arkansas-explained-what-is-the-franklin-county-prison-project/)
+    - AGAINST: Republican Sen. Bryan King of Green Forest, who has been an outspoken critic of plans to construct the Franklin County facility. [See background](https://arkansasadvocate.com/2025/04/11/arkansas-lawmakers-consider-other-funding-methods-as-they-abandon-sixth-prison-appropriation-vote/)
 5.  Franklin County Sheriff Johnny Crocker, who has expressed frustration with the build.
 
 ## Potential Impact
 
-This story has the potential to impact both Franklin County residents and Arkansas policy. Residents who may feel like they are in the dark about what is happening in their own community could get access to data-backed context that informs decisions about whether they support the build. The story also serves to provide insight into how Franklin could be affected long-term if policymakers follow through with the build. This project could also provide insight into who benefits from continued incarceration, potentially influencing opinions about continued facility expansion efforts. 
+This story has the potential to impact both Franklin County residents and Arkansas policy. Residents who may feel like they are in the dark about what is happening in their own community could get access to data-backed context that informs decisions about whether they support the build. The story also serves to provide insight into how Franklin could be affected long-term if policymakers follow through with the build. This project could also provide insight into who benefits from continued incarceration, potentially influencing opinions about continued facility expansion efforts.
 
 Arkansas policymakers could get an empirical look at how the Franklin County facility will change the lives of those who live in the area, potentially affecting how they vote on the issue in a moment when the future of the project appears to be up in the air.
 
 ## Current code and findings
 
-This code was used to explore the median income levels throughout the state of Arkansas by county. I compared the median income of counties with prisons to ones without prisons. 
+This code was used to explore the median income levels throughout the state of Arkansas by county. I compared the median income of counties with prisons to ones without prisons.
 
 Hypothesis: Counties with prisons should have higher median incomes than counties of similar size without prisons.
 
@@ -66,16 +76,20 @@ After initially gathering the median income of all Arkansas counties, I cleaned 
 ```{r echo=FALSE, include=FALSE, eval=TRUE}
 #install.packages("tidycensus")
 #install.packages("tidyverse")
+#install.packages("readxl")
+#install.packages("DT")
 
 library(tidycensus)
 library(tidyverse)
 library(readxl)
+library(DT)
 ```
 
-  - B19013_001 is Median household income 
-  - year = 2023 is because it is the most recent 5-year American Community Survey that is available
+- B19013_001 is Median household income
+- year = 2023 is because it is the most recent 5-year American Community Survey that is available
+- GEOID is a geographic identifier
 
-```{r include=TRUE}
+```{r echo=FALSE}
 ar_income <- get_acs(
   geography = "county",
   variables = "B19013_001",  
@@ -84,13 +98,14 @@ ar_income <- get_acs(
   survey    = "acs5"
 )
 
-ar_income
+
+datatable(ar_income,
+          caption = "Median income by county",
+          options = list (pageLength = 10))
+
 ```
 
-  - Removing 'Arkansas' suffix from county names column 
-  - Renaming columns Sorting highest to lowest Add a ranking column
-
-```{r echo=FALSE}
+```{r include=TRUE}
 ar_income_ranked <- ar_income %>%
   mutate(county = str_remove(NAME, ", Arkansas")) %>%
   select(GEOID, county, median_income = estimate, margin_of_error = moe) %>%
@@ -98,20 +113,16 @@ ar_income_ranked <- ar_income %>%
   mutate(rank = row_number()) %>%
   select(rank, GEOID, county, median_income, margin_of_error)
 
-print(ar_income_ranked, n = 75)
 ```
 
-Now that we've gotten the median incomes for all counties, we will single out the counties with prisons. 
+Now that we've gotten the median incomes for all counties, we will single out the counties with prisons.
 
-Next, the counties that are home to one or more correctional facilities are identified and added to table of ranked county incomes.
+The counties that are home to one or more correctional facilities are identified and added to the table of ranked county incomes.
 
-The facilities csv is listed in census tracts, but we can get county info from that. A census tract includes county identifiers in the number. The first 5 characters identify the state and county. For example, a code like 05069002103 breaks down as 05 (Arkansas), 069 (Jefferson County), and 002103.
-
+The prison locations are derived from a facilities csv that is listed in census tracts, but a census tract includes county identifiers. The first 5 characters identify the state and county. For example, a code like 05069002103 breaks down as 05 (Arkansas), 069 (Jefferson County), and 002103.
 
 ```{r echo=FALSE}
 prisons <- read_csv("../data/facilities_with_tracts.csv")
-
-prisons
 ```
 
 ```{r include=TRUE}
@@ -123,10 +134,11 @@ ar_income_ranked <- ar_income %>%
   mutate(rank = row_number()) %>%
   select(rank, GEOID, county, median_income, margin_of_error)
 
-print(ar_income_ranked, n = 75)
+datatable(ar_income_ranked,
+  caption = "Median income by county ranked",
+  options = list(pageLength = 10))
 
 ```
-
 
 ```{r include=TRUE}
 
@@ -134,6 +146,10 @@ prisons_counties <- prisons %>%
   mutate(GEOID = str_sub(census_tract, 1, 5)) %>%  
   distinct(GEOID) %>%
   mutate(has_prison = "Yes")
+
+datatable(ar_income_ranked,
+  caption = "Median income by county ranked, prison counties identified",
+  options = list(pageLength = 10))
 ```
 
 ```{r include=TRUE}
@@ -141,6 +157,8 @@ prisons_counties <- prisons %>%
 ar_income_ranked <- ar_income_ranked %>%
   left_join(prisons_counties, by = "GEOID") %>%
   mutate(has_prison = replace_na(has_prison, "No"))
+
+
 ```
 
 ```{r include=TRUE}
@@ -181,12 +199,15 @@ prison_counties <- ar_income_ranked %>%
     diff_from_state = median_income - state_median
   )
 
-print(prison_counties)
 ```
 
+<iframe title="Most Arkansas prison counties earn well below the state median income" aria-label="Stacked Bars" id="datawrapper-chart-Wdzim" src="https://datawrapper.dwcdn.net/Wdzim/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height data-external="1">
 
-<iframe title="Most Arkansas prison counties earn well below the state median income" aria-label="Stacked Bars" id="datawrapper-chart-Wdzim" src="https://datawrapper.dwcdn.net/Wdzim/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="" data-external="1"></iframe><script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
+</iframe>
 
+```{=html}
+<script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
+```
 
 This disproves the earlier hypothesis that prison counties would have a higher median income.
 
@@ -217,7 +238,6 @@ prison_percapita <- ar_percapita %>%
     diff_from_state = per_capita_income - state_percapita
   )
 
-print(prison_percapita)
 ```
 
 <iframe title="Prison Counties Fall Short of Arkansas&#39; Per Capita Income" aria-label="Stacked Bars" id="datawrapper-chart-ksFNz" src="https://datawrapper.dwcdn.net/ksFNz/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height data-external="1">
@@ -230,13 +250,13 @@ print(prison_percapita)
 
 The per capita income of prison counties and the median income of prison counties are both lower than their statewide counterparts. This may serve as an argument against the idea that building a prison in a rural, impoverished county improves the economy of the region and the lives of those who live there.
 
-However, it is a possibility that these prison counties may fall below state averages because prison builds are intentionally placed in already rural, impoverished communities. To accurately assess the economy of these prison counties, we must compare their median income to counties of similar size. 
+However, it is a possibility that these prison counties fall below state averages because facilities are intentionally placed in already rural, impoverished communities. To accurately assess the economy of these prison counties, we must compare their median income to counties of similar size.
 
 ```{r echo=FALSE, include=FALSE, eval=TRUE}
 county_pop_raw <- read_xlsx("../data/County pop.xlsx", skip = 3)
 ```
 
-After importing U.S. census county population data, columns are renamed, organized and the year is singled out. We use 2023 as the reference year because the most recent median income information we used from the American Communities Survey was also from 2023 .
+After importing U.S. Census county population data, columns are renamed, organized and the year is singled out. 2023 is used as the reference year because the most recent median income information we used from the American Communities Survey was also from 2023 .
 
 ```{r include=TRUE}
 county_pop_2023 <- county_pop_raw %>%
@@ -265,7 +285,7 @@ county_pop_tagged <- county_pop_2023 %>%
 
 ```
 
-After tagging which counties have prisons and which do not, we find the closest population matches between the two.
+Each Arkansas prison county was matched to the non-prison county with the most similar population. By calculating the population gap between every possible prison/non-prison county pair and selecting the closest one, the analysis pairs counties of roughly equivalent size. This makes for a fairer income comparison than stacking prison counties up against the statewide average.
 
 ```{r include=TRUE}
 prison_pops <- county_pop_tagged %>%
@@ -285,11 +305,15 @@ population_matches <- prison_pops %>%
   arrange(prison_pop)
 
 print(population_matches)
+
+datatable(population_matches,
+  caption = "Population matched counties",
+  options = list(pageLength = 10))
 ```
 
 Pulaski County serves as a bit of an outlier. It is the largest county in Arkansas and Benton County is the second largest, despite falling more than 89,000 residents short, so it really is not possible to conduct a true population comparison within the state using Pulaski.
 
-Moving on, we now join the matched counties back to the income data to compare median incomes side by side:
+Moving on, the matched counties are joined back with the income data to compare median incomes side by side:
 
 ```{r include=TRUE}
 population_matches_income <- population_matches %>%
@@ -302,6 +326,7 @@ population_matches_income <- population_matches %>%
   mutate(income_diff = prison_income - match_income)
 
 print(population_matches_income)
+
 ```
 
 Now, median income rankings are added back to the final table to demonstrate where each prison county and its match sit in the statewide median income rankings.
@@ -316,6 +341,10 @@ population_matches_final <- population_matches_income %>%
   rename(match_rank = rank)
 
 print(population_matches_final)
+
+datatable(population_matches_final,
+  caption = "Income comparison of matched counties",
+  options = list(pageLength = 10))
 ```
 
 The results are pretty mixed. Out of 9 prison counties, 5 earn less than their population match and 4 earn more. There's no clear pattern suggesting prisons significantly boost or hurt local incomes.
@@ -341,16 +370,13 @@ As established earlier, the U.S. Census counts incarcerated individuals as resid
 
 If possible, I would like to determine how much federal spending typically increases in a county before and after a state prison is built by looking back at records from the Ouachita River Correctional Unit build. This Hot Spring County facility was constructed in 2003 and is the most recently completed facility in the state. Ouachita River has an inmate capacity of 1,782, just over half of the proposed Franklin County facility, but it could serve as an indicator of how incarceration benefits those who are not behind bars in prison counties.
 
-I believe this project could be part of a larger story about the economic incentive those in power have to perpetuate cycles of incarceration that disproportionately affect Black and Latino communities. 
+I believe this project could be part of a larger story about the economic incentive those in power have to perpetuate cycles of incarceration that disproportionately affect Black and Latino communities.
 
+------------------------------------------------------------------------
 
+Business Journalism Lecture
 
--------------------------------------------------------------------------------------
-
-Business Journalism Lecture 
-
-  - COMPANY: SIMMONS FIRST NATIONAL CORP
-  - NUMBER OF EMPLOYEES: 2,917 full time associates
-  - NAME OF CEO: James M. Brogdon
-  - TYPE OF BUSINESS: financial holding company
-  -------------------------------------------------------------------------------
+- COMPANY: SIMMONS FIRST NATIONAL CORP
+- NUMBER OF EMPLOYEES: 2,917 full time associates
+- NAME OF CEO: James M. Brogdon
+- TYPE OF BUSINESS: financial holding company -------------------------------------------------------------------------------

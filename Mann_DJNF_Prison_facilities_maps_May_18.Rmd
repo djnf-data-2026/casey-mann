@@ -34,22 +34,20 @@ ar_facilities <- read_excel("data/AR_DOC_Facilities.xlsx")
 
 ```{r}
 ar_facilities <- ar_facilities %>%
-  filter(!is.na(`Facility Name`))
+  filter(!is.na(`Name`))
 ```
 
 ```{r}
 ar_facilities <- ar_facilities %>%
   rename(
-    name = `Facility Name`,
-    address = `Mailing Address`
+    name = `Name`,
+    address = `Address`
   ) %>%
   arrange(name)
 
 View(ar_facilities)
 ```
 
-
-DONT RUN THIS. JUST KEEPING HERE FOR NOW. THE XLSX FILE SHOULD REPLACE IT. 
 
 ```{r}
 geocoded <- ar_facilities %>%
@@ -70,7 +68,7 @@ geocoded <- ar_facilities %>%
 #Small towns like Brickeys and Calico Rock may have incomplete street data -->
 #Try switching to the "osm" (OpenStreetMap) method instead — it handles rural addresses much better: -->
 ```{r}
-geocoded1 <- facilities %>%
+geocoded1 <- geocoded%>%
   geocode(
     address,
     method       = "osm",

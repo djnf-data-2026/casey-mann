@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Casey Mann">
-<meta name="dcterms.date" content="2026-05-29">
+<meta name="dcterms.date" content="2026-06-06">
 
 <title>Examining the incentives behind Arkansas’s rural prison builds</title>
 <style>
@@ -74,14 +74,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="Index_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="Index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="Index_files/libs/bootstrap/bootstrap-67270d1595a62d14f123c043d4fb2f18.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="Index_files/libs/htmltools-fill-0.5.9/fill.css" rel="stylesheet">
+
+<script src="Index_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
+<link href="Index_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+
+<script src="Index_files/libs/datatables-binding-0.34.0/datatables.js"></script>
+
+<script src="Index_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+
+<link href="Index_files/libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<link href="Index_files/libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+
+<script src="Index_files/libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+
+<link href="Index_files/libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+
+<script src="Index_files/libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+
 
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul class="collapse">
+  <li><a href="#arkansas-prisons-and-their-host-counties" id="toc-arkansas-prisons-and-their-host-counties" class="nav-link active" data-scroll-target="#arkansas-prisons-and-their-host-counties">Arkansas prisons and their host counties</a>
+  <ul class="collapse">
+  <li><a href="#why-now" id="toc-why-now" class="nav-link" data-scroll-target="#why-now">Why now?</a></li>
+  <li><a href="#previous-coverage" id="toc-previous-coverage" class="nav-link" data-scroll-target="#previous-coverage">Previous coverage</a></li>
+  <li><a href="#target-audience" id="toc-target-audience" class="nav-link" data-scroll-target="#target-audience">Target Audience</a></li>
+  <li><a href="#potential-interviews" id="toc-potential-interviews" class="nav-link" data-scroll-target="#potential-interviews">Potential Interviews</a></li>
+  <li><a href="#potential-impact" id="toc-potential-impact" class="nav-link" data-scroll-target="#potential-impact">Potential Impact</a></li>
+  <li><a href="#current-code-and-findings" id="toc-current-code-and-findings" class="nav-link" data-scroll-target="#current-code-and-findings">Current code and findings</a></li>
+  <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps">Next steps</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -96,14 +133,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Casey Mann </p>
+             <p>Casey Mann <a href="mailto:caseymann2006@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 29, 2026</p>
+      <p class="date">June 6, 2026</p>
     </div>
   </div>
   
@@ -130,9 +167,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Permanent, recession-proof employment for up too 800 individuals with annual salaries greater than $46,00.</li>
 <li>Increased tax base to be invested in better public services, schools, and parks.</li>
 </ul>
-<p><a href="https://doc.arkansas.gov/franklin-county-project/franklin-county-project-information-sheet/">google</a></p>
+<p><a href="https://doc.arkansas.gov/franklin-county-project/franklin-county-project-information-sheet/">Franklin County information from the Department of Corrections</a></p>
 <p>These incentives may sound promising for those in historically economically disadvantaged and under-funded counties. However, they raise a question about whether these benefits are truly actualized in counties that host state prisons.</p>
-<p>This investigation uses Census income data from the nine Arkansas counties that currently house state facilities to examine whether these rural counties truly see long-term benefits as a result of hosting a facility.</p>
+<p>This investigation explores the nine Arkansas counties that currently house state facilities to examine whether these rural counties truly see long-term benefits as a result of hosting a facility.</p>
 </section>
 <section id="previous-coverage" class="level2">
 <h2 class="anchored" data-anchor-id="previous-coverage">Previous coverage</h2>
@@ -150,8 +187,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Residents of Malvern, Arkansas, home to the most recent prison build in the state. Despite occurring more than 20 years ago, some residents may still recall how the facility changed the area. Potential for solid anecdotal details.</li>
 <li>Lawmakers on both sides of the argument for the facility’s construction.
 <ul>
-<li>FOR: Republican Sen.&nbsp;Jonathan Dismang of Searcy, who filed an appropriations bill during the 2025 session that would have provided $750 million in spending authority for the prison project. <a href="https://arkansasadvocate.com/2026/04/03/arkansas-explained-what-is-the-franklin-county-prison-project/">google</a></li>
-<li>AGAINST: Republican Sen.&nbsp;Bryan King of Green Forest, who has been an outspoken critic of plans to construct the Franklin County facility. <a href="https://arkansasadvocate.com/2025/04/11/arkansas-lawmakers-consider-other-funding-methods-as-they-abandon-sixth-prison-appropriation-vote/">google</a></li>
+<li>FOR: Republican Sen.&nbsp;Jonathan Dismang of Searcy, who filed an appropriations bill during the 2025 session that would have provided $750 million in spending authority for the prison project. <a href="https://arkansasadvocate.com/2026/04/03/arkansas-explained-what-is-the-franklin-county-prison-project/">See background</a></li>
+<li>AGAINST: Republican Sen.&nbsp;Bryan King of Green Forest, who has been an outspoken critic of plans to construct the Franklin County facility. <a href="https://arkansasadvocate.com/2025/04/11/arkansas-lawmakers-consider-other-funding-methods-as-they-abandon-sixth-prison-appropriation-vote/">See background</a></li>
 </ul></li>
 <li>Franklin County Sheriff Johnny Crocker, who has expressed frustration with the build.</li>
 </ol>
@@ -169,125 +206,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>B19013_001 is Median household income</li>
 <li>year = 2023 is because it is the most recent 5-year American Community Survey that is available</li>
+<li>GEOID is a geographic identifier</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ar_income <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"county"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">"B19013_001"</span>,  </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state     =</span> <span class="st">"AR"</span>,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year      =</span> <span class="dv">2023</span>,          </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">survey    =</span> <span class="st">"acs5"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Getting data from the 2019-2023 5-year ACS</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ar_income</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 75 × 5
-   GEOID NAME                      variable   estimate   moe
-   &lt;chr&gt; &lt;chr&gt;                     &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
- 1 05001 Arkansas County, Arkansas B19013_001    60831  3616
- 2 05003 Ashley County, Arkansas   B19013_001    44481  4230
- 3 05005 Baxter County, Arkansas   B19013_001    48427  2668
- 4 05007 Benton County, Arkansas   B19013_001    89879  2078
- 5 05009 Boone County, Arkansas    B19013_001    54195  2906
- 6 05011 Bradley County, Arkansas  B19013_001    39565  7789
- 7 05013 Calhoun County, Arkansas  B19013_001    63654  5566
- 8 05015 Carroll County, Arkansas  B19013_001    55187  6324
- 9 05017 Chicot County, Arkansas   B19013_001    39683  5162
-10 05019 Clark County, Arkansas    B19013_001    50985  4659
-# ℹ 65 more rows</code></pre>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-6e7f397870c1739e233f" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-6e7f397870c1739e233f">{"x":{"filter":"none","vertical":false,"caption":"<caption>Median income by county<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75"],["05001","05003","05005","05007","05009","05011","05013","05015","05017","05019","05021","05023","05025","05027","05029","05031","05033","05035","05037","05039","05041","05043","05045","05047","05049","05051","05053","05055","05057","05059","05061","05063","05065","05067","05069","05071","05073","05075","05077","05079","05081","05083","05085","05087","05089","05091","05093","05095","05097","05099","05101","05103","05105","05107","05109","05111","05113","05115","05117","05119","05121","05123","05125","05127","05129","05131","05133","05135","05137","05139","05141","05143","05145","05147","05149"],["Arkansas County, Arkansas","Ashley County, Arkansas","Baxter County, Arkansas","Benton County, Arkansas","Boone County, Arkansas","Bradley County, Arkansas","Calhoun County, Arkansas","Carroll County, Arkansas","Chicot County, Arkansas","Clark County, Arkansas","Clay County, Arkansas","Cleburne County, Arkansas","Cleveland County, Arkansas","Columbia County, Arkansas","Conway County, Arkansas","Craighead County, Arkansas","Crawford County, Arkansas","Crittenden County, Arkansas","Cross County, Arkansas","Dallas County, Arkansas","Desha County, Arkansas","Drew County, Arkansas","Faulkner County, Arkansas","Franklin County, Arkansas","Fulton County, Arkansas","Garland County, Arkansas","Grant County, Arkansas","Greene County, Arkansas","Hempstead County, Arkansas","Hot Spring County, Arkansas","Howard County, Arkansas","Independence County, Arkansas","Izard County, Arkansas","Jackson County, Arkansas","Jefferson County, Arkansas","Johnson County, Arkansas","Lafayette County, Arkansas","Lawrence County, Arkansas","Lee County, Arkansas","Lincoln County, Arkansas","Little River County, Arkansas","Logan County, Arkansas","Lonoke County, Arkansas","Madison County, Arkansas","Marion County, Arkansas","Miller County, Arkansas","Mississippi County, Arkansas","Monroe County, Arkansas","Montgomery County, Arkansas","Nevada County, Arkansas","Newton County, Arkansas","Ouachita County, Arkansas","Perry County, Arkansas","Phillips County, Arkansas","Pike County, Arkansas","Poinsett County, Arkansas","Polk County, Arkansas","Pope County, Arkansas","Prairie County, Arkansas","Pulaski County, Arkansas","Randolph County, Arkansas","St. Francis County, Arkansas","Saline County, Arkansas","Scott County, Arkansas","Searcy County, Arkansas","Sebastian County, Arkansas","Sevier County, Arkansas","Sharp County, Arkansas","Stone County, Arkansas","Union County, Arkansas","Van Buren County, Arkansas","Washington County, Arkansas","White County, Arkansas","Woodruff County, Arkansas","Yell County, Arkansas"],["B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001","B19013_001"],[60831,44481,48427,89879,54195,39565,63654,55187,39683,50985,48500,55979,50509,47363,51212,57615,60362,54271,47012,44694,36064,41071,65071,51919,38941,55409,72512,56793,47654,52644,44492,56009,47728,41215,48552,44808,37237,44164,36860,51667,52241,54237,71449,53888,46953,49983,53428,43955,49015,41761,47395,49838,60078,38874,51000,47188,49252,54606,51094,60385,52838,41784,76534,45955,41978,56450,51641,42950,38531,50221,47266,66426,53435,49982,58870],[3616,4230,2668,2078,2906,7789,5566,6324,5162,4659,4959,2768,6540,5136,4598,2605,2501,3330,5730,7860,3671,6065,2574,4896,3640,2233,5055,2743,5095,3937,8319,4703,5107,4056,2575,4077,5842,4056,5143,4710,6971,2751,2948,5680,2813,2774,4079,6166,4723,5513,8554,3674,9429,3809,4117,5747,5637,2921,6812,1648,6075,4056,3116,5309,4927,2401,5749,4376,7368,4191,6322,2116,4396,4375,9002]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>GEOID<\/th>\n      <th>NAME<\/th>\n      <th>variable<\/th>\n      <th>estimate<\/th>\n      <th>moe<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"GEOID","targets":1},{"name":"NAME","targets":2},{"name":"variable","targets":3},{"name":"estimate","targets":4},{"name":"moe","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<ul>
-<li>Removing ‘Arkansas’ suffix from county names column</li>
-<li>Renaming columns Sorting highest to lowest Add a ranking column</li>
-</ul>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 75 × 5
-    rank GEOID county              median_income margin_of_error
-   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                       &lt;dbl&gt;           &lt;dbl&gt;
- 1     1 05007 Benton County               89879            2078
- 2     2 05125 Saline County               76534            3116
- 3     3 05053 Grant County                72512            5055
- 4     4 05085 Lonoke County               71449            2948
- 5     5 05143 Washington County           66426            2116
- 6     6 05045 Faulkner County             65071            2574
- 7     7 05013 Calhoun County              63654            5566
- 8     8 05001 Arkansas County             60831            3616
- 9     9 05119 Pulaski County              60385            1648
-10    10 05033 Crawford County             60362            2501
-11    11 05105 Perry County                60078            9429
-12    12 05149 Yell County                 58870            9002
-13    13 05031 Craighead County            57615            2605
-14    14 05055 Greene County               56793            2743
-15    15 05131 Sebastian County            56450            2401
-16    16 05063 Independence County         56009            4703
-17    17 05023 Cleburne County             55979            2768
-18    18 05051 Garland County              55409            2233
-19    19 05015 Carroll County              55187            6324
-20    20 05115 Pope County                 54606            2921
-21    21 05035 Crittenden County           54271            3330
-22    22 05083 Logan County                54237            2751
-23    23 05009 Boone County                54195            2906
-24    24 05087 Madison County              53888            5680
-25    25 05145 White County                53435            4396
-26    26 05093 Mississippi County          53428            4079
-27    27 05121 Randolph County             52838            6075
-28    28 05059 Hot Spring County           52644            3937
-29    29 05081 Little River County         52241            6971
-30    30 05047 Franklin County             51919            4896
-31    31 05079 Lincoln County              51667            4710
-32    32 05133 Sevier County               51641            5749
-33    33 05029 Conway County               51212            4598
-34    34 05117 Prairie County              51094            6812
-35    35 05109 Pike County                 51000            4117
-36    36 05019 Clark County                50985            4659
-37    37 05025 Cleveland County            50509            6540
-38    38 05139 Union County                50221            4191
-39    39 05091 Miller County               49983            2774
-40    40 05147 Woodruff County             49982            4375
-41    41 05103 Ouachita County             49838            3674
-42    42 05113 Polk County                 49252            5637
-43    43 05097 Montgomery County           49015            4723
-44    44 05069 Jefferson County            48552            2575
-45    45 05021 Clay County                 48500            4959
-46    46 05005 Baxter County               48427            2668
-47    47 05065 Izard County                47728            5107
-48    48 05057 Hempstead County            47654            5095
-49    49 05101 Newton County               47395            8554
-50    50 05027 Columbia County             47363            5136
-51    51 05141 Van Buren County            47266            6322
-52    52 05111 Poinsett County             47188            5747
-53    53 05037 Cross County                47012            5730
-54    54 05089 Marion County               46953            2813
-55    55 05127 Scott County                45955            5309
-56    56 05071 Johnson County              44808            4077
-57    57 05039 Dallas County               44694            7860
-58    58 05061 Howard County               44492            8319
-59    59 05003 Ashley County               44481            4230
-60    60 05075 Lawrence County             44164            4056
-61    61 05095 Monroe County               43955            6166
-62    62 05135 Sharp County                42950            4376
-63    63 05129 Searcy County               41978            4927
-64    64 05123 St. Francis County          41784            4056
-65    65 05099 Nevada County               41761            5513
-66    66 05067 Jackson County              41215            4056
-67    67 05043 Drew County                 41071            6065
-68    68 05017 Chicot County               39683            5162
-69    69 05011 Bradley County              39565            7789
-70    70 05049 Fulton County               38941            3640
-71    71 05107 Phillips County             38874            3809
-72    72 05137 Stone County                38531            7368
-73    73 05073 Lafayette County            37237            5842
-74    74 05077 Lee County                  36860            5143
-75    75 05041 Desha County                36064            3671</code></pre>
-</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income <span class="sc">%&gt;%</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GEOID, county, <span class="at">median_income =</span> estimate, <span class="at">margin_of_error =</span> moe) <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(median_income)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, GEOID, county, median_income, margin_of_error)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>Now that we’ve gotten the median incomes for all counties, we will single out the counties with prisons.</p>
-<p>Next, the counties that are home to one or more correctional facilities are identified and added to table of ranked county incomes.</p>
-<p>The facilities csv is listed in census tracts, but we can get county info from that. A census tract includes county identifiers in the number. The first 5 characters identify the state and county. For example, a code like 05069002103 breaks down as 05 (Arkansas), 069 (Jefferson County), and 002103.</p>
+<p>The counties that are home to one or more correctional facilities are identified and added to the table of ranked county incomes.</p>
+<p>The prison locations are derived from a facilities csv that is listed in census tracts, but a census tract includes county identifiers. The first 5 characters identify the state and county. For example, a code like 05069002103 breaks down as 05 (Arkansas), 069 (Jefferson County), and 002103.</p>
 <div class="cell">
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 16 Columns: 5
@@ -299,139 +242,64 @@ dbl (2): latitude, longitude
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 16 × 5
-   name                                  address latitude longitude census_tract
-   &lt;chr&gt;                                 &lt;chr&gt;      &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;       
- 1 Barbara Ester Unit                    7500 C…     34.2     -92.1 05069002103 
- 2 Benton Unit                           6701 H…     34.5     -92.7 05125010514 
- 3 Delta Regional Unit                   880 Ea…     33.5     -91.4 05017080200 
- 4 Grimes Unit                           300 Co…     35.6     -91.2 05067480402 
- 5 McPherson Unit                        302 Co…     35.6     -91.2 05067480402 
- 6 Ouachita River Correctional Unit      100 Wa…     34.3     -92.8 05059020500 
- 7 Pine Bluff Unit                       890 Fr…     34.2     -92.1 05069002103 
- 8 Randall L. Williams Correctional Fac… 7206 W…     34.2     -92.1 05069002103 
- 9 Wrightsville Unit                     8400 H…     34.6     -92.2 05119004005 
-10 Benny Magness Unit                    10 Pri…     36.2     -92.2 05065960300 
-11 J. Aaron Hawkins Sr. Center           Hwy 36…     34.6     -92.2 05119004005 
-12 Larry B. Norris Unit                  2501 S…     34.4     -91.9 05069002300 
-13 Tucker Unit                           2400 S…     34.4     -91.9 05069002300 
-14 Cummins Unit                          2540 H…     34.1     -91.7 05079960600 
-15 East Arkansas Regional Unit           326 Le…     34.8     -90.6 05077470100 
-16 Varner/Varner Supermax Unit           320 St…     34.0     -91.6 05079960600 </code></pre>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GEOID, county, <span class="at">median_income =</span> estimate, <span class="at">margin_of_error =</span> moe) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(median_income)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, GEOID, county, median_income, margin_of_error)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(ar_income_ranked,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Median income by county ranked"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-2674bd0ef33eea70d029" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2674bd0ef33eea70d029">{"x":{"filter":"none","vertical":false,"caption":"<caption>Median income by county ranked<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75],["05007","05125","05053","05085","05143","05045","05013","05001","05119","05033","05105","05149","05031","05055","05131","05063","05023","05051","05015","05115","05035","05083","05009","05087","05145","05093","05121","05059","05081","05047","05079","05133","05029","05117","05109","05019","05025","05139","05091","05147","05103","05113","05097","05069","05021","05005","05065","05057","05101","05027","05141","05111","05037","05089","05127","05071","05039","05061","05003","05075","05095","05135","05129","05123","05099","05067","05043","05017","05011","05049","05107","05137","05073","05077","05041"],["Benton County","Saline County","Grant County","Lonoke County","Washington County","Faulkner County","Calhoun County","Arkansas County","Pulaski County","Crawford County","Perry County","Yell County","Craighead County","Greene County","Sebastian County","Independence County","Cleburne County","Garland County","Carroll County","Pope County","Crittenden County","Logan County","Boone County","Madison County","White County","Mississippi County","Randolph County","Hot Spring County","Little River County","Franklin County","Lincoln County","Sevier County","Conway County","Prairie County","Pike County","Clark County","Cleveland County","Union County","Miller County","Woodruff County","Ouachita County","Polk County","Montgomery County","Jefferson County","Clay County","Baxter County","Izard County","Hempstead County","Newton County","Columbia County","Van Buren County","Poinsett County","Cross County","Marion County","Scott County","Johnson County","Dallas County","Howard County","Ashley County","Lawrence County","Monroe County","Sharp County","Searcy County","St. Francis County","Nevada County","Jackson County","Drew County","Chicot County","Bradley County","Fulton County","Phillips County","Stone County","Lafayette County","Lee County","Desha County"],[89879,76534,72512,71449,66426,65071,63654,60831,60385,60362,60078,58870,57615,56793,56450,56009,55979,55409,55187,54606,54271,54237,54195,53888,53435,53428,52838,52644,52241,51919,51667,51641,51212,51094,51000,50985,50509,50221,49983,49982,49838,49252,49015,48552,48500,48427,47728,47654,47395,47363,47266,47188,47012,46953,45955,44808,44694,44492,44481,44164,43955,42950,41978,41784,41761,41215,41071,39683,39565,38941,38874,38531,37237,36860,36064],[2078,3116,5055,2948,2116,2574,5566,3616,1648,2501,9429,9002,2605,2743,2401,4703,2768,2233,6324,2921,3330,2751,2906,5680,4396,4079,6075,3937,6971,4896,4710,5749,4598,6812,4117,4659,6540,4191,2774,4375,3674,5637,4723,2575,4959,2668,5107,5095,8554,5136,6322,5747,5730,2813,5309,4077,7860,8319,4230,4056,6166,4376,4927,4056,5513,4056,6065,5162,7789,3640,3809,7368,5842,5143,3671]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>rank<\/th>\n      <th>GEOID<\/th>\n      <th>county<\/th>\n      <th>median_income<\/th>\n      <th>margin_of_error<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"rank","targets":1},{"name":"GEOID","targets":2},{"name":"county","targets":3},{"name":"median_income","targets":4},{"name":"margin_of_error","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GEOID, county, <span class="at">median_income =</span> estimate, <span class="at">margin_of_error =</span> moe) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(median_income)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, GEOID, county, median_income, margin_of_error)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ar_income_ranked, <span class="at">n =</span> <span class="dv">75</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 75 × 5
-    rank GEOID county              median_income margin_of_error
-   &lt;int&gt; &lt;chr&gt; &lt;chr&gt;                       &lt;dbl&gt;           &lt;dbl&gt;
- 1     1 05007 Benton County               89879            2078
- 2     2 05125 Saline County               76534            3116
- 3     3 05053 Grant County                72512            5055
- 4     4 05085 Lonoke County               71449            2948
- 5     5 05143 Washington County           66426            2116
- 6     6 05045 Faulkner County             65071            2574
- 7     7 05013 Calhoun County              63654            5566
- 8     8 05001 Arkansas County             60831            3616
- 9     9 05119 Pulaski County              60385            1648
-10    10 05033 Crawford County             60362            2501
-11    11 05105 Perry County                60078            9429
-12    12 05149 Yell County                 58870            9002
-13    13 05031 Craighead County            57615            2605
-14    14 05055 Greene County               56793            2743
-15    15 05131 Sebastian County            56450            2401
-16    16 05063 Independence County         56009            4703
-17    17 05023 Cleburne County             55979            2768
-18    18 05051 Garland County              55409            2233
-19    19 05015 Carroll County              55187            6324
-20    20 05115 Pope County                 54606            2921
-21    21 05035 Crittenden County           54271            3330
-22    22 05083 Logan County                54237            2751
-23    23 05009 Boone County                54195            2906
-24    24 05087 Madison County              53888            5680
-25    25 05145 White County                53435            4396
-26    26 05093 Mississippi County          53428            4079
-27    27 05121 Randolph County             52838            6075
-28    28 05059 Hot Spring County           52644            3937
-29    29 05081 Little River County         52241            6971
-30    30 05047 Franklin County             51919            4896
-31    31 05079 Lincoln County              51667            4710
-32    32 05133 Sevier County               51641            5749
-33    33 05029 Conway County               51212            4598
-34    34 05117 Prairie County              51094            6812
-35    35 05109 Pike County                 51000            4117
-36    36 05019 Clark County                50985            4659
-37    37 05025 Cleveland County            50509            6540
-38    38 05139 Union County                50221            4191
-39    39 05091 Miller County               49983            2774
-40    40 05147 Woodruff County             49982            4375
-41    41 05103 Ouachita County             49838            3674
-42    42 05113 Polk County                 49252            5637
-43    43 05097 Montgomery County           49015            4723
-44    44 05069 Jefferson County            48552            2575
-45    45 05021 Clay County                 48500            4959
-46    46 05005 Baxter County               48427            2668
-47    47 05065 Izard County                47728            5107
-48    48 05057 Hempstead County            47654            5095
-49    49 05101 Newton County               47395            8554
-50    50 05027 Columbia County             47363            5136
-51    51 05141 Van Buren County            47266            6322
-52    52 05111 Poinsett County             47188            5747
-53    53 05037 Cross County                47012            5730
-54    54 05089 Marion County               46953            2813
-55    55 05127 Scott County                45955            5309
-56    56 05071 Johnson County              44808            4077
-57    57 05039 Dallas County               44694            7860
-58    58 05061 Howard County               44492            8319
-59    59 05003 Ashley County               44481            4230
-60    60 05075 Lawrence County             44164            4056
-61    61 05095 Monroe County               43955            6166
-62    62 05135 Sharp County                42950            4376
-63    63 05129 Searcy County               41978            4927
-64    64 05123 St. Francis County          41784            4056
-65    65 05099 Nevada County               41761            5513
-66    66 05067 Jackson County              41215            4056
-67    67 05043 Drew County                 41071            6065
-68    68 05017 Chicot County               39683            5162
-69    69 05011 Bradley County              39565            7789
-70    70 05049 Fulton County               38941            3640
-71    71 05107 Phillips County             38874            3809
-72    72 05137 Stone County                38531            7368
-73    73 05073 Lafayette County            37237            5842
-74    74 05077 Lee County                  36860            5143
-75    75 05041 Desha County                36064            3671</code></pre>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>prisons_counties <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span>  </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(GEOID) <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="st">"Yes"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(ar_income_ranked,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Median income by county ranked, prison counties identified"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-25ca362aa23676227120" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-25ca362aa23676227120">{"x":{"filter":"none","vertical":false,"caption":"<caption>Median income by county ranked, prison counties identified<\/caption>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75],["05007","05125","05053","05085","05143","05045","05013","05001","05119","05033","05105","05149","05031","05055","05131","05063","05023","05051","05015","05115","05035","05083","05009","05087","05145","05093","05121","05059","05081","05047","05079","05133","05029","05117","05109","05019","05025","05139","05091","05147","05103","05113","05097","05069","05021","05005","05065","05057","05101","05027","05141","05111","05037","05089","05127","05071","05039","05061","05003","05075","05095","05135","05129","05123","05099","05067","05043","05017","05011","05049","05107","05137","05073","05077","05041"],["Benton County","Saline County","Grant County","Lonoke County","Washington County","Faulkner County","Calhoun County","Arkansas County","Pulaski County","Crawford County","Perry County","Yell County","Craighead County","Greene County","Sebastian County","Independence County","Cleburne County","Garland County","Carroll County","Pope County","Crittenden County","Logan County","Boone County","Madison County","White County","Mississippi County","Randolph County","Hot Spring County","Little River County","Franklin County","Lincoln County","Sevier County","Conway County","Prairie County","Pike County","Clark County","Cleveland County","Union County","Miller County","Woodruff County","Ouachita County","Polk County","Montgomery County","Jefferson County","Clay County","Baxter County","Izard County","Hempstead County","Newton County","Columbia County","Van Buren County","Poinsett County","Cross County","Marion County","Scott County","Johnson County","Dallas County","Howard County","Ashley County","Lawrence County","Monroe County","Sharp County","Searcy County","St. Francis County","Nevada County","Jackson County","Drew County","Chicot County","Bradley County","Fulton County","Phillips County","Stone County","Lafayette County","Lee County","Desha County"],[89879,76534,72512,71449,66426,65071,63654,60831,60385,60362,60078,58870,57615,56793,56450,56009,55979,55409,55187,54606,54271,54237,54195,53888,53435,53428,52838,52644,52241,51919,51667,51641,51212,51094,51000,50985,50509,50221,49983,49982,49838,49252,49015,48552,48500,48427,47728,47654,47395,47363,47266,47188,47012,46953,45955,44808,44694,44492,44481,44164,43955,42950,41978,41784,41761,41215,41071,39683,39565,38941,38874,38531,37237,36860,36064],[2078,3116,5055,2948,2116,2574,5566,3616,1648,2501,9429,9002,2605,2743,2401,4703,2768,2233,6324,2921,3330,2751,2906,5680,4396,4079,6075,3937,6971,4896,4710,5749,4598,6812,4117,4659,6540,4191,2774,4375,3674,5637,4723,2575,4959,2668,5107,5095,8554,5136,6322,5747,5730,2813,5309,4077,7860,8319,4230,4056,6166,4376,4927,4056,5513,4056,6065,5162,7789,3640,3809,7368,5842,5143,3671]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>rank<\/th>\n      <th>GEOID<\/th>\n      <th>county<\/th>\n      <th>median_income<\/th>\n      <th>margin_of_error<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[1,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"rank","targets":1},{"name":"GEOID","targets":2},{"name":"county","targets":3},{"name":"median_income","targets":4},{"name":"margin_of_error","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>prisons_counties <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span>  </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(GEOID) <span class="sc">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="st">"Yes"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income_ranked <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(prisons_counties, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="fu">replace_na</span>(has_prison, <span class="st">"No"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="ot">&lt;-</span> ar_income_ranked <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(prisons_counties, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">has_prison =</span> <span class="fu">replace_na</span>(has_prison, <span class="st">"No"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>prison_counts <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GEOID) <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_prisons =</span> <span class="fu">n</span>())</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="sc">%&gt;%</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">%&gt;%</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, county, median_income, num_prisons)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>prison_counts <span class="ot">&lt;-</span> prisons <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEOID =</span> <span class="fu">str_sub</span>(census_tract, <span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GEOID) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">num_prisons =</span> <span class="fu">n</span>())</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>ar_income_ranked <span class="sc">%&gt;%</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">%&gt;%</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, county, median_income, num_prisons)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 4
    rank county            median_income num_prisons
@@ -449,44 +317,34 @@ dbl (2): latitude, longitude
 </div>
 <p>The seemingly random ranking of the counties with prisons might indicate that there is no inherent economic benefit or disadvantage that comes with hosting a facility. In order to explore this further, the prison county median incomes will be contrasted with the state-wide median income.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ar_state <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"state"</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">"B19013_001"</span>, </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state =</span> <span class="st">"AR"</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2023</span>  </span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ar_state <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"state"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">"B19013_001"</span>, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state =</span> <span class="st">"AR"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2023</span>  </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Getting data from the 2019-2023 5-year ACS</code></pre>
 </div>
 </div>
 <p>This block adds columns to the prison counties ranking to compare the state average of 58773 and the calculate difference between the metrics.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>state_median <span class="ot">&lt;-</span> ar_state<span class="sc">$</span>estimate</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>prison_counties <span class="ot">&lt;-</span> ar_income_ranked <span class="sc">%&gt;%</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">%&gt;%</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, county, median_income, num_prisons) <span class="sc">%&gt;%</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">state_median =</span> state_median,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff_from_state =</span> median_income <span class="sc">-</span> state_median</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(prison_counties)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 9 × 6
-   rank county            median_income num_prisons state_median diff_from_state
-  &lt;int&gt; &lt;chr&gt;                     &lt;dbl&gt;       &lt;int&gt;        &lt;dbl&gt;           &lt;dbl&gt;
-1     2 Saline County             76534           1        58773           17761
-2     9 Pulaski County            60385           2        58773            1612
-3    28 Hot Spring County         52644           1        58773           -6129
-4    31 Lincoln County            51667           2        58773           -7106
-5    44 Jefferson County          48552           5        58773          -10221
-6    47 Izard County              47728           1        58773          -11045
-7    66 Jackson County            41215           2        58773          -17558
-8    68 Chicot County             39683           1        58773          -19090
-9    74 Lee County                36860           1        58773          -21913</code></pre>
-</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>state_median <span class="ot">&lt;-</span> ar_state<span class="sc">$</span>estimate</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>prison_counties <span class="ot">&lt;-</span> ar_income_ranked <span class="sc">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(rank) <span class="sc">%&gt;%</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(rank, county, median_income, num_prisons) <span class="sc">%&gt;%</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">state_median =</span> state_median,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff_from_state =</span> median_income <span class="sc">-</span> state_median</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <iframe title="Most Arkansas prison counties earn well below the state median income" aria-label="Stacked Bars" id="datawrapper-chart-Wdzim" src="https://datawrapper.dwcdn.net/Wdzim/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="" data-external="1">
 </iframe>
@@ -494,22 +352,28 @@ dbl (2): latitude, longitude
 <p>This disproves the earlier hypothesis that prison counties would have a higher median income.</p>
 <p>Now, income per capita in prison counties will be compared to Arkansas-wide income per capita. B19301_001 is the variable for income per capita.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ar_state_percapita <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"state"</span>,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">"B19301_001"</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state =</span> <span class="st">"AR"</span>,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2023</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">survey =</span> <span class="st">"acs5"</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ar_state_percapita <span class="ot">&lt;-</span> <span class="fu">get_acs</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">geography =</span> <span class="st">"state"</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables =</span> <span class="st">"B19301_001"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">state =</span> <span class="st">"AR"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">year =</span> <span class="dv">2023</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">survey =</span> <span class="st">"acs5"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Getting data from the 2019-2023 5-year ACS</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>state_percapita <span class="ot">&lt;-</span> ar_state_percapita<span class="sc">$</span>estimate</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ar_percapita |&gt; write_csv("../ar_percapita.csv")</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a> ar_percapita <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../ar_percapita.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>state_percapita <span class="ot">&lt;-</span> ar_state_percapita<span class="sc">$</span>estimate</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ar_percapita |&gt; write_csv("../ar_percapita.csv")</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a> ar_percapita <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../ar_percapita.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Rows: 75 Columns: 5
 ── Column specification ────────────────────────────────────────────────────────
@@ -520,51 +384,41 @@ dbl (2): estimate, moe
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>prison_percapita <span class="ot">&lt;-</span> ar_percapita <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, <span class="at">per_capita_income =</span> estimate, num_prisons) <span class="sc">%&gt;%</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(per_capita_income)) <span class="sc">%&gt;%</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">state_per_capita =</span> state_percapita,</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff_from_state =</span> per_capita_income <span class="sc">-</span> state_percapita</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(prison_percapita)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 9 × 5
-  county          per_capita_income num_prisons state_per_capita diff_from_state
-  &lt;chr&gt;                       &lt;dbl&gt;       &lt;int&gt;            &lt;dbl&gt;           &lt;dbl&gt;
-1 Pulaski County              39780           2            33147            6633
-2 Saline County               38149           1            33147            5002
-3 Hot Spring Cou…             26304           1            33147           -6843
-4 Jefferson Coun…             25317           5            33147           -7830
-5 Izard County                24443           1            33147           -8704
-6 Jackson County              24194           2            33147           -8953
-7 Chicot County               24003           1            33147           -9144
-8 Lee County                  21687           1            33147          -11460
-9 Lincoln County              18302           2            33147          -14845</code></pre>
-</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>prison_percapita <span class="ot">&lt;-</span> ar_percapita <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(prison_counts, <span class="at">by =</span> <span class="st">"GEOID"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county =</span> <span class="fu">str_remove</span>(NAME, <span class="st">", Arkansas"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, <span class="at">per_capita_income =</span> estimate, num_prisons) <span class="sc">%&gt;%</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(per_capita_income)) <span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">state_per_capita =</span> state_percapita,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff_from_state =</span> per_capita_income <span class="sc">-</span> state_percapita</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <iframe title="Prison Counties Fall Short of Arkansas' Per Capita Income" aria-label="Stacked Bars" id="datawrapper-chart-ksFNz" src="https://datawrapper.dwcdn.net/ksFNz/3/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="" data-external="1">
 </iframe>
 <script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script>
 <p>The per capita income of prison counties and the median income of prison counties are both lower than their statewide counterparts. This may serve as an argument against the idea that building a prison in a rural, impoverished county improves the economy of the region and the lives of those who live there.</p>
-<p>However, it is a possibility that these prison counties may fall below state averages because prison builds are intentionally placed in already rural, impoverished communities. To accurately assess the economy of these prison counties, we must compare their median income to counties of similar size.</p>
-<p>After importing U.S. census county population data, columns are renamed, organized and the year is singled out. We use 2023 as the reference year because the most recent median income information we used from the American Communities Survey was also from 2023 .</p>
+<p>However, it is a possibility that these prison counties fall below state averages because facilities are intentionally placed in already rural, impoverished communities. To accurately assess the economy of these prison counties, we must compare their median income to counties of similar size.</p>
+<p>After importing U.S. Census county population data, columns are renamed, organized and the year is singled out. 2023 is used as the reference year because the most recent median income information we used from the American Communities Survey was also from 2023 .</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>county_pop_2023 <span class="ot">&lt;-</span> county_pop_raw <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">county_raw =</span> <span class="dv">1</span>, <span class="at">pop_2023 =</span> <span class="st">`</span><span class="at">2023</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county_raw, pop_2023) <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_2023)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">county =</span> <span class="fu">str_remove</span>(county_raw, <span class="st">"^</span><span class="sc">\\</span><span class="st">."</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">str_remove</span>(<span class="st">", Arkansas"</span>)</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">!=</span> <span class="st">"Arkansas"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, pop_2023)</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(county_pop_2023)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>county_pop_2023 <span class="ot">&lt;-</span> county_pop_raw <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">county_raw =</span> <span class="dv">1</span>, <span class="at">pop_2023 =</span> <span class="st">`</span><span class="at">2023</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county_raw, pop_2023) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pop_2023)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">county =</span> <span class="fu">str_remove</span>(county_raw, <span class="st">"^</span><span class="sc">\\</span><span class="st">."</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>             <span class="fu">str_remove</span>(<span class="st">", Arkansas"</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(county <span class="sc">!=</span> <span class="st">"Arkansas"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(county, pop_2023)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(county_pop_2023)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
   county          pop_2023
@@ -577,25 +431,28 @@ dbl (2): estimate, moe
 6 Bradley County     10142</code></pre>
 </div>
 </div>
-<p>After tagging which counties have prisons and which do not, we find the closest population matches between the two.</p>
+<p>Each Arkansas prison county was matched to the non-prison county with the most similar population. By calculating the population gap between every possible prison/non-prison county pair and selecting the closest one, the analysis pairs counties of roughly equivalent size. This makes for a fairer income comparison than stacking prison counties up against the statewide average.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>prison_pops <span class="ot">&lt;-</span> county_pop_tagged <span class="sc">%&gt;%</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_prison_county <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">prison_county =</span> county, <span class="at">prison_pop =</span> pop_2023)</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>nonprison_pops <span class="ot">&lt;-</span> county_pop_tagged <span class="sc">%&gt;%</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_prison_county <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">match_county =</span> county, <span class="at">match_pop =</span> pop_2023)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>population_matches <span class="ot">&lt;-</span> prison_pops <span class="sc">%&gt;%</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cross_join</span>(nonprison_pops) <span class="sc">%&gt;%</span></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pop_diff =</span> <span class="fu">abs</span>(prison_pop <span class="sc">-</span> match_pop)) <span class="sc">%&gt;%</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(prison_county) <span class="sc">%&gt;%</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(pop_diff, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(prison_pop)</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>prison_pops <span class="ot">&lt;-</span> county_pop_tagged <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_prison_county <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">prison_county =</span> county, <span class="at">prison_pop =</span> pop_2023)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>nonprison_pops <span class="ot">&lt;-</span> county_pop_tagged <span class="sc">%&gt;%</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(is_prison_county <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">match_county =</span> county, <span class="at">match_pop =</span> pop_2023)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>population_matches <span class="ot">&lt;-</span> prison_pops <span class="sc">%&gt;%</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cross_join</span>(nonprison_pops) <span class="sc">%&gt;%</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pop_diff =</span> <span class="fu">abs</span>(prison_pop <span class="sc">-</span> match_pop)) <span class="sc">%&gt;%</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(prison_county) <span class="sc">%&gt;%</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(pop_diff, <span class="at">n =</span> <span class="dv">1</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(prison_pop)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 5
   prison_county     prison_pop match_county    match_pop pop_diff
@@ -610,20 +467,33 @@ dbl (2): estimate, moe
 8 Saline County         129667 Faulkner County    130104      437
 9 Pulaski County        401297 Benton County      311656    89641</code></pre>
 </div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(population_matches,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Population matched counties"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-61d75f17486636628312" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-61d75f17486636628312">{"x":{"filter":"none","vertical":false,"caption":"<caption>Population matched counties<\/caption>","data":[["1","2","3","4","5","6","7","8","9"],["Lee County","Chicot County","Lincoln County","Izard County","Jackson County","Hot Spring County","Jefferson County","Saline County","Pulaski County"],[8272,9508,12906,14189,16741,33214,63497,129667,401297],["Nevada County","Scott County","Stone County","Clay County","Drew County","Union County","Pope County","Faulkner County","Benton County"],[8125,9833,12668,14172,17011,37413,64709,130104,311656],[147,325,238,17,270,4199,1212,437,89641]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>prison_county<\/th>\n      <th>prison_pop<\/th>\n      <th>match_county<\/th>\n      <th>match_pop<\/th>\n      <th>pop_diff<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[2,4,5]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"prison_county","targets":1},{"name":"prison_pop","targets":2},{"name":"match_county","targets":3},{"name":"match_pop","targets":4},{"name":"pop_diff","targets":5}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
 </div>
 <p>Pulaski County serves as a bit of an outlier. It is the largest county in Arkansas and Benton County is the second largest, despite falling more than 89,000 residents short, so it really is not possible to conduct a true population comparison within the state using Pulaski.</p>
-<p>Moving on, we now join the matched counties back to the income data to compare median incomes side by side:</p>
+<p>Moving on, the matched counties are joined back with the income data to compare median incomes side by side:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>population_matches_income <span class="ot">&lt;-</span> population_matches <span class="sc">%&gt;%</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, median_income), </span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"prison_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prison_income =</span> median_income) <span class="sc">%&gt;%</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, median_income), </span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"match_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">match_income =</span> median_income) <span class="sc">%&gt;%</span></span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income_diff =</span> prison_income <span class="sc">-</span> match_income)</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches_income)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>population_matches_income <span class="ot">&lt;-</span> population_matches <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, median_income), </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"prison_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prison_income =</span> median_income) <span class="sc">%&gt;%</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, median_income), </span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"match_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">match_income =</span> median_income) <span class="sc">%&gt;%</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">income_diff =</span> prison_income <span class="sc">-</span> match_income)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches_income)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 8
   prison_county     prison_pop match_county    match_pop pop_diff prison_income
@@ -642,15 +512,18 @@ dbl (2): estimate, moe
 </div>
 <p>Now, median income rankings are added back to the final table to demonstrate where each prison county and its match sit in the statewide median income rankings.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>population_matches_final <span class="ot">&lt;-</span> population_matches_income <span class="sc">%&gt;%</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, rank), </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"prison_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prison_rank =</span> rank) <span class="sc">%&gt;%</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, rank), </span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"match_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">match_rank =</span> rank)</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches_final)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>population_matches_final <span class="ot">&lt;-</span> population_matches_income <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, rank), </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"prison_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">prison_rank =</span> rank) <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(ar_income_ranked <span class="sc">%&gt;%</span> <span class="fu">select</span>(county, rank), </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"match_county"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">match_rank =</span> rank)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(population_matches_final)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 9 × 10
   prison_county     prison_pop match_county    match_pop pop_diff prison_income
@@ -666,6 +539,16 @@ dbl (2): estimate, moe
 9 Pulaski County        401297 Benton County      311656    89641         60385
 # ℹ 4 more variables: match_income &lt;dbl&gt;, income_diff &lt;dbl&gt;, prison_rank &lt;int&gt;,
 #   match_rank &lt;int&gt;</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">datatable</span>(population_matches_final,</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Income comparison of matched counties"</span>,</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-240f74d506f3709a3f27" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-240f74d506f3709a3f27">{"x":{"filter":"none","vertical":false,"caption":"<caption>Income comparison of matched counties<\/caption>","data":[["1","2","3","4","5","6","7","8","9"],["Lee County","Chicot County","Lincoln County","Izard County","Jackson County","Hot Spring County","Jefferson County","Saline County","Pulaski County"],[8272,9508,12906,14189,16741,33214,63497,129667,401297],["Nevada County","Scott County","Stone County","Clay County","Drew County","Union County","Pope County","Faulkner County","Benton County"],[8125,9833,12668,14172,17011,37413,64709,130104,311656],[147,325,238,17,270,4199,1212,437,89641],[36860,39683,51667,47728,41215,52644,48552,76534,60385],[41761,45955,38531,48500,41071,50221,54606,65071,89879],[-4901,-6272,13136,-772,144,2423,-6054,11463,-29494],[74,68,31,47,66,28,44,2,9],[65,55,72,45,67,38,20,6,1]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>prison_county<\/th>\n      <th>prison_pop<\/th>\n      <th>match_county<\/th>\n      <th>match_pop<\/th>\n      <th>pop_diff<\/th>\n      <th>prison_income<\/th>\n      <th>match_income<\/th>\n      <th>income_diff<\/th>\n      <th>prison_rank<\/th>\n      <th>match_rank<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"className":"dt-right","targets":[2,4,5,6,7,8,9,10]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"prison_county","targets":1},{"name":"prison_pop","targets":2},{"name":"match_county","targets":3},{"name":"match_pop","targets":4},{"name":"pop_diff","targets":5},{"name":"prison_income","targets":6},{"name":"match_income","targets":7},{"name":"income_diff","targets":8},{"name":"prison_rank","targets":9},{"name":"match_rank","targets":10}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>The results are pretty mixed. Out of 9 prison counties, 5 earn less than their population match and 4 earn more. There’s no clear pattern suggesting prisons significantly boost or hurt local incomes.</p>
@@ -683,7 +566,7 @@ dbl (2): estimate, moe
 <li>COMPANY: SIMMONS FIRST NATIONAL CORP</li>
 <li>NUMBER OF EMPLOYEES: 2,917 full time associates</li>
 <li>NAME OF CEO: James M. Brogdon</li>
-<li>TYPE OF BUSINESS: financial holding company</li>
+<li>TYPE OF BUSINESS: financial holding company ——————————————————————————-</li>
 </ul>
 </section>
 </section>
