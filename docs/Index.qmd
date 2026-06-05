@@ -13,11 +13,10 @@ code-fold: true
 code-summary: "Code"
 ---
 
+![Protest signs reading "Arkatraz Arkansas, Crush us all" and a faux skeleton figure adorn a fence across from the propsed Franklin County prison site. (Photo Credit: Penny Weaver, River Valley Democrat-Gazette) ](https://raw.githubusercontent.com/djnf-data-2026/casey-mann/main/docs/images/Arkansas_Alkatraz.jpeg)
+
+
 # Arkansas prisons and their host counties
-
-
-![Alt text](https://1drv.ms/i/c/e153a88cb7cf9ed0/IQAvr8VNeVm_SY2UFCpnKOLxAcl3R81eICPEbu1I_aRg1w8?e=AVDDhr)
-
 
 This investigation examines whether Arkansas counties that host state prisons experience measurable economic benefits compared to similar-sized counties without prisons, using Census income and population data to test the assumption that prison construction improves local economies. The broader goal is to examine financial incentives that arise as a result of how the U.S. counts prison populations.
 
