@@ -9,6 +9,8 @@ format:
 author: 
   - name: Casey Mann
     email: caseymann2006@gmail.com
+execute: 
+  warning: false # suppress warnings
 code-fold: true
 code-summary: "Code"
 ---
@@ -155,9 +157,6 @@ prisons_counties <- prisons %>%
   distinct(GEOID) %>%
   mutate(has_prison = "Yes")
 
-datatable(ar_income_ranked,
-  caption = "Median income by county ranked, prison counties identified",
-  options = list(pageLength = 10))
 ```
 
 ```{r include=TRUE}
@@ -179,6 +178,7 @@ ar_income_ranked %>%
   inner_join(prison_counts, by = "GEOID") %>%
   arrange(rank) %>%
   select(rank, county, median_income, num_prisons)
+
 ```
 
 The seemingly random ranking of the counties with prisons might indicate that there is no inherent economic benefit or disadvantage that comes with hosting a facility. In order to explore this further, the prison county median incomes will be contrasted with the state-wide median income.
@@ -443,7 +443,6 @@ Both median and mean incomes of prison tracts fall well below those of non-priso
 
 Throughout the construction of this project, I came to realize that another factor to consider when discussing the impact of a new prison build in a rural county is the amount of additional federal funding the facility could provide. When the U.S. Census is conducted, inmates are counted as residents of the prison county they reside in, despite the fact that they are often not from the area and did not choose to be there. These inmates, who are often from majority Black and Latino, urban communities, boost the population metrics of the majority white, rural counties they are held in. These prison counties are then, in turn, eligible for more federal funding. As a result of the population increase from inmates, free people in these counties may benefit off the incarceration of others. This is known as prison gerrymandering.
 
--------------------------------------------------------------------------------
 
 ## Next steps
 
@@ -455,7 +454,22 @@ If possible, I would like to determine how much federal spending typically incre
 
 I believe this project could be part of a larger story about the economic incentive policymakers and corrections officials have to perpetuate cycles of incarceration that disproportionately affect Black and Latino communities.
 
-------------------------------------------------------------------------
+
+## Possible holes
+
+**County match**
+The matching methodology employed when comparing counties of similar size may leave variables out of the analysis. Factors like proximity to cities, natural resources and education levels could sway median income. Matching with a secondary variable could work to rectify this. 
+
+**Causation vs. correlation**
+The analysis in this investigation points to prison counties often underperforming, but, as discussed, facilites may be deliberately placed in already economically-challenged counties. In order to determine whether the prison itself plays a role in a county's economic situation, a before/after comparison is required. The Ouachita River facility could be useful for this. 
+
+
+## Estimated delivery 
+Mid-July delivery. Combining through decades-old income metrics for the Ouachita River facility would be difficult, especially after having to consider factors like inflation. 
+
+![Ariel view of the proposed Franklin County facility site. (Photo Credit: John Jackson, The Arkansas Times) ](https://raw.githubusercontent.com/djnf-data-2026/casey-mann/main/docs/images/Franklin.webp) 
+
+----------------------------------------------------------------------------------------
 
 Business Journalism Lecture
 
